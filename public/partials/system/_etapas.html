@@ -1,0 +1,75 @@
+			<h4 class="etapas__title">Etapas</h4>
+			<ul class="tabs tabs--etapas">
+				<li class="tabs__item tabs__item--compartir" 
+					ng-class="{'tabs__item--active': call.stages.share_resource.start_date && date < call.stages.share_resource.end_date}"
+				>
+					<div class="tabs__fecha" 
+						data-ng-if="date < call.stages.share_resource.start_date">
+						Comienza el {{call.stages.share_resource.start_date | date : 'dd/mm/yyyy'}}
+					</div>
+					<div class="tabs__fecha" 
+						data-ng-if="date > call.stages.share_resource.start_date && date < call.stages.share_resource.end_date">
+						Hasta el {{call.stages.share_resource.end_date | date : 'dd/mm/yyyy'}}
+					</div>
+					<div class="tabs__fecha" 
+						data-ng-if="date > call.stages.share_resource.end_date">
+						Finalizó el {{call.stages.share_resource.end_date | date : 'dd/mm/yyyy'}}
+					</div>
+					<a href="#!/resource/create" class="tabs__title">Compartir recursos</a>
+				</li>
+				<li class="tabs__item tabs__item--solicitar" 
+					ng-class="{'tabs__item--active': call.stages.apply_project.start_date && date < call.stages.apply_project.end_date}"
+				>
+					<div class="tabs__fecha" 
+						data-ng-if="date < call.stages.apply_project.start_date">
+						Comienza el {{call.stages.apply_project.start_date | date : 'dd/mm/yyyy'}}
+					</div>
+					<div class="tabs__fecha" 
+						data-ng-if="date > call.stages.apply_project.start_date && date < call.stages.apply_project.end_date">
+						Hasta el {{call.stages.apply_project.end_date | date : 'dd/mm/yyyy'}}
+					</div>
+					<div class="tabs__fecha" 
+						data-ng-if="date > call.stages.apply_project.end_date">
+						Finalizó el {{call.stages.apply_project.end_date | date : 'dd/mm/yyyy'}}
+					</div>
+
+					<span class="tabs__title">Solicitar recursos</span>
+				</li>
+				<li class="tabs__item tabs__item--evaluar" 
+					ng-class="{'tabs__item--active': date > call.stages.evaluation.start_date && date < call.stages.evaluation.end_date}"
+				>
+
+					<div class="tabs__fecha" 
+						data-ng-if="date < call.stages.evaluation.start_date">
+						Comienza el {{call.stages.evaluation.start_date | date : 'dd/mm/yyyy'}}
+					</div>
+					<div class="tabs__fecha" 
+						data-ng-if="date > call.stages.evaluation.start_date && date < call.stages.evaluation.end_date">
+						Hasta el {{call.stages.evaluation.end_date | date : 'dd/mm/yyyy'}}
+					</div>
+					<div class="tabs__fecha" 
+						data-ng-if="date > call.stages.evaluation.end_date">
+						Finalizó el {{call.stages.evaluation.end_date | date : 'dd/mm/yyyy'}}
+					</div>
+
+					<span class="tabs__title">Evaluación y asignación</span>
+				</li>
+				<li class="tabs__item tabs__item--impacto" 
+					ng-class="{'tabs__item--active': date > call.stages.show_results.start_date && date < call.stages.show_results.end_date}"
+				>
+					<div class="tabs__fecha" 
+						data-ng-if="date < call.stages.show_results.start_date">
+						Comienza el {{call.stages.show_results.start_date | date : 'dd/mm/yyyy'}}
+					</div>
+					<div class="tabs__fecha" 
+						data-ng-if="date > call.stages.show_results.start_date && date < call.stages.show_results.end_date">
+						Hasta el {{call.stages.show_results.end_date | date : 'dd/mm/yyyy'}}
+					</div>
+					<div class="tabs__fecha" 
+						data-ng-if="date > call.stages.show_results.end_date">
+						Finalizó el {{call.stages.show_results.end_date | date : 'dd/mm/yyyy'}}
+					</div>
+
+					<span class="tabs__title">Medición de impacto</span>
+				</li>
+			</ul>

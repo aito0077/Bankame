@@ -1,0 +1,60 @@
+<header class="header" data-ng-controller="HeaderController">
+    <div class="header__top">
+        <h2 class="header__brand">
+            <a href="/" ui-sref="home" mean-token="'site-title'">Bancame</a> 
+        </h2>
+        <h3 class="header__description">Fondo común continental</h3>
+        <h4 class="header__sponsor"><strong>Minka</strong> Cultura Colaborativa</h4>
+    </div>
+    <nav>
+        <ul class="nav nav--principal">
+            <li>
+                <a data-ng-href="#!/call">Convocatorias</a>
+            </li>
+            <li data-ng-repeat="item in menus.main" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
+                <a mean-token="item.link" ui-sref='{{item.link}}'>{{item.title}}</a>
+            </li>
+            <li data-ng-repeat="item in menus.editor" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
+                <a mean-token="item.link" ui-sref='{{item.link}}'>{{item.title}}</a>
+            </li>
+            <li>
+                <a>Indicadores</a>
+            </li>
+            <li>
+                <a>Sobre el fondo</a>
+            </li>
+        </ul>
+        <div class="social-links">
+            <a href="#" class="social-links__icon social-links__icon--facebook"></a>
+            <a href="#" class="social-links__icon social-links__icon--twitter"></a>
+            <a href="#" class="social-links__icon social-links__icon--rss"></a>
+            <a href="#" class="social-links__icon social-links__icon--google-plus"></a>
+            <a href="#" class="social-links__icon social-links__icon--linkedin"></a>
+        </div>
+        <div class="account">
+            <div class="text-edit">
+                <div class="pull-right" data-ng-show="global.authenticated" mean-token-editable></div>
+                <div class="pull-right" data-ng-show="global.authenticated" mean-translate></div>
+            </div>
+            <ul class="navbar-nav nav" ng-if="!isAuthenticated()">
+                <!--
+                <li><a ui-sref='auth.register'>Registrarse</a>
+                </li>
+                <li class="divider-vertical"></li>
+                -->
+                <li><a ui-sref='auth.login'>Ingresar</a> </li>
+            </ul>
+
+
+            <ul class="navbar-nav nav" ng-if="isAuthenticated()">
+                <li ng-if="global.user">
+                    <a href="#">
+                        {{global.user.username}} 
+                    </a>
+                <li>
+                    <a ng-click="logout()">Cerrar Sesión</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>

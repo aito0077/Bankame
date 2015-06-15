@@ -1,0 +1,75 @@
+<div data-ng-controller="ProjectController">
+    <form name="projectForm" class="user-form user-form--solicitar" role="form" data-ng-submit="create(projectForm.$valid)" novalidate>
+
+        <div>
+            <div class="recurso-solicitado">
+                <h3 class="recurso-solicitado__title">Recurso solicitado</h3>
+                <div class="media-box">
+                    <figure class="media-box__image">
+                        <img src="/system/assets/img/proyecto-thumbnail.jpg">
+                    </figure>
+                    <h4 class="media-box__title">Hospeda Cultura - 6 hospedajes de dos días en Brasil</h4>
+                    <p class="media-box__content">Sed finibus lectus imperdiet, dictum mauris in, consectetur ligula. Duis eu nulla erat. Aliquam interdum, diam ac lacinia blandit, sem ante dapibus quam, ut laoreet felis sem et neque. Morbi vel suscipit odio. Donec lorem turpis, mattis ut luctus quis, mollis nec tortor. Nulla hendrerit quam id porttitor dictum.</p>
+                </div>
+            </div>
+            <div class="big-panel big-panel--invert">
+                <h4 class="big-panel__title">Cuentanos sobre tu proyecto</h4>
+                <p class="big-panel__content">Es importante que seas sintético y claro, ya que para asignar los recursos los proyectos serán evaluados tanto por los jurados como por la misma comunidad postulante. También utilizaremos la información para generar indicadores y medir el impacto general del fondo.</p>
+            </div>
+            <div class="layout">
+                <div class="layout__1-2">
+
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && projectForm.name.$invalid }">
+                        <label mean-token="'create-name'" class="control-label">Nombre</label>
+                        <input name="name" type="text" class="form-control" data-ng-model="name" id="name" placeholder="Nombre" required>
+                        <div ng-show="submitted && projectForm.name.$invalid" class="help-block">
+                        <p ng-show="projectForm.name.$error.required">Nombre es requerido</p>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error' : submitted && projectForm.project_type.$invalid }">
+                    <label mean-token="'create-project_type'" class="control-label">Tipo de Proyecto</label>
+                    <input name="project_type" type="text" class="form-control" data-ng-model="project_type" id="project_type" placeholder="Tipo de Proyecto" required>
+                    <div ng-show="submitted && projectForm.project_type.$invalid" class="help-block">
+                        <p ng-show="projectForm.project_type.$error.required">Tipo de Proyecto es requerido</p>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error' : submitted && projectForm.description.$invalid }">
+                    <label mean-token="'create-description'" for="description" class="control-label">Descripcion</label>
+                    <textarea name="description" data-ng-model="description" id="description" cols="30" rows="10" placeholder="Descripcion" class="form-control" required></textarea>
+                    <div ng-show="submitted && projectForm.description.$invalid" class="help-block">
+                        <p ng-show="projectForm.description.$error.required">Descripcion es requerido</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layout__1-2">
+
+                <div class="form-group" ng-class="{ 'has-error' : submitted && projectForm.organization_owner.$invalid }">
+                    <label mean-token="'create-organization_owner'" class="control-label">Organizacion</label>
+                    <input name="organization_owner" type="text" class="form-control" data-ng-model="organization_owner" id="organization_owner" placeholder="Organizacion" required>
+                    <div ng-show="submitted && projectForm.organization_owner.$invalid" class="help-block">
+                        <p ng-show="projectForm.organization_owner.$error.required">Organizacion es requerido</p>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error' : submitted && projectForm.stakeholders.$invalid }">
+                    <label mean-token="'create-stakeholders'" for="stakeholders" class="control-label">Beneficiarios</label>
+                    <textarea name="stakeholders" data-ng-model="stakeholders" id="stakeholders" cols="30" rows="10" placeholder="Beneficiarios" class="form-control" ></textarea>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error' : submitted && projectForm.picture_path.$invalid }">
+                    <label mean-token="'create-picture_path'" for="picture_path" class="control-label">Imagen Proyecto</label>
+                    <mean-upload file-dest="'/uploads/projects/'" upload-file-callback="uploadedProjectPicture(file)">
+                    </mean-upload>
+                    <img data-ng-src="{{picture_path}}" alt="">
+                <div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button mean-token="'create-submit'" type="submit" class="btn btn-info">Guardar</button>
+        </div>
+    </form>
+</div>

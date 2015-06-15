@@ -1,0 +1,90 @@
+.navbar
+  border-radius: 0
+  
+.header
+  background: #fff
+  border-bottom: 4px solid $purpura
+  min-height: 97px
+  cf()
+  &__top
+    float: left
+  &__brand
+    margin: 11px 11px 0 34px
+    a
+      display: block
+      width: 394px
+      height: 75px
+      background: url('../img/bankame-brand.png');
+      hide-text()
+  &__description
+    display: none
+  &__sponsor
+    display: none
+  .nav
+    float: left
+    cf()
+    li
+      float: left
+      a
+        line-height: 49px
+        padding: 0 23px
+        color: #000
+  .nav--principal
+    margin-top: 40px
+    text-transform: uppercase
+    li
+      a
+        line-height: 26px
+        font-size: 12px
+        padding: 0 12px
+  .account
+    float: right
+    margin: 40px 80px 20px 0
+    .nav
+      a
+        background: $bordo
+        color: #fff
+        border-radius: 3px
+        margin-left: 10px
+        line-height: 32px
+      
+.nav > li > a:hover,
+.nav > li > a:focus
+  background: $amarillo
+       
+.btn-facebook
+  background-color: #3b5998
+.btn-linkedin
+  background-color: #007bb6
+.btn-openid
+  background-color: #f7931e
+.btn-twitter
+  background-color: #55acee
+
+.social-links
+  float: right
+  margin: 12px 20px 0
+  display: none
+  &__icon 
+    display: inline-block
+    width: 23px
+    height: 24px
+    background: url('../img/sprint-social.png')
+    margin-right: 1px
+    &--facebook
+      background-position: 0 0
+    &--twitter
+      background-position: -24px 0
+    &--rss
+      background-position: -48px 0
+    &--google-plus
+      background-position: -71px 0
+    &--linkedin
+      background-position: -95px 0
+  &--sidebar
+    display: inline-block
+    float:none
+    height: 34px
+    margin-left: 0
+    padding: 5px
+    background: #fff

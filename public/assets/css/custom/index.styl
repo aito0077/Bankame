@@ -1,0 +1,148 @@
+@import '_nav'
+@import '_convocatoria'
+@import '_etapas'
+@import '_tabs'
+@import '_indicadores'
+@import '_lista-recursos'
+@import '_preguntas-frecuentes'
+@import '_user-form'
+@import '_big-panel'
+@import '_recursos'
+@import '_proyectos'
+@import '_filters'
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 
+  font-family: $titleFont
+  font-weight: 700
+    
+.admin-menu
+  top: 123px !important;
+
+.admin-menu + .page
+  padding-left: 60px;
+    
+.page
+  center(1280px, 15px)
+  padding: 0
+  border: 1px solid $gris
+  border-width: 0 1px
+  &__body
+    margin: 0
+    img
+      max-width: 100%
+
+.slider
+  &__body
+    list-style-type: none
+    padding: 0
+  &__image
+    img
+      width: 100%
+      max-width: 100%    
+  
+.lista-socios
+  margin-bottom: 35px
+  margin-left: 80px
+  &__title
+    font-size: 20px
+    font-weight: bold
+    margin: 35px 0 20px
+  &__subtitle
+    text-align: center
+  &__content
+    font-size: 13px
+  &__items
+    padding: 0
+    list-style: none
+    display: table
+    li
+      padding-right: 40px
+      display: table-cell
+.layout
+  cf()
+  list-style: none
+  margin: 0
+  padding: 0
+  &__1-2
+    column(1/2)
+  &__1-4
+    column(1/4)
+  &__3-4
+    column(3/4)
+
+.tags
+  margin: 6px 10px
+  &__link
+    display: inline-block
+    border: 1px solid #333
+    border-radius: 2px
+    background: #fff
+    white-space: nowrap
+    line-height: 20px
+    padding: 0 10px
+    color: #000
+    font-size: 13px
+    margin-bottom: 4px
+    
+.recurso-solicitado
+  margin: 30px auto
+  max-width: 930px
+  &__title
+    color: #fff
+    
+.media-box
+  padding: 5px
+  background: #fff
+  &__title
+    font-weight: bold
+    font-size: 18px
+    margin-bottom: 10px
+    color: #000
+  &__content
+    color: $gris_oscuro
+    
+.panel
+  background: transparent
+  border: none
+  box-shadow: none
+  color: #454545
+  margin-bottom: 60px
+  &__subtitle
+    font-size: 14px
+  &__title
+    font-size: 20px
+    &--em
+      color: #000
+  &__content
+    font-size: 13px
+  .btn
+    font-size: 13px
+    
+.slider
+  border-bottom: 4px solid $purpura
+  &__body
+    margin-bottom: 0
+    
+.footer
+  background: $gris
+  padding: 30px
+  row()
+  &__content
+    column(1/2)
+    text-align: center
+    color: #fff
+    &--contact
+      text-align:left
+  &__title
+    color: $purpura
+  &__body
+    colot: #fff
+    dt
+      float: left
+      width: 80px
+      clear: left

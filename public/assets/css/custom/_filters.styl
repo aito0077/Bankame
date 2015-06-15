@@ -1,0 +1,47 @@
+.filters
+  list-style: none
+  padding: 0
+  position: relative
+  display: table
+  margin: 30px auto 120px
+  font-size: 16px
+  &__item
+    display: table-cell
+    &--active
+      color: $top-nav
+      .filters__sub-categories
+        display: block
+      .filters__title
+        color: $top-nav
+        border-bottom-color: $top-nav
+      .filters__sub-title--active,
+      .filters__sub-title:hover
+          color: #fff
+          background: $top-nav
+  &__sub-categories
+    display: none
+    position: absolute
+    list-style: none
+    left: 0
+    top: 50px
+    padding: 0
+  &__sub-item
+    float: left
+  &__title,
+  &__sub-title
+    &:hover {
+      text-decoration: none
+      color: $top-nav
+    }
+  &__sub-title
+    display: inline-block
+    margin-right: 10px
+    border: 1px solid #ccc
+    border-radius: 4px
+    padding: 5px 10px
+    background: #fff
+    color: #000  
+  &__title
+    color: #000
+    padding: 15px 25px
+    border-bottom: 2px solid #000

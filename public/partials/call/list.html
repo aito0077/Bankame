@@ -1,0 +1,40 @@
+<div class="container" style="min-height: 400px;">
+    
+    <section data-ng-controller="CallController" data-ng-init="find()">
+
+        <div class="page-header">
+            <h1>Convocatorias <small>listado</small><span class="pull-right"><a href="/#!/call/create"  data-ng-if="hasAuthorization(call)"  class="btn btn-primary">Agregar</a></span></h1>
+        </div>
+        <div  data-ng-repeat="call in calls" class="media">
+            <div class="media-left">
+            </div>
+            <div class="media-body">
+                <a data-ng-href="#!/call/{{call._id}}">
+                    <h4 class="media-heading">{{call.name}} <small>{{call.created | date:'medium'}} / {{call.user.name}}</small></h4>
+                </a>
+                <div class="row">
+                    <div class="col-md-8 col-sm-8">
+                        <p>{{call.context}}</p>
+                        
+                    </div>
+                    <div class="col-md-2 col-sm-2">
+                        <a data-ng-if="hasAuthorization(call)" class="btn" href="/#!/call/{{call._id}}/edit">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-sm-2">
+                        <a data-ng-if="hasAuthorization(call)" class="btn" data-ng-click="remove(call);">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</div>
+
+

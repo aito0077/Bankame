@@ -1,0 +1,65 @@
+.indicadores
+  display: table;
+  //box-shadow: 0 5px 5px 0 rgba(0, 0, 0, .2)
+  position: relative
+  &__body
+    display: table-cell
+    width: 75%
+    background: $gris_claro
+    color: #555
+    padding: 10px 35px
+    +below(3)
+      border: none
+      width: auto
+      display: block
+  &__aside
+    display: table-cell
+    width: 25%
+    background: $gris_oscuro
+    color: #fff
+    overflow: hidden
+    +below(3)
+      width: auto
+      display: block
+  &__title
+    text-align: left
+    font-weight: normal
+    margin-top: 0
+    color: $bordo
+  &__item
+    font-size: 16px
+    strong
+      font-size: 25px
+      color: $purpura
+  &__item--left
+    strong
+      float: left
+      margin-right: 20px
+      font-size: 35px
+  &__item--top
+    strong
+      display: block
+  &__item--small
+    strong
+      font-size: 16px
+  &__item--medium
+    strong
+      font-size: 22px
+  &__item--height
+    line-height: 30px
+  &__link
+    color: $azul
+    font-size: 14px
+    &--descargar
+      display: block
+      text-align: right
+      margin: 0 45px 35px 0
+    span
+      text-decoration: underline
+  &__subtitle
+    text-align: right
+    font-size: 28px
+    line-height: 40px
+    margin: 30px 45px 10px 45px
+    +below(3)
+      text-align: center

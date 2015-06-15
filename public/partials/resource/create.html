@@ -1,0 +1,75 @@
+
+<div data-ng-controller="ResourceController"  data-ng-init="loadData()">
+    <div class="big-panel">
+        <h1 class="big-panel__title">Comparte un recurso con la comunidad</h1>
+        <p class="big-panel__content">Bancame es...</p>
+    </div>
+
+    <fieldset>
+        <div class="row user-form user-form--compartir">
+                <ng-include src="'main/sub_views/organization_create.html'"/>
+        </div>
+    </fieldset>
+
+    <form name="resourceForm" class="user-form user-form--compartir" role="form" data-ng-submit="create(resourceForm.$valid)" novalidate>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.name.$invalid }">
+                    <label mean-token="'create-name'" class="control-label">Nombre</label>
+                    <input name="name" type="text" class="form-control" data-ng-model="name" id="name" placeholder="Nombre" required>
+                    <div ng-show="submitted && resourceForm.name.$invalid" class="help-block">
+                        <p ng-show="resourceForm.name.$error.required">Nombre es requerido</p>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.description.$invalid }">
+                    <label mean-token="'create-description'" for="description" class="control-label">Descripcion</label>
+                    <textarea name="description" data-ng-model="description" id="description" cols="30" rows="10" placeholder="Descripcion" class="form-control" required></textarea>
+                    <div ng-show="submitted && resourceForm.description.$invalid" class="help-block">
+                        <p ng-show="resourceForm.description.$error.required">Descripcion es requerido</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.picture_path.$invalid }">
+                    <label mean-token="'create-picture_path'" for="picture_path" class="control-label">Imagen Recurso</label>
+
+                    <div ngf-select ngf-drop ng-model="files" ng-model-rejected="rejFiles"
+                        ngf-multiple="multiple" ngf-accept="accept" accept="{{acceptSelect}}"
+                        ngf-disabled="disabled" ngf-capture="capture"
+                        ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                        ngf-min-size="minSize" ngf-max-size="maxSize"
+                        ngf-keep="keep" ngf-keep-distinct="keepDistinct" ngf-reset-on-click="resetOnClick"
+                        ngf-reset-model-on-click="resetModelOnClick"
+                        ngf-allow-dir="allowDir" class="drop-box" ngf-drop-available="dropAvailable">Selecciona una imagen
+                    <span ng-show="dropAvailable">o Arrastra una</span></div>
+
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.resource_type.$invalid }">
+                    <label mean-token="'create-resource_type'" class="control-label">Tipo de Recurso</label>
+                    <select name="resource_type" type="text" class="form-control" data-ng-model="resource_type_selected" id="resource_type" placeholder="Tipo de Recurso" required ng-options="ress.name for ress in resourceTypes"> </select>
+                    <div ng-show="submitted && resourceForm.resource_type.$invalid" class="help-block">
+                        <p ng-show="resourceForm.resource_type.$error.required">Tipo de Recurso es requerido</p>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.cost.$invalid }">
+                    <label mean-token="'create-cost'" class="control-label">Costo</label>
+                    <input name="cost" type="text" class="form-control" data-ng-model="cost" id="cost" placeholder="Si tuvieras que ponerle precio al recurso, costaría">
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.conditions.$invalid }">
+                    <label mean-token="'create-conditions'" for="conditions" class="control-label">Condiciones</label>
+                    <textarea name="conditions" data-ng-model="conditions" id="conditions" cols="30" rows="10" placeholder="Condiciones al postulante" class="form-control"></textarea>
+                </div>
+
+
+            </div>
+
+        </div>
+        <div class="form-group">
+            <button mean-token="'create-submit'" type="submit" class="btn btn-info">Guardar</button>
+        </div>
+    </form>
+</div>

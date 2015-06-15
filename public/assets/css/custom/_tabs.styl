@@ -1,0 +1,37 @@
+.tabs
+	&--etapas
+		margin: 20px 0 20px 120px
+		background: none
+		border: none
+		cf()
+		.tabs__item
+			column(1/4, gutter: .5)
+			text-align: center
+			&--active
+				.tabs__title
+					background: $purpura
+					
+		.tabs__title,
+		.tabs__title:hover
+			background: #aaa
+			color: #fff
+
+		.tabs__fecha
+			font-size: 12px
+		.tabs__number
+			display: inline-block
+			background: $purpura
+			border-radius: 24px
+			width: 48px
+			height: 48px
+			line-height: 48px
+			font-size: 28px
+			color: #fff
+		.tabs__description
+			font-size: 16px;
+			min-height: 34px
+	&--form
+		margin-bottom: 0
+		.tabs__item--active
+			.tabs__title
+				background: $purpura

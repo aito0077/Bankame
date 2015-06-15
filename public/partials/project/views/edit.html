@@ -1,0 +1,67 @@
+<section data-ng-controller="ProjectController" data-ng-init="findOne()">
+  <form name="projectForm" class="form-horizontal col-md-6" role="form" data-ng-submit="update(projectForm.$valid)" novalidate>
+    <div class="form-group" ng-class="{ 'has-error' : submitted && projectForm.name.$invalid }">
+      <label mean-token="'create-name'" class="col-md-3 control-label">Nombre</label>
+      <div class="col-md-9">
+        <input name="name" type="text" class="form-control" data-ng-model="project.name" id="name" placeholder="Nombre" required>
+        <div ng-show="submitted && projectForm.name.$invalid" class="help-block">
+          <p ng-show="projectForm.name.$error.required">Nombre es requerido</p>
+        </div>
+      </div>
+
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : submitted && projectForm.description.$invalid }">
+      <label mean-token="'create-description'" for="description" class="col-md-3 control-label">Descripcion</label>
+      <div class="col-md-9">
+        <textarea name="description" data-ng-model="project.description" id="description" cols="30" rows="10" placeholder="Descripcion" class="form-control" required></textarea>
+        <div ng-show="submitted && projectForm.description.$invalid" class="help-block">
+          <p ng-show="projectForm.description.$error.required">Descripcion es requerido</p>
+        </div>
+      </div>
+    </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : submitted && projectForm.stakeholders.$invalid }">
+            <label mean-token="'create-stakeholders'" for="stakeholders" class="col-md-3 control-label">Beneficiarios</label>
+            <div class="col-md-9">
+                <textarea name="stakeholders" data-ng-model="stakeholders" id="stakeholders" cols="30" rows="10" placeholder="Beneficiarios" class="form-control" ></textarea>
+            </div>
+        </div>
+
+
+
+    <div class="form-group" ng-class="{ 'has-error' : submitted && projectForm.picture_path.$invalid }">
+      <label mean-token="'create-picture_path'" for="picture_path" class="col-md-3 control-label">Imagen Proyecto</label>
+      <div class="col-md-9">
+            <h3>SUBIR IMAGEN</h3>
+      </div>
+    </div>
+
+    <div class="form-group" ng-class="{ 'has-error' : submitted && projectForm.project_type.$invalid }">
+        <label mean-token="'create-project_type'" class="col-md-3 control-label">Tipo de Proyecto</label>
+        <div class="col-md-9">
+            <input name="project_type" type="text" class="form-control" data-ng-model="project.project_type" id="project_type" placeholder="Tipo de Proyecto" required>
+            <div ng-show="submitted && projectForm.project_type.$invalid" class="help-block">
+                <p ng-show="projectForm.project_type.$error.required">Tipo de Proyecto es requerido</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{ 'has-error' : submitted && projectForm.organization_owner.$invalid }">
+        <label mean-token="'create-organization_owner'" class="col-md-3 control-label">Organizacion</label>
+        <div class="col-md-9">
+            <input name="organization_owner" type="text" class="form-control" data-ng-model="project.organization_owner" id="organization_owner" placeholder="Organizacion" required>
+            <div ng-show="submitted && projectForm.organization_owner.$invalid" class="help-block">
+                <p ng-show="projectForm.organization_owner.$error.required">Organizacion es requerido</p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+      <div class="col-md-offset-3 col-md-9">
+        <button mean-token="'edit-submit'" type="submit" class="btn btn-default">Guardar</button>
+      </div>
+    </div>
+  </form>
+</section>

@@ -1,0 +1,166 @@
+    <section class="page__body" data-ng-controller="ResourceController"  data-ng-init="loadData()">
+
+        <div class="convocatoria convocatoria--invert">
+            <div class="convocatoria__wrapper">
+                <article class="convocatoria__body">
+                    <h5 class="convocatoria__open">Convocatoria Abierta</h5>
+                    <h1 class="convocatoria__title">
+                        <a data-ng-href="#!/call/{{call._id}}">{{call.name}}</a>
+                    </h1>
+                    <p class="convocatoria__content">{{call.context}}</p>
+                    <div class="convocatoria__participantes">
+                        Paises participantes: 
+                        <span data-ng-repeat="scope in call.scopes">
+                            {{scope}}{{$last ? '' : ', '}}
+                        </span>
+                    </div>
+                </article>
+                <aside class="convocatoria__aside">
+                    <h3 class="convocatoria__subtitle">Participá</h3>
+                    <ul class="list" data-ng-repeat="reference in call.references">
+                        <li class="list__item">
+                            <a href="/calls/{{reference.url}}/{{call._id}}" class="list__link">{{reference.name}}</a>
+                        </li>
+                    </ul>
+                </aside>
+            </div>
+
+
+    <div class="big-panel">
+      <p class="big-panel__content">Fondo común es la primera aceleradora de redes en América Latina pensada para captar, gestionar y compartir recursos de todo tipo a través de proyectos colectivos dedicados a promover la articulación local, nacional e internacional de iniciativas culturales, formativas, de comunicación, incidencia, género, gestión de redes y economía colaborativa.</p>
+    </div>
+    
+    <div class="etapas">
+      <h4 class="etapas__title">Etapas</h4>
+      <ul class="tabs tabs--etapas tabs--form">
+
+
+        <li class="tabs__item tabs__item--compartir" ng-class="{'tabs__item--active': currentPhase(call.stages.share_resource) == 'ACTIVE'}" >
+        <span class="tabs__number">1</span>
+        <h1 class="tabs__description">Comparte un recurso con el fondo</h1>
+
+          <div class="tabs__fecha" 
+            data-ng-if="currentPhase(call.stages.share_resource) == 'FUTURE'">
+            Comienza el {{call.stages.share_resource.start_date | moment: 'DD/MM/YYYY'}}
+          </div>
+          <div class="tabs__fecha" 
+            data-ng-if="currentPhase(call.stages.share_resource) == 'ACTIVE'">
+            Hasta el {{call.stages.share_resource.end_date | moment: 'DD/MM/YYYY'}}
+          </div>
+          <div class="tabs__fecha" 
+            data-ng-if="currentPhase(call.stages.share_resource) == 'PAST'">
+            Finalizó el {{call.stages.share_resource.end_date | moment: 'DD/MM/YYYY'}}
+          </div>
+          <a href="#!/resource/create" class="tabs__title">Compartir recursos</a>
+        </li>
+
+        <li class="tabs__item tabs__item--solicitar" ng-class="{'tabs__item--active': currentPhase(call.stages.apply_project) == 'ACTIVE'}" >
+          <span class="tabs__number">2</span>
+          <h1 class="tabs__description">Aplica a un recurso del fondo</h1>
+
+          <div class="tabs__fecha" 
+            data-ng-if="currentPhase(call.stages.apply_project) == 'FUTURE'">
+            Comienza el {{call.stages.apply_project.start_date | moment: 'DD/MM/YYYY'}}
+          </div>
+          <div class="tabs__fecha" 
+            data-ng-if="currentPhase(call.stages.apply_project) == 'ACTIVE'">
+            Hasta el {{call.stages.apply_project.end_date | moment: 'DD/MM/YYYY'}}
+          </div>
+          <div class="tabs__fecha" 
+            data-ng-if="currentPhase(call.stages.apply_project) == 'PAST'">
+            Finalizó el {{call.stages.apply_project.end_date | moment: 'DD/MM/YYYY'}}
+          </div>
+          <span class="tabs__title">Solicitar recursos</span>
+        </li>
+
+
+        <li class="tabs__item tabs__item--evaluar" ng-class="{'tabs__item--active': currentPhase(call.stages.evaluation) == 'ACTIVE'}" >
+          <span class="tabs__number">3</span>
+          <h1 class="tabs__description">Colabora evaluando y mejorando otros proyectos</h1>
+          <div class="tabs__fecha" 
+            data-ng-if="currentPhase(call.stages.evaluation) == 'FUTURE'">
+            Comienza el {{call.stages.evaluation.start_date | moment: 'DD/MM/YYYY'}}
+          </div>
+          <div class="tabs__fecha" 
+            data-ng-if="currentPhase(call.stages.evaluation) == 'ACTIVE'">
+            Hasta el {{call.stages.evaluation.end_date | moment: 'DD/MM/YYYY'}}
+          </div>
+          <div class="tabs__fecha" 
+            data-ng-if="currentPhase(call.stages.evaluation) == 'PAST'">
+            Finalizó el {{call.stages.evaluation.end_date | moment: 'DD/MM/YYYY'}}
+          </div>
+
+          <span class="tabs__title">Evaluación y asignación</span>
+        </li>
+
+
+      </ul>
+
+    </div><!--/.etapas-->
+
+  </div><!--/.convocatoria-->
+  <div class="big-panel big-panel--invert big-panel--arrow">
+    <h1 class="big-panel__title">Comparte un recurso con la comunidad</h1>
+    <p class="big-panel__content">Bancame es...</p>
+  </div>
+
+  <form name="resourceForm" class="user-form user-form--compartir" role="form" data-ng-submit="create(resourceForm.$valid)" novalidate>
+    <div class="layout">
+      <div class="layout__1-2">
+        <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.name.$invalid }">
+          <label mean-token="'create-name'" class="control-label">Nombre</label>
+          <input name="name" type="text" class="form-control" data-ng-model="name" id="name" placeholder="Nombre" required>
+          <div ng-show="submitted && resourceForm.name.$invalid" class="help-block">
+            <p ng-show="resourceForm.name.$error.required">Nombre es requerido</p>
+          </div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.description.$invalid }">
+          <label mean-token="'create-description'" for="description" class="control-label">Descripcion</label>
+          <textarea name="description" data-ng-model="description" id="description" cols="30" rows="10" placeholder="Descripcion" class="form-control" required></textarea>
+          <div ng-show="submitted && resourceForm.description.$invalid" class="help-block">
+            <p ng-show="resourceForm.description.$error.required">Descripcion es requerido</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="layout__1-2">
+        <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.resource_type.$invalid }">
+          <label mean-token="'create-resource_type'" class="control-label">Tipo de Recurso</label>
+            <select name="resource_type" type="text" class="form-control" data-ng-model="resource_type_selected" id="resource_type" placeholder="Tipo de Recurso" required ng-options="ress.name for ress in resourceTypes">
+
+ 
+            </select>
+          <div ng-show="submitted && resourceForm.resource_type.$invalid" class="help-block">
+              <p ng-show="resourceForm.resource_type.$error.required">Tipo de Recurso es requerido</p>
+          </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.organization_owner.$invalid }">
+          <label mean-token="'create-organization_owner'" class="control-label">Organizacion</label>
+          <input name="organization_owner" type="text" class="form-control" data-ng-model="organization_owner" id="organization_owner" placeholder="Organizacion" required>
+          <div ng-show="submitted && resourceForm.organization_owner.$invalid" class="help-block">
+              <p ng-show="resourceForm.organization_owner.$error.required">Organizacion es requerido</p>
+          </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.picture_path.$invalid }">
+            <label mean-token="'create-picture_path'" for="picture_path" class="control-label">Imagen Recurso</label>
+            <mean-upload file-dest="'/uploads/resources/'" upload-file-callback="uploadedResoucePicture(file)">
+            </mean-upload>
+            <div>
+                <img data-ng-src="{{picture_path}}" alt="">
+            </div>
+        </div>
+
+      </div>
+    </div>
+    
+
+
+
+    <div class="form-group">
+      <button mean-token="'create-submit'" type="submit" class="btn btn-info">Guardar</button>
+    </div>
+  </form>
+
+  <ng-include src="'system/views/_preguntas-frecuentes.html'">

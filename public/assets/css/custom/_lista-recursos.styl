@@ -1,0 +1,36 @@
+.lista-recursos
+  margin: 0
+  padding: 0
+  list-style: none
+  &__item
+    column(1/4, cycle: 4)
+    position: relative
+    border: 1px solid #333
+    background: #fff
+    margin-bottom: 3%
+    text-align: left
+  &__title
+    color: $rojo
+    margin: 10px
+    font-size: 20px
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    a
+      color: $rojo
+  &__content
+    margin: 10px
+    color: #333
+    line-height: 20px
+    height: 60px
+    overflow: hidden
+  &__solicitar
+    position: absolute
+    right: 5px
+    top: 148px 
+  &__brand
+    border-bottom: 5px solid #333
+    margin-bottom: 5px
+    img
+      width: 100%
+      max-width: 100%

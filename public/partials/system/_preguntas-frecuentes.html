@@ -1,0 +1,47 @@
+  <div class="preguntas-frecuentes">
+    <div class="big-panel">
+      <h4 class="big-panel__title">Podemos explicar un poco más</h4>
+      <p class="big-panel__content">En este espacio sería bueno pensar sobre la lógica del fondo común</p>
+    </div>
+    <div class="preguntas-frecuentes__video">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/XTLISkbWFmI" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="preguntas-frecuentes__panel">
+      <h5 class="preguntas-frecuentes__label">Preguntas frecuentes</h5>
+      <dl class="preguntas-frecuentes__list">
+        <dt class="preguntas-frecuentes__question">¿Es necesario compartir un recurso para poder aplicar?</dt>
+        <dd class="preguntas-frecuentes__answer">Si, todos los participantes deben compartir al menos un recurso.</dd>
+        <dt class="preguntas-frecuentes__question">¿Es necesario compartir un recurso para poder aplicar?</dt>
+        <dd class="preguntas-frecuentes__answer">Si, todos los participantes deben compartir al menos un recurso.</dd>
+        <dt class="preguntas-frecuentes__question">¿Es necesario compartir un recurso para poder aplicar?</dt>
+        <dd class="preguntas-frecuentes__answer">Si, todos los participantes deben compartir al menos un recurso.</dd>
+        <dt class="preguntas-frecuentes__question">¿Es necesario compartir un recurso para poder aplicar?</dt>
+        <dd class="preguntas-frecuentes__answer">
+          Si, todos los participantes deben compartir al menos un recurso.
+          Si, todos los participantes deben compartir al menos un recurso.
+          Si, todos los participantes deben compartir al menos un recurso.
+          Si, todos los participantes deben compartir al menos un recurso.
+        </dd>
+        <dt class="preguntas-frecuentes__question">¿Es necesario compartir un recurso para poder aplicar?</dt>
+        <dd class="preguntas-frecuentes__answer">Si, todos los participantes deben compartir al menos un recurso.</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+$(function(){
+  $('.preguntas-frecuentes__question').on('click', function() {
+    if (!$(this).next().hasClass('preguntas-frecuentes__answer--active')) {
+      $('.preguntas-frecuentes__list')
+        .find('.preguntas-frecuentes__answer--active')
+        .slideUp()
+        .delay(500)
+        .removeClass('preguntas-frecuentes__answer--active');
+      $(this)
+        .next()
+        .slideDown()
+        .addClass('preguntas-frecuentes__answer--active');
+    };
+  })
+});
+</script>

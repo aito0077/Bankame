@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: Bancame
+        psr4_prefix: Bancame
+        src_path: app

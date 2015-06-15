@@ -1,0 +1,99 @@
+<section data-ng-controller="ResourceController" data-ng-init="findOne()">
+
+  <div class="convocatoria convocatoria--invert">
+    <div class="convocatoria__wrapper">
+      <article class="convocatoria__body">
+        <h5 class="convocatoria__open">Convocatoria Abierta</h5>
+        <h1 class="convocatoria__title">
+          <a data-ng-href="#!/call/{{call._id}}">{{call.name}}</a>
+        </h1>
+        <p class="convocatoria__content">{{call.context}}</p>
+        <div class="convocatoria__participantes">
+          Paises participantes: 
+          <span data-ng-repeat="scope in call.scopes">
+            {{scope}}{{$last ? '' : ', '}}
+          </span>
+        </div>
+      </article>
+      <aside class="convocatoria__aside">
+        <h3 class="convocatoria__subtitle">Participá</h3>
+        <ul class="list" data-ng-repeat="reference in call.references">
+          <li class="list__item">
+            <a href="{{reference.url}}" class="list__link">{{reference.text}}</a>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </div><!--/.convocatoria-->
+
+  <div class="recursos recursos--detalle">
+    <div class="layout">
+      <div class="layout__3-4">
+        <h5 class="recursos__subtitle">Recursos</h5>
+        <h1 class="recursos__title">{{resource.name}}</h1>
+        <div class="tags">
+          <span class="tags__link">Servicio</span>
+          <span class="tags__link">Tecnología</span>
+        </div>
+        <figure class="recursos__image">
+          <img src="{{resource.picture_path || '/system/assets/img/recurso.jpg'}}" alt="">
+        </figure>
+        <div class="recursos__content">
+          {{resource.description}}
+        </div>
+      </div>
+      <div class="layout__1-4">
+        <div class="panel">
+          <h4 class="panel__title--em">Paises disponibles</h4>
+          <div class="tags">
+            <span class="tags__link">Servicio</span>
+            <span class="tags__link">Tecnología</span>
+          </div>
+        </div>
+        <div class="panel">
+          <h4 class="panel__title">Quienes pueden participar</h4>
+          <p class="panel__content">
+            Colectivos culturales y organizaciones que 
+            cuenten con un espacio físico propio 
+            y necesiten hacerle mejoras.<br>
+            Residentes en Argentina o Brasil.
+          </p>
+
+          <a href="/#!/project/create" class="btn btn-success">Solicitar recurso</a>
+          <a href="#" class="btn btn-warning">Banco de recursos</a>
+        </div>
+        <div class="panel">
+          <h6 class="panel__subtitle">Organization</h6>
+          <h4 class="panel__title">{{resource.organization_owner}}</h4>
+          <p class="panel__content">
+            Un taller colaborativo de creación y prototipado con acceso a nuevas tecnologóas y herramientas tradicionales para transformar ideas en productos.
+          </p>
+
+          <div class="social-links social-links--sidebar">
+              <a href="#" class="social-links__icon social-links__icon--facebook"></a>
+              <a href="#" class="social-links__icon social-links__icon--twitter"></a>
+              <a href="#" class="social-links__icon social-links__icon--rss"></a>
+              <a href="#" class="social-links__icon social-links__icon--google-plus"></a>
+              <a href="#" class="social-links__icon social-links__icon--linkedin"></a>
+          </div>
+
+        </div>
+
+        <p>{{resource.user.name}}</p>
+        <span>{{resource.created | date:'medium'}}</span> /
+        <div>{{resource.resource_type}}</div>
+        <div></div>
+        <div data-ng-if="hasAuthorization(resource)">
+          <a class="btn" href="/#!/resource/{{resource._id}}/edit">
+            <i class="glyphicon glyphicon-edit"></i>
+          </a>
+          <a class="btn" data-ng-click="remove(resource);">
+            <i class="glyphicon glyphicon-trash"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  
+</section>

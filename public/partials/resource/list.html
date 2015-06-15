@@ -1,0 +1,60 @@
+<div data-ng-controller="ResourceController" data-ng-init="find()">
+
+    <div class="user-form user-form--solicitar user-form--arrow">
+        <div class="big-panel big-panel--invert">
+            <p class="big-panel__content">Gracias al aporte de las organizaciones participantes, ya contamos con un fondo común compuesto por valiosos recursos tanto monetarios como no monetarios.</p>
+            <h5 class="big-panel__more">¿Cual de los siguientes recursos podría potenciar tu proyecto?</h5>
+        </div>
+    </div>
+    <div class="recursos recursos--detalle">
+        <div class="big-panel">
+            <h1 class="big-panel__title">Banco de recursos</h1>
+        </div>
+        <ul class="filters">
+            <li class="filters__item"><a href="#" class="filters__title">Ver todas</a></li>
+            <li class="filters__item"><a href="#" class="filters__title">Monetarios</a></li>
+            <li class="filters__item filters__item--active">
+                <a href="#" class="filters__title">Formación</a>
+                <ul class="filters__sub-categories">
+                    <li class="filters__sub-item"><a href="#" class="filters__sub-title">Taller</a></li>
+                    <li class="filters__sub-item"><a href="#" class="filters__sub-title">Capacitación</a></li>
+                    <li class="filters__sub-item"><a href="#" class="filters__sub-title">Espacios</a></li>
+                    <li class="filters__sub-item"><a href="#" class="filters__sub-title">Mucho más largo que todos</a></li>
+                    <li class="filters__sub-item"><a href="#" class="filters__sub-title">Becas</a></li>
+                </ul>
+            </li>
+            <li class="filters__item"><a href="#" class="filters__title">Paises</a></li>
+            <li class="filters__item"><a href="#" class="filters__title">Espacios y Materiales</a></li>
+        </ul>
+        <ul class="lista-recursos">
+            <li class="lista-recursos__item" data-ng-repeat="resource in resources">
+                <h2 class="lista-recursos__title">
+                    <a data-ng-href="#!/resource/{{resource._id}}">{{resource.name}}</a>
+                </h2>
+                <figure class="lista-recursos__brand">
+                    <img src="/assets/img/brand.png" alt="brand">
+                </figure>
+                <p class="lista-recursos__content">
+                    <a ui-sref="call by id.project" class="btn btn-success lista-recursos__solicitar">Solicitar</a>
+                    <span>{{resource.created | date:'medium'}}</span> /
+                    <span>{{resource.user.name}}</span><br>
+                    {{resource.description}}
+                </p>
+                <div class="tags">
+                    <span class="tags__link">
+                        {{resource.resource_type}}
+                    </span>
+                </div>
+                <span data-ng-if="hasAuthorization(resource)">
+                    <a class="btn" href="/#!/resource/{{resource._id}}/edit">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a class="btn" data-ng-click="remove(resource);">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                </span>
+            </li>
+        </ul>
+
+    </div>
+</div>

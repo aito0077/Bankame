@@ -1,0 +1,62 @@
+.convocatoria
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, .2)
+  position: relative
+  z-index: 1
+  background: $gris_claro
+
+  &--invert
+    box-shadow: none
+  &__wrapper
+    cf()
+    color: #fff
+    background: $gris
+    padding: 0 65px 50px
+  &__body
+    column(3/4)
+    +below(3)
+      stack()
+  &__title
+    text-align: left
+    font-size: 32px
+    color: $amarillo
+    margin: 0 0 15px
+    a
+      color: $amarillo
+  &__open
+    display: inline-block
+    color: #fff
+    background: $purpura
+    padding: 0 8px
+    line-height: 32px
+    font-size: 18px
+    margin: 0 0 5px
+  &__content
+    font-size: 16px
+    line-height: 21px
+  &__participantes
+    font-size: 14px
+  &__subtitle
+    font-size: 24px
+    color: $amarillo_claro
+  &__aside
+    column(1/4)
+    +below(3)
+      stack()
+  .btn
+    margin: 20px 0
+    font-size: 18px
+    background: $purpura
+    border-color: $purpura      
+.list
+  padding: 0
+  list-style: none
+  &__item
+    color: #fff
+    &:before
+      content: '> '
+    &--date
+      &:before
+        content: '- '
+  &__link
+    color: #fff
+    text-decoration: underline

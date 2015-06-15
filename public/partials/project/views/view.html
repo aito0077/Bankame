@@ -1,0 +1,100 @@
+<section data-ng-controller="ProjectController" data-ng-init="findOne()">
+  <div class="proyectos proyectos--detalle">
+    <h1 class="proyectos__title">{{project.name}}</h1>
+    <h5 class="proyectos__subtitle">De: <strong>{{project.organization_owner}}</strong></h5>
+    <div class="layout">
+      <div class="layout__3-4">
+
+        <figure class="proyectos__image">
+          <img src="{{project.picture_path || '/system/assets/img/recurso.jpg'}}" alt="">
+          
+        </figure>
+
+        <div class="tags">
+          <span class="tags_label">Temas</span>
+          <span class="tags__link">Servicio</span>
+          <span class="tags__link">Tecnología</span>
+        </div>
+        <div class="layout">
+          <div class="layout__1-4">
+            <h4 class="proyectos__label">Web</h4>
+            <p class="proyectos__content"><a href="http://cooperable.org">http://cooperable.org</a></p>            
+          </div>
+          <div class="layout__1-4">
+            <h4 class="proyectos__label">Contacto</h4>
+            <p class="proyectos__content"><a href="mailto:matias@gmail.com">matias@gmail.com</a></p>            
+          </div>
+          <div class="layout__1-2">
+            <h4 class="proyectos__label">Dirección</h4>
+            <p class="proyectos__content">Blanco encalada 3270, Buenos Aires, Argentina</p>            
+          </div>
+        </div>
+
+        <h4 class="proyectos__label proyectos__label--em">Beneficiarios</h4>
+        <p class="proyectos__content">{{project.stakeholders}}</p>
+        
+        <h4 class="proyectos__label">Objetivos</h4>
+        <p class="proyectos__content">texto de objetivos</p>
+
+        <h4 class="proyectos__label">Sobre el proyecto</h4>
+        <p class="proyectos__content">{{project.description}}</p>
+      </div>
+
+      <div class="layout__1-4">
+        <div class="panel">
+          <h4 class="panel__title--em">Convocatoria</h4>
+          <h3 class="panel__type">
+            <a class="panel__link">{{project.project_type}}</a>
+          </h3>
+        </div>
+
+        <div class="panel">
+          <h4 class="panel__title">Recursos requeridos</h4>
+          <ul class="list">
+            <li class="list__item"><a href="#" class="list__link">Taller sobre...</a></li>
+            <li class="list__item"><a href="#" class="list__link">Taller sobre...</a></li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h4 class="panel__title">Recursos compartidos</h4>
+          <ul class="list">
+            <li class="list__item"><a href="#" class="list__link">Taller sobre...</a></li>
+            <li class="list__item"><a href="#" class="list__link">Taller sobre...</a></li>
+          </ul>
+
+          <a href="#" class="btn btn-success">Apoyá este proyecto</a>
+        </div>
+
+        <div class="panel">
+          <h6 class="panel__subtitle">Organization</h6>
+          <h4 class="panel__title">titulo</h4>
+          <p class="panel__content">
+            Un taller colaborativo de creación y prototipado con acceso a nuevas tecnologóas y herramientas tradicionales para transformar ideas en productos.
+          </p>
+
+          <div class="social-links social-links--sidebar">
+              <a href="#" class="social-links__icon social-links__icon--facebook"></a>
+              <a href="#" class="social-links__icon social-links__icon--twitter"></a>
+              <a href="#" class="social-links__icon social-links__icon--rss"></a>
+              <a href="#" class="social-links__icon social-links__icon--google-plus"></a>
+              <a href="#" class="social-links__icon social-links__icon--linkedin"></a>
+          </div>
+
+        </div>
+
+        <div data-ng-if="hasAuthorization(project)">
+          <a class="btn" href="/#!/project/{{project._id}}/edit">
+            <i class="glyphicon glyphicon-edit"></i>
+          </a>
+          <a class="btn" data-ng-click="remove(project);">
+            <i class="glyphicon glyphicon-trash"></i>
+          </a>
+        </div>
+        <span>{{project.created | date:'medium'}}</span> /
+        <span>{{project.user.name}}</span>
+      </div>
+    </div>
+  </div>
+  
+</section>

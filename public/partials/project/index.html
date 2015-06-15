@@ -1,0 +1,23 @@
+<section data-ng-controller="ProjectController" data-ng-init="find()">
+    <h1>Proyectos</h1>
+    <ul class="projects unstyled">
+        <li data-ng-repeat="project in projects">
+            <span>{{project.created | date:'medium'}}</span> /
+            <span>{{project.user.name}}</span>
+            <h2>
+                <a data-ng-href="#!/project/{{project._id}}">{{project.name}}</a>
+                <span data-ng-if="hasAuthorization(project)">
+                    <a class="btn" href="/#!/project/{{project._id}}/edit">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a class="btn" data-ng-click="remove(project);">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                </span>
+            </h2>
+            <div>{{project.description}}</div>
+            <div>{{project.project_type}}</div>
+        </li>
+    </ul>
+    <h1><a href="/#!/project/create">Deseas aplicar uno</a>?</h1>
+</section>

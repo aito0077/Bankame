@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="https://www.facebook.com/2008/fbml" itemscope="itemscope" itemtype="http://schema.org/Product">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title>Bancame - </title>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <meta name="keywords" content="node.js, express, mongoose, mongodb, angularjs, swig">
+        <meta name="description" content="Bancame - Fondos colaborativos">
+
+        <meta property="fb:app_id" content="APP_ID">
+        <meta property="og:title" content="Bancame - Fondos">
+        <meta property="og:description" content="MEAN - A Modern Stack: MongoDB, ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support).">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="APP_URL">
+        <meta property="og:image" content="APP_LOGO">
+        <meta property="og:site_name" content="MEAN - A Modern Stack">
+        <meta property="fb:admins" content="APP_ADMIN">
+
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <link rel="stylesheet" href="/assets/css/loginForms.css">
+        <link rel="stylesheet" href="/assets/css/theme.css">
+  
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+    </head>
+
+
+    <body ng-cloak class="ng-cloak" ng-class="state">
+        <section class="page">
+
+            <div data-ng-include="'/partials/system/header.html'" data-role="navigation"></div>
+
+            <section data-ui-view ></section>
+        </section>
+
+
+
+        <section class="page">
+            <div class="lista-socios">
+                <h5 class="lista-socios__title">Bancame es un proyecto colaborativo de</h5>
+                <ul class="lista-socios__items">
+                    <li><img src="/assets/img/minka.png"></li>
+                    <li><img src="/assets/img/cooperable.png"></li>
+                    <li><img src="/assets/img/fora-de-eixo.png"></li>
+                    <li><img src="/assets/img/cultura-senda.png"></li>
+                </ul>
+            </div>
+
+            <div class="lista-socios lista-socios--apoyan">
+                <h5 class="lista-socios__title">Apoyan</h5>
+                <ul class="lista-socios__items">
+                    <li>
+                        <img src="/assets/img/apoyan-circulacultura.png">
+                    </li>
+                    <li>
+                        <img src="/assets/img/apoyan-hivos.png">
+                    </li>
+                    <li>
+                        <img src="/assets/img/apoyan-juntxs.png">
+                    </li>
+                    <li>
+                        <img src="/assets/img/apoyan-unicult.png">
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <footer class="page footer">
+            <section class="footer__content">
+                <h4 class="footer__title">Bancame</h4>
+                <p class="footer__body">BANCAME es la primera aceleradora de redes de AMerica latina...</p>
+            </section>
+            <section class="footer__content footer__content--contact">
+                <h4 class="footer__title">Contacto</h4>
+                <dl class="footer__body">
+                    <dt>Escribinos:</dt>
+                    <dd><a href="mailto:bancame@gmail.com">bancame@gmail.com</a></dd>
+                    <dt>Facebook:</dt>
+                    <dd><a href="mailto:bancame@gmail.com">bancame@gmail.com</a></dd>
+                    <dt>Twitter:</dt>
+                    <dd><a href="mailto:bancame@gmail.com">bancame@gmail.com</a></dd>
+                </dl>		
+            </section>
+        </footer>
+
+
+        <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="./bower_components/angular/angular.js"></script>
+        <script src="./bower_components/angular-messages/angular-messages.min.js"></script>
+        <script src="./bower_components/angular-resource/angular-resource.min.js"></script>
+        <script src="./bower_components/angular-animate/angular-animate.min.js"></script>
+        <script src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script src="./bower_components/angular-route/angular-route.min.js"></script>
+
+
+        <script src="./bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="./bower_components/angular-strap/dist/angular-strap.min.js"></script>
+        <script src="./bower_components/angular-strap/dist/angular-strap.tpl.min.js"></script>
+        <script src="./bower_components/satellizer/satellizer.min.js"></script>
+        <script src="./bower_components/angular-date-dropdowns/directive.js"></script>
+        <script src="./bower_components/moment/min/moment.min.js"></script>
+        <script src="./bower_components/moment/locale/es.js"></script>
+        <script src="./bower_components/moment-timezone/moment-timezone.js"></script>
+        <script src="./bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <script type="text/javascript" src="/bower_components/angular-daterangepicker/js/angular-daterangepicker.min.js"></script>
+        <script type="text/javascript" src="/bower_components/sifter/sifter.min.js"></script>
+        <script type="text/javascript" src="/bower_components/microplugin/src/microplugin.js"></script>
+        <script src="./bower_components/selectize/dist/js/selectize.min.js"></script>
+        <script type="text/javascript" src="/bower_components/underscore/underscore-min.js"></script>
+
+        <script src="./vendor/ng-file-upload/ng-file-upload-shim.min.js"></script> 
+        <script src="./vendor/ng-file-upload/ng-file-upload.min.js"></script> 
+
+        <script src="./app.js"></script>
+
+        <script src="/system.js"></script>
+        <script src="/modules/system/header.js"></script>
+        <script src="/modules/system/index.js"></script>
+        <script src="/services/global.js"></script>
+        <script src="/modules/system/system.js"></script>
+        <script src="/services/interceptor.js"></script>
+        <script src="/services/menus.js"></script>
+        <script src="/modules/users/auth.js"></script>
+        <script src="/modules/users/meanUser.js"></script>
+
+        <script src="/modules/call/routes.js"></script>
+        <script src="/modules/call/call.js"></script>
+        <script src="/services/call.js"></script>
+        <script src="/services/callQuery.js"></script>
+
+        <script src="/modules/project/routes.js"></script>
+        <script src="/services/project.js"></script>
+        <script src="/modules/project/project.js"></script>
+
+        <script src="/modules/resource/routes.js"></script>
+        <script src="/modules/resource/resource.js"></script>
+        <script src="/services/resource.js"></script>
+
+        <script src="/modules/main/routes.js"></script>
+        <script src="/modules/main/main.js"></script>
+        <script src="/services/main.js"></script>
+
+        <script src="/services/resourceType.js"></script>
+
+        <script src="/directives/call.js"></script>
+
+
+    </body>
+
+</html>
+
