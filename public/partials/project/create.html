@@ -1,21 +1,20 @@
-<div data-ng-controller="ProjectController">
-    <form name="projectForm" class="user-form user-form--solicitar" role="form" data-ng-submit="create(projectForm.$valid)" novalidate>
+<div data-ng-controller="ProjectController"  data-ng-init="loadData()">
+    <div class="big-panel big-panel--invert user-form--arrow">
+        <div class="recurso-solicitado">
+            <h3 class="recurso-solicitado__title">Recurso Solicitado</h3>
+            <div class="media-box">
+                <figure class="media-box__image">
+                    <img ng-src="http://45.55.235.242/unsafe/232x154/smart/{{resource_selected.image}}" alt="">
+                </figure>
+                <h4 class="media-box__title">{{resource_selected.name}}</h4>
+                <p class="media-box__content">{{resource_selected.description}}</p>
+            </div>
+        </div>
+        <h4 class="big-panel__title">Cuentanos sobre tu proyecto</h4>
+        <p class="big-panel__content">Es importante que seas sintético y claro, ya que para asignar los recursos los proyectos serán evaluados tanto por los jurados como por la misma comunidad postulante. También utilizaremos la información para generar indicadores y medir el impacto general del fondo.</p>
+    </div>
 
-        <div>
-            <div class="recurso-solicitado">
-                <h3 class="recurso-solicitado__title">Recurso solicitado</h3>
-                <div class="media-box">
-                    <figure class="media-box__image">
-                        <img src="/system/assets/img/proyecto-thumbnail.jpg">
-                    </figure>
-                    <h4 class="media-box__title">Hospeda Cultura - 6 hospedajes de dos días en Brasil</h4>
-                    <p class="media-box__content">Sed finibus lectus imperdiet, dictum mauris in, consectetur ligula. Duis eu nulla erat. Aliquam interdum, diam ac lacinia blandit, sem ante dapibus quam, ut laoreet felis sem et neque. Morbi vel suscipit odio. Donec lorem turpis, mattis ut luctus quis, mollis nec tortor. Nulla hendrerit quam id porttitor dictum.</p>
-                </div>
-            </div>
-            <div class="big-panel big-panel--invert">
-                <h4 class="big-panel__title">Cuentanos sobre tu proyecto</h4>
-                <p class="big-panel__content">Es importante que seas sintético y claro, ya que para asignar los recursos los proyectos serán evaluados tanto por los jurados como por la misma comunidad postulante. También utilizaremos la información para generar indicadores y medir el impacto general del fondo.</p>
-            </div>
+    <form name="projectForm" class="user-form user-form--solicitar" role="form" data-ng-submit="create(projectForm.$valid)" novalidate>
             <div class="layout">
                 <div class="layout__1-2">
 

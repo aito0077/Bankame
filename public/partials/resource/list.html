@@ -1,10 +1,11 @@
 <div data-ng-controller="ResourceController" data-ng-init="find()">
-    <div class="user-form user-form--solicitar user-form--arrow">
-        <div class="big-panel big-panel--invert">
+    <!--div class="user-form user-form--solicitar user-form--arrow"-->
+
+        <div class="big-panel big-panel--invert  user-form--arrow">
             <p class="big-panel__content">Gracias al aporte de las organizaciones participantes, ya contamos con un fondo común compuesto por valiosos recursos tanto monetarios como no monetarios.</p>
             <h5 class="big-panel__more">¿Cual de los siguientes recursos podría potenciar tu proyecto?</h5>
         </div>
-    </div>
+
     <div class="recursos recursos--detalle">
         <div class="big-panel">
             <h1 class="big-panel__title">Banco de recursos</h1>
@@ -31,10 +32,10 @@
                     <a data-ng-href="#!/resource/{{resource._id}}">{{resource.name}}</a>
                 </h2>
                 <figure class="lista-recursos__brand">
-                    <img ng-src="http://45.55.235.242/unsafe/280x256/smart/{{resource.image}}" alt="">
+                    <img ng-src="http://45.55.235.242/unsafe/232x154/smart/{{resource.image}}" alt="">
                 </figure>
                 <p class="lista-recursos__content">
-                    <a ui-sref="call by id.project" class="btn btn-success lista-recursos__solicitar">Solicitar</a>
+                    <a ui-sref="call by id.project({ resourceId: resource.id })" class="btn btn-success lista-recursos__solicitar">Solicitar</a>
                     <span>{{resource.created | date:'medium'}}</span> /
                     <span>{{resource.user.name}}</span><br>
                     {{resource.description}}

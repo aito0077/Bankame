@@ -57,7 +57,7 @@ angular.module('mean.call').config(['$stateProvider',
             templateUrl: '/partials/resource/list.html'
         })
         .state('call by id.project', {
-            url: '/call/:callId',
+            url: '/call/:callId/:resourceId',
             templateUrl: '/partials/project/create.html'
         })
         .state('call by id.evaluation', {

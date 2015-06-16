@@ -17,11 +17,19 @@
                 </article>
                 <aside class="convocatoria__aside">
                     <h3 class="convocatoria__subtitle">Participá</h3>
-                    <ul class="list" data-ng-repeat="reference in call.references">
-                        <li class="list__item">
+                    <ul class="list">
+                        <li class="list__item" data-ng-repeat="reference in call.references">
                             <a href="/calls/{{reference.url}}/{{call._id}}" class="list__link">{{reference.name}}</a>
                         </li>
                     </ul>
+                    <h3 class="convocatoria__subtitle">Cronograma</h3>
+                    <ul class="list">
+                        <li class="list__item list__item--date">
+                            Postulaciones Abiertas: {{call.stages.share_resource.start_date | moment: 'DD [de] MMMM [del] YYYY'}}</li>
+                        <li class="list__item list__item--date">
+                            Anuncio asignaciones: {{call.stages.show_results.start_date | moment: 'DD [de] MMMM [del] YYYY'}}</li>
+                    </ul>
+
                 </aside>
             </div>
         
@@ -39,7 +47,7 @@
                             Finalizó el {{call.stages.share_resource.end_date | moment: 'DD/MM/YYYY'}}
                         </div>
                         <span class="tabs__number">1</span>
-                        <a class="tabs__title" ui-sref=".share_resource">Compartir recurso</a>
+                        <a class="tabs__title" ui-sref=".share_resource">Banco de recursos</a>
                     </li>
                     <li class="tabs__item tabs__item--active tabs__item--solicitar" ng-class="{'tabs__item--active': ( apply_project == 'ACTIVE')}"  ng-switch on="apply_project">
                         <div class="tabs__fecha" ng-switch-when="FUTURE">
@@ -52,7 +60,7 @@
                             Finalizó el {{call.stages.apply_project.end_date | moment: 'DD/MM/YYYY'}}
                         </div>
                         <span class="tabs__number">2</span>
-                        <a class="tabs__title" ui-sref=".apply_project">Solicitar recursos</a>
+                        <a class="tabs__title" ui-sref=".apply_project">Postulación de proyectos</a>
                     </li>
 
                     <li class="tabs__item tabs__item--evaluar" ng-class="{'tabs__item--active': (evaluation == 'ACTIVE')}"  ng-switch on="evaluation">
@@ -67,19 +75,15 @@
                         </div>
 
                         <span class="tabs__number">3</span>
-                        <a class="tabs__title" ui-sref=".evaluation">Evaluación y Asignación</a>
+                        <a class="tabs__title" ui-sref=".evaluation">Evaluación y asignación</a>
                     </li>
 
                 </ul>
             </div><!--/.etapas-->
 
+            <!-- nested view -->
         </div><!--/.convocatoria-->
 
-        <!-- nested view -->
-        <div ="container">
-
-            <div ui-view></div>
-
-        </div>
+        <div ui-view></div>
 
     </section>

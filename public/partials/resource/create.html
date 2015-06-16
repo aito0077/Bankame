@@ -1,10 +1,11 @@
 <div data-ng-controller="ResourceController"  data-ng-init="loadData()">
-    <div class="user-form user-form--compartir user-form--arrow">
-        <div class="big-panel big-panel--invert">
+    <!--div class="user-form user-form--compartir user-form--arrow"-->
+
+        <div class="big-panel big-panel--invert user-form--arrow">
             <p class="big-panel__content">Fondo común es la primera aceleradora de redes en América Latina pensada para captar, gestionar y compartir recursos de todo tipo a través de proyectos colectivos dedicados a promover la articulación local, nacional e internacional de iniciativas culturales, formativas, de comunicación, incidencia, género, gestión de redes y economía colaborativa.</p>
         </div>
 
-        <form name="resourceForm" role="form" data-ng-submit="create(resourceForm.$valid)" novalidate>
+        <form name="resourceForm" class="user-form user-form--compartir" role="form" data-ng-submit="create(resourceForm.$valid)" novalidate>
             <div ng-show="!has_organization" class="row">
                 <h3>Organización</h3>
                 <div class="col-md-6">
@@ -101,7 +102,7 @@
                 <button mean-token="'create-submit'" type="submit" class="btn btn-info">Guardar</button>
             </div>
         </form>
-    </div>
+    <!--/div-->
 </div>
 
   <ng-include src="'/partials/system/_preguntas-frecuentes.html'">

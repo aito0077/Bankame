@@ -14,6 +14,8 @@ Route::resource('api/calls', 'CallController');
 Route::post('api/calls/{id}', ['middleware' => 'auth', 'uses' => 'CallController@update']);
 
 Route::get('api/resources/call/{callId}', ['uses' => 'ResourceController@allByCall']);
+Route::get('api/calls/{callId}/user/{userId}', ['uses' => 'CallController@callByUser']);
+
 Route::resource('api/resources', 'ResourceController');
 Route::resource('api/projects', 'ProjectController');
 Route::resource('api/organizations', 'OrganizationController');

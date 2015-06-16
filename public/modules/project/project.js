@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.project').controller('ProjectController', ['$scope', '$stateParams', '$location', '$http', '$q', '$timeout', 'Global', 'Project', 'currentCall',
-  function($scope, $stateParams, $location, $http, $q, $timeout, Global, Project, currentCall) {
+angular.module('mean.project').controller('ProjectController', ['$scope', '$stateParams', '$location', '$http', '$q', '$timeout', 'Global', 'Project', 'Resource', 'currentCall',
+  function($scope, $stateParams, $location, $http, $q, $timeout, Global, Project, Resource, currentCall) {
     $scope.global = Global;
     $scope.selectedCall = currentCall.current();
     $scope.hasAuthorization = function(project) {
@@ -9,10 +9,14 @@ angular.module('mean.project').controller('ProjectController', ['$scope', '$stat
     };
 
 
+    $scope.resource_id = $stateParams.resourceId;
+
+
+
     var checkProjectCondition = function($q, $timeout, $http, $location) {
         var deferred = $q.defer();
 
-        $http.get('/calls/'+$scope.selectedCall.id+'/user/'+$scope.global.user.id).success(function(data) {
+        $http.get('/api/calls/'+$scope.selectedCall.id+'/user/'+$scope.global.user.id).success(function(data) {
             $scope.allow_to_apply_projects = data ? data.allow_to_apply_projects : false;
             $timeout(deferred.resolve);
         });
@@ -97,11 +101,22 @@ angular.module('mean.project').controller('ProjectController', ['$scope', '$stat
       }
     };
 
+    $scope.loadData = function() {
+        Resource.get({
+            resourceId: $stateParams.resourceId
+        }, function(resource) {
+            $scope.resource_selected = resource;
+        });
+
+    };
+
+
+
     $scope.find = function() {
         $scope.call = currentCall.current();
-      Project.query(function(projects) {
-        $scope.projects = projects;
-      });
+            Project.query(function(projects) {
+            $scope.projects = projects;
+        });
     };
 
     $scope.findOne = function() {

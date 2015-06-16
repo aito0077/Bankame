@@ -20,7 +20,7 @@ use Illuminate\Http\Request;
 class CallController extends Controller {
 
     public function __construct() {
-        $this->middleware('auth', ['except' => ['index', 'show', 'search']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'search', 'callByUser']]);
     }
 
 	public function index() {
@@ -117,6 +117,26 @@ class CallController extends Controller {
 
 	public function edit($id) {
 		//
+	}
+
+
+	public function callByUser(Request $request, $callId, $userId) {
+        $call = Call::find($callId);
+
+        
+        $resources = Resource::where('user_id', '=', $userId)->where('call_id', '=', $callId)->get();
+        $projects = Project::where('user_id', '=', $userId)->where('call_id', '=', $callId)->get();
+
+        $allow_to_apply = count($resources) > 0;
+
+        return array(
+            'call' => $call,
+            'user_id' => $userId,
+            'user_resources' => $resources,
+            'user_projects' => $projects,
+            'allow_to_apply_projects' => $allow_to_apply
+
+        );
 	}
 
 
