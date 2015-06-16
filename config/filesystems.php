@@ -41,7 +41,6 @@ return [
 	|
 	*/
 
-/*
 	'disks' => [
 
 		'local' => [
@@ -57,44 +56,6 @@ return [
 			'bucket' => 'winwin-gallery',
 		],
 
-		'rackspace' => [
-			'driver'    => 'rackspace',
-			'username'  => 'your-username',
-			'key'       => 'your-key',
-			'container' => 'your-container',
-			'endpoint'  => 'https://identity.api.rackspacecloud.com/v2.0/',
-			'region'    => 'IAD',
-			'url_type'  => 'publicURL'
-		],
-
-	],
-*/
-
-	'disks' => [
-
-		'local' => [
-			'driver' => 'local',
-			'root'   => storage_path().'/app',
-		],
-
-		's3-gallery' => [
-			'driver' => 's3',
-			'key'    => 'AKIAIXIBHFMK74XBAEEQ',
-			'secret' => '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',
-			'region' => 'sa-east-1',
-			'bucket' => 'winwin-uploads',
-		],
-
-
-		'rackspace' => [
-			'driver'    => 'rackspace',
-			'username'  => 'your-username',
-			'key'       => 'your-key',
-			'container' => 'your-container',
-			'endpoint'  => 'https://identity.api.rackspacecloud.com/v2.0/',
-			'region'    => 'IAD',
-			'url_type'  => 'publicURL'
-		],
 
 	],
 
