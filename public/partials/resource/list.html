@@ -1,5 +1,4 @@
 <div data-ng-controller="ResourceController" data-ng-init="find()">
-
     <div class="user-form user-form--solicitar user-form--arrow">
         <div class="big-panel big-panel--invert">
             <p class="big-panel__content">Gracias al aporte de las organizaciones participantes, ya contamos con un fondo común compuesto por valiosos recursos tanto monetarios como no monetarios.</p>
@@ -32,7 +31,7 @@
                     <a data-ng-href="#!/resource/{{resource._id}}">{{resource.name}}</a>
                 </h2>
                 <figure class="lista-recursos__brand">
-                    <img src="/assets/img/brand.png" alt="brand">
+                    <img ng-src="http://45.55.235.242/unsafe/280x256/smart/{{resource.image}}" alt="">
                 </figure>
                 <p class="lista-recursos__content">
                     <a ui-sref="call by id.project" class="btn btn-success lista-recursos__solicitar">Solicitar</a>

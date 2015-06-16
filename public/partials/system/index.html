@@ -88,7 +88,7 @@
 			<li ng-repeat="resource in resources" class="lista-recursos__item">
 				<a ng-href="/#!/resource/{{resource._id}}"><h4 class="lista-recursos__title">{{resource.name}}</h4></a>
 				<figure class="lista-recursos__brand">
-					<img src="/assets/img/brand.png" alt="brand">
+                    <img ng-src="http://45.55.235.242/unsafe/280x256/smart/{{resource.image}}" alt="">
 				</figure>
 				<p class="lista-recursos__content">{{resource.description}}</p>
 				<div class="tags">

@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Database\Seeder;
 use Bancame\User;
+use Hash;
 
 class UsersTableSeeder extends Seeder {
 
@@ -9,7 +10,7 @@ class UsersTableSeeder extends Seeder {
 
         $user = new User();
         $user->email = 'admin@gmail.com';
-        $user->password = 'adminadmin';
+        $user->password = Hash::make($request->input('adminadmin'));
         $user->username = 'admin';
         $user->admin = TRUE;
         $user->active = TRUE;
@@ -17,7 +18,7 @@ class UsersTableSeeder extends Seeder {
 
         $user = new User();
         $user->email = 'editor@gmail.com';
-        $user->password = 'editoreditor';
+        $user->password = Hash::make($request->input('editoreditor'));
         $user->username = 'editor';
         $user->admin = FALSE;
         $user->editor = TRUE;
@@ -26,7 +27,7 @@ class UsersTableSeeder extends Seeder {
 
         $user = new User();
         $user->email = 'usuario@gmail.com';
-        $user->password = 'usuariousuario';
+        $user->password = Hash::make($request->input('usuariousuario'));
         $user->username = 'usuario';
         $user->admin = FALSE;
         $user->editor = FALSE;
