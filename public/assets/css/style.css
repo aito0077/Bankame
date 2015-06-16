@@ -1348,3 +1348,23 @@ h6 {
   width: 80px;
   clear: left;
 }
+/*Leo*/
+.drop-box {
+    background: #F8F8F8;
+    border: 5px dashed #DDD;
+    height: 154px;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    float: left;
+    margin-left: 10px;
+    overflow: hidden;
+}
+.drop-box img{
+    width: 100%;
+}
+.big-panel.preguntas__frecuentes {
+  font-family: 'Roboto Condensed', Helvetica, Arial, sans-serif;
+  background: #ff9528;
+  padding: 20px;
+}

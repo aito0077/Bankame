@@ -2,7 +2,8 @@
     <!--div class="user-form user-form--compartir user-form--arrow"-->
 
         <div class="big-panel big-panel--invert user-form--arrow">
-            <p class="big-panel__content">Fondo común es la primera aceleradora de redes en América Latina pensada para captar, gestionar y compartir recursos de todo tipo a través de proyectos colectivos dedicados a promover la articulación local, nacional e internacional de iniciativas culturales, formativas, de comunicación, incidencia, género, gestión de redes y economía colaborativa.</p>
+            <h4 class="big-panel__title">Comparte un recurso con el fondo</h4>
+            <p class="big-panel__content">Te invitamos a mirar tu organización con abundancia, compartiendo un recurso valioso con el fondo. Recuerda que, en el paradigma de la economía colaborativa, cuando más damos, más recibimos.</p>
         </div>
 
         <form name="resourceForm" class="user-form user-form--compartir" role="form" data-ng-submit="create(resourceForm.$valid)" novalidate>
@@ -63,16 +64,20 @@
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.picture_path.$invalid }">
                         <label mean-token="'create-picture_path'" for="picture_path" class="control-label">Imagen Recurso</label>
+                        <div class="row">
+                            <div ngf-select ngf-drop ng-model="files" ng-model-rejected="rejFiles"
+                                ngf-multiple="multiple" ngf-accept="accept" accept="{{acceptSelect}}"
+                                ngf-disabled="disabled" ngf-capture="capture"
+                                ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                                ngf-min-size="minSize" ngf-max-size="maxSize"
+                                ngf-keep="keep" ngf-keep-distinct="keepDistinct" ngf-reset-on-click="resetOnClick"
+                                ngf-reset-model-on-click="resetModelOnClick"
+                                ngf-allow-dir="allowDir" class="drop-box col-md-offset-1 col-md-10" ngf-drop-available="dropAvailable">
 
-                        <div ngf-select ngf-drop ng-model="files" ng-model-rejected="rejFiles"
-                            ngf-multiple="multiple" ngf-accept="accept" accept="{{acceptSelect}}"
-                            ngf-disabled="disabled" ngf-capture="capture"
-                            ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
-                            ngf-min-size="minSize" ngf-max-size="maxSize"
-                            ngf-keep="keep" ngf-keep-distinct="keepDistinct" ngf-reset-on-click="resetOnClick"
-                            ngf-reset-model-on-click="resetModelOnClick"
-                            ngf-allow-dir="allowDir" class="drop-box" ngf-drop-available="dropAvailable">Selecciona una imagen
-                        <span ng-show="dropAvailable">o Arrastra una</span></div>
+                                <img ng-show="image" ng-src="http://45.55.235.242/unsafe/232x154/smart/{{image}}" >
+                                <span ng-show="!image">Click aquí para seleccionar una imagen <span ng-show="dropAvailable">o arrastra una</span></span>
+                            </div>
+                        </div>
 
                     </div>
 
@@ -91,18 +96,18 @@
 
                     <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.conditions.$invalid }">
                         <label mean-token="'create-conditions'" for="conditions" class="control-label">Condiciones</label>
-                        <textarea name="conditions" data-ng-model="conditions" id="conditions" cols="30" rows="10" placeholder="Condiciones al postulante" class="form-control"></textarea>
+                        <textarea name="conditions" data-ng-model="conditions" id="conditions" cols="30" rows="5" placeholder="Condiciones al postulante" class="form-control"></textarea>
                     </div>
 
 
                 </div>
 
             </div>
-            <div class="form-group">
-                <button mean-token="'create-submit'" type="submit" class="btn btn-info">Guardar</button>
+            <div class="row">
+                <button mean-token="'create-submit'" type="submit" class="center-block btn btn-success btn-lg">Listo!</button>
             </div>
         </form>
     <!--/div-->
+      <ng-include src="'/partials/system/_preguntas-frecuentes.html'">
 </div>
 
-  <ng-include src="'/partials/system/_preguntas-frecuentes.html'">
