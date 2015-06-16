@@ -4,12 +4,45 @@
             <p class="big-panel__content">Fondo común es la primera aceleradora de redes en América Latina pensada para captar, gestionar y compartir recursos de todo tipo a través de proyectos colectivos dedicados a promover la articulación local, nacional e internacional de iniciativas culturales, formativas, de comunicación, incidencia, género, gestión de redes y economía colaborativa.</p>
         </div>
 
-        <div class="row">
-            <ng-include src="'main/sub_views/organization_create.html'"/>
-        </div>
-
         <form name="resourceForm" role="form" data-ng-submit="create(resourceForm.$valid)" novalidate>
+            <div ng-show="!has_organization" class="row">
+                <h3>Organización</h3>
+                <div class="col-md-6">
+
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && organizationForm.name.$invalid }">
+                        <label mean-token="'create-nombre'" class="control-label">Nombre </label>
+                        <input name="name" type="text" class="form-control" data-ng-model="organization.name" id="name" placeholder="Nombre de tu organización" required>
+                        <div ng-show="submitted && organizationForm.name.$invalid" class="help-block">
+                            <p ng-show="organizationForm.name.$error.required">Nombre es requerido</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && organizationForm.description.$invalid }">
+                        <label mean-token="'create-mision'" class="control-label">Misión</label>
+                        <textarea name="description" data-ng-model="organization.description" id="description" cols="30" rows="10" placeholder="Descripción breve de tu organización" class="form-control" required></textarea>
+                        <div ng-show="submitted && organizationForm.description.$invalid" class="help-block">
+                            <p ng-show="organizationForm.description.$error.required">Descripcion es requerida</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.country.$invalid }">
+                        <label mean-token="'create-country'" class="control-label">Pais</label>
+                        <select name="country" type="text" class="form-control" data-ng-model="organization.country_selected" id="country" placeholder="País" required ng-options="country.description for country in countries">
+                        </select>
+                        <div ng-show="submitted && resourceForm.country.$invalid" class="help-block">
+                            <p ng-show="resourceForm.country.$error.required">El Pais es requerido</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
             <div class="row">
+                <h3>Recurso</h3>
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.name.$invalid }">
                         <label mean-token="'create-name'" class="control-label">Nombre</label>

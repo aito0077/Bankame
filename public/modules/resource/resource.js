@@ -1,34 +1,65 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('mean.resource').controller('ResourceController', ['$scope', '$stateParams', '$location', '$http', 'Global', 'Resource', 'Call', 'CallQuery', 'currentCall', 'ResourceType', 'Upload',
-  function($scope, $stateParams, $location, $http, Global, Resource, Call, CallQuery, currentCall, ResourceType, Upload) {
+angular.module('mean.resource').controller('ResourceController', ['$scope', '$stateParams', '$location', '$http', 'Global', 'Resource', 'Call', 'CallQuery', 'currentCall', 'ResourceType', 'Upload', 'Country', 'Organization', function($scope, $stateParams, $location, $http, Global, Resource, Call, CallQuery, currentCall, ResourceType, Upload, Country, Organization) {
     $scope.global = Global;
     $scope.selectedCall = currentCall.current();
+    $scope.has_organization = false;
     $scope.call = $scope.selectedCall;
     $scope.hasAuthorization = function(resource) {
       return $scope.global.isAdmin;
     };
 
-    $scope.create = function(isValid) {
-      if (isValid) {
-        var resource = new Resource({
-          name: this.name,
-          description: this.description,
-          resource_type: this.resource_type_selected.id,
-          image: this.image,
-          conditions: this.conditions,
-          cost: this.cost,
-          organization_owner: this.organization_owner,
-          call_id: $scope.selectedCall.id
-        });
-        resource.$save(function(response) {
-          $location.path('resource/' + response.id);
-        });
 
-      } else {
-        $scope.submitted = true;
-      }
+    $scope.countries = [];
+
+    $scope.create = function(isValid) {
+        if (isValid) {
+            if($scope.organization_owner) {
+                var resource = new Resource({
+                    name: $scope.name,
+                    description: $scope.description,
+                    resource_type: $scope.resource_type_selected.id,
+                    image: $scope.image,
+                    conditions: $scope.conditions,
+                    cost: $scope.cost,
+                    organization_owner: $scope.organization_owner,
+                    call_id: $scope.selectedCall.id
+                });
+                resource.$save(function(response) {
+                    $location.path('resource/' + response.id);
+                });
+
+            } else {
+                var organization = new Organization({
+                    name: this.organization.name,
+                    user_id: $scope.global.user.id,
+                    description: this.organization.description,
+                    picture_path: this.organization.picture_path,
+                    country: this.organization.country
+                });
+                organization.$save(function(response) {
+                    $scope.organization_owner = response;
+
+                    var resource = new Resource({
+                        name: $scope.name,
+                        description: $scope.description,
+                        resource_type: $scope.resource_type_selected.id,
+                        image: $scope.image,
+                        conditions: $scope.conditions,
+                        cost: $scope.cost,
+                        organization_owner: $scope.organization_owner,
+                        call_id: $scope.selectedCall.id
+                    });
+                    resource.$save(function(response) {
+                        $location.path('resource/' + response.id);
+                    });
+
+                });
+            }
+        } else {
+            $scope.submitted = true;
+        }
     };
 
     $scope.remove = function(resource) {
@@ -75,15 +106,35 @@ angular.module('mean.resource').controller('ResourceController', ['$scope', '$st
             $scope.selectedCall = currentCall.current();
         }
 
+        if(!$scope.has_organization) {  
+            $http.get('/api/me').success(function(data) {
+
+                $scope.global.user = data.user;
+
+                if(data.organizations && data.organizations.length > 0) {
+                    Organization.get({
+                        organizationId: data.organizations[0].id
+                    }, function(data_organization) {
+                        $scope.organization = data_organization;
+                        $scope.organization_owner = $scope.organization;
+                        $scope.has_organization = true;
+                    });
+                }
+            });
+            Country.query(function(data) {
+                $scope.countries = data;
+            });
+        }
+
         ResourceType.query(function(data) {
             $scope.resourceTypes = data;
         });
     };
 
     $scope.find = function() {
-      Resource.query(function(resources) {
-        $scope.resources = resources;
-      });
+        Resource.query(function(resources) {
+            $scope.resources = resources;
+        });
 
         /*
       CallQuery.getOpenCall(function(call){

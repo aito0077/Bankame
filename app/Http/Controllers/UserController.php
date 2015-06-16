@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Config;
 use JWT;
+use Log;
 use Bancame\User;
 
 class UserController extends Controller {
@@ -29,8 +30,16 @@ class UserController extends Controller {
     public function getUser(Request $request) {
         $user = User::find($request['user']['sub']);
 
+        $organizations = $user->organizations;
+
+        Log::info($organizations);
+
+
+
         return array(
-            'user' => $user
+            'user' => $user,
+            'organizations' => $organizations,
+            'has_organizations' => count($organizations) > 0
         );
     }
 

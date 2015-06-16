@@ -23,12 +23,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	}
     */
 
-    public function detail() {
-        return $this->hasOne('Bancame\Model\UserDetail');
-    }
-
-    public function winwins() {
-        return $this->belongsToMany('Bancame\Model\Winwin', 'winwins_users');
+    public function organizations() {
+        return $this->belongsToMany('Bancame\Model\Organization', 'organizations_users');
     }
 
 }

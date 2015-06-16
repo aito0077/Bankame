@@ -59,12 +59,26 @@
                     <textarea name="stakeholders" data-ng-model="stakeholders" id="stakeholders" cols="30" rows="10" placeholder="Beneficiarios" class="form-control" ></textarea>
                 </div>
 
-                <div class="form-group" ng-class="{ 'has-error' : submitted && projectForm.picture_path.$invalid }">
+                <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.picture_path.$invalid }">
                     <label mean-token="'create-picture_path'" for="picture_path" class="control-label">Imagen Proyecto</label>
-                    <mean-upload file-dest="'/uploads/projects/'" upload-file-callback="uploadedProjectPicture(file)">
-                    </mean-upload>
-                    <img data-ng-src="{{picture_path}}" alt="">
-                <div>
+
+                    <div ngf-select ngf-drop ng-model="files" ng-model-rejected="rejFiles"
+                        ngf-multiple="multiple" ngf-accept="accept" accept="{{acceptSelect}}"
+                        ngf-disabled="disabled" ngf-capture="capture"
+                        ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                        ngf-min-size="minSize" ngf-max-size="maxSize"
+                        ngf-keep="keep" ngf-keep-distinct="keepDistinct" ngf-reset-on-click="resetOnClick"
+                        ngf-reset-model-on-click="resetModelOnClick"
+                        ngf-allow-dir="allowDir" class="drop-box" ngf-drop-available="dropAvailable">Selecciona una imagen
+                    <span ng-show="dropAvailable">o Arrastra una</span></div>
+                    <figure ng-show="image" class="lista-recursos__brand">
+                        <img ng-src="http://45.55.235.242/unsafe/280x256/smart/{{image}}" alt="">
+                    </figure>
+
+
+                </div>
+
+
             </div>
         </div>
 

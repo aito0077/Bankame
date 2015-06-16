@@ -2,18 +2,20 @@
 
 /* jshint -W098 */
 angular.module('mean.main')
-.controller('OrganizationController', ['$scope', '$stateParams', '$location', '$http', 'Global', 'Organization',
-    function($scope, $stateParams, $location, $http, Global, Organization, Call, CallQuery) {
+.controller('OrganizationController', ['$scope', '$stateParams', '$location', '$http', 'Global', 'Organization', 'Call', 'CallQuery', 'Country',
+    function($scope, $stateParams, $location, $http, Global, Organization, Call, CallQuery, Country) {
         $scope.global = Global;
         $scope.hasAuthorization = function() {
             return $scope.global.isAdmin;
         };
+        $scope.countries = [];
 
         $scope.hasOrganization = function() {
+            console.dir($scope.global.user);
             return $scope.global.user && $scope.global.user.has_organization;
         };
 
-        $scope.create = function(isValid) {
+        $scope.create_organization = function(isValid) {
             if (isValid) {
                 var organization = new Organization({
                     name: this.name,
@@ -48,6 +50,10 @@ angular.module('mean.main')
                         $scope.organization = organization;
                     });
                 });
+                Country.query(function(data) {
+                    $scope.countries = data;
+                });
+
             }
         };
 

@@ -16,6 +16,7 @@ Route::post('api/calls/{id}', ['middleware' => 'auth', 'uses' => 'CallController
 Route::get('api/resources/call/{callId}', ['uses' => 'ResourceController@allByCall']);
 Route::resource('api/resources', 'ResourceController');
 Route::resource('api/projects', 'ProjectController');
+Route::resource('api/organizations', 'OrganizationController');
 
 
 Route::get('_getModules', ['uses' => 'HomeController@modules']);
@@ -28,6 +29,7 @@ Route::resource('api/users', 'UserController');
 
 Route::resource('api/parametric/languages', 'LanguageController');
 Route::resource('api/parametric/resources', 'ResourceTypeController');
+Route::resource('api/parametric/countries', 'CountryController');
 
 // Initialize Angular.js Bancame Route.
 Route::get('/', 'HomeController@index');

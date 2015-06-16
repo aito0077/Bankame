@@ -13,10 +13,17 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
     $scope.isCollapsed = false;
 
     $rootScope.$on('loggedin', function() {
+        console.log('loggedin! - user: '+$rootScope.user);
         $scope.global = {
             authenticated: !! $rootScope.user,
             user: $rootScope.user
         };
+
+        if(!$scope.global.user || !$scope.global.user.username) {
+            $http.get('/api/me').success(function(response) {
+                $scope.global.user = response.user;
+            });
+        }
     });
 
     $scope.logout = function() {

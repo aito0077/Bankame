@@ -73,41 +73,6 @@ angular.module('mean.users')
             };
 
 
-/*
-      // Register the login() function
-      $scope.login = function() {
-        $http.post('/login', {
-          email: $scope.user.email,
-          password: $scope.user.password
-        })
-          .success(function(data) {
-            // authentication OK
-            $scope.loginError = 0;
-            $http.get('/api/me').sucess(function(response) {
-                console.dir(response);
-                $rootScope.user = response.user;
-                $rootScope.$emit('loggedin');
-
-                if (response.redirect) {
-                  if (window.location.href === response.redirect) {
-                    //This is so an admin user will get full admin page
-                    window.location.reload();
-                  } else {
-                    window.location = response.redirect;
-                  }
-                } else {
-                  $location.url('/');
-                }
-
-            });
-            
-
-          })
-          .error(function() {
-            $scope.loginerror = 'Authentication failed.';
-          });
-      };
-*/
     }
   ])
     .controller('RegisterCtrl', ['$scope', '$rootScope', '$http', '$location', '$alert', '$auth', 'Global', function($scope, $rootScope, $http, $location, $alert, $auth, Global) {

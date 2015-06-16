@@ -22,10 +22,26 @@ angular.module('mean.project').controller('ProjectController', ['$scope', '$stat
 
     checkProjectCondition($q, $timeout, $http, $location);
 
-    $scope.uploadedProjectPicture= function(file) {
-        this.picture_path = file.src;
-    };
+    $scope.$watch('files', function () {
+        $scope.upload($scope.files);
+    });
 
+    $scope.upload = function (files) {
+        if (files && files.length) {
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                Upload.upload({
+                    url: '/api/upload',
+                    fields: {'username': $scope.username},
+                    file: file
+                }).progress(function (evt) {
+                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                }).success(function (data, status, headers, config) {
+                    $scope.image = data.filename;
+                });
+            }
+        }
+    };
 
 
     $scope.create = function(isValid) {
@@ -35,7 +51,7 @@ angular.module('mean.project').controller('ProjectController', ['$scope', '$stat
           description: this.description,
           stakeholders: this.stakeholders,
           project_type: this.project_type,
-          picture_path: this.picture_path,
+          image: this.image,
           organization_owner: this.organization_owner,
           call_id: this.selectedCall.id
         });
