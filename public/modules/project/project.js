@@ -53,6 +53,7 @@ angular.module('mean.project').controller('ProjectController', ['$scope', '$stat
             image: this.image,
             project_type: $scope.project_type_selected.id,
             organization_id: this.organization_owner.id,
+            resource_id: $scope.resource_id,
             call_id: this.selectedCall.id
         });
         project.$save(function(response) {

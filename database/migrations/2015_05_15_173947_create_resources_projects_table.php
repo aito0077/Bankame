@@ -17,6 +17,7 @@ class CreateResourcesProjectsTable extends Migration {
 
             $table->boolean('assigned')->default(FALSE);
             $table->decimal('percentage')->default(0);
+            $table->integer('votes')->default(0);
 
 			$table->timestamps();
 		});

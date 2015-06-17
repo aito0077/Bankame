@@ -8,6 +8,7 @@ use Config;
 use Storage;
 use Response;
 use Validator;
+use Collection;
 use Bancame\Http\Requests;
 use Bancame\Http\Controllers\Controller;
 use Bancame\Model\Call;
@@ -20,7 +21,7 @@ use Illuminate\Http\Request;
 class CallController extends Controller {
 
     public function __construct() {
-        $this->middleware('auth', ['except' => ['index', 'show', 'search', 'callByUser']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'search', 'callByUser', 'raisingResources']]);
     }
 
 	public function index() {
@@ -119,11 +120,9 @@ class CallController extends Controller {
 		//
 	}
 
-
 	public function callByUser(Request $request, $callId, $userId) {
         $call = Call::find($callId);
 
-        
         $resources = Resource::where('user_id', '=', $userId)->where('call_id', '=', $callId)->get();
         $projects = Project::where('user_id', '=', $userId)->where('call_id', '=', $callId)->get();
 
@@ -138,6 +137,18 @@ class CallController extends Controller {
 
         );
 	}
+
+	public function raisingResources(Request $request, $callId) {
+        $resources = collect(Resource::where('call_id', '=', $callId)->get());
+        
+        $raising_resources = $resources->filter(function($item) {
+            return count($item->projects) > 1;
+        });
+
+
+        return $raising_resources;
+	}
+
 
 
 }

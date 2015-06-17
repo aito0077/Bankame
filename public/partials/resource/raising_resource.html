@@ -1,55 +1,53 @@
+<div data-ng-controller="EvaluationController"  data-ng-init="loadData()">
 
-<div data-ng-controller="ProjectController"  data-ng-init="prepareRisingResource()">
-    <form name="projectForm" class="user-form user-form--solicitar" role="form" data-ng-submit="create(projectForm.$valid)" novalidate>
+    <div class="big-panel big-panel--invert user-form--arrow">
+        <p class="big-panel__content">El proceso de asignación es abierto y participativo.<br/>
+            Colabora en la votación para asignar los recursos que tienen varios postulantes
+        </p>
+    </div>
 
-        <div>
-            <div class="recurso-solicitado">
-                <h3 class="recurso-solicitado__title">Recurso solicitado</h3>
-                <div class="media-box">
-                    <figure class="media-box__image">
-                        <img src=".jpg">
-                    </figure>
-                    <h4 class="media-box__title">Hospeda Cultura - 6 hospedajes de dos días en Brasil</h4>
-                    <p class="media-box__content">Sed finibus lectus imperdiet, dictum mauris in, consectetur ligula. Duis eu nulla erat. Aliquam interdum, diam ac lacinia blandit, sem ante dapibus quam, ut laoreet felis sem et neque. Morbi vel suscipit odio. Donec lorem turpis, mattis ut luctus quis, mollis nec tortor. Nulla hendrerit quam id porttitor dictum.</p>
-                </div>
-            </div>
+    <div class="big-panel recurso--solicitado">
+        <div class="media-box">
+            <figure class="media-box__image">
+                <img ng-src="http://45.55.235.242/unsafe/232x154/smart/{{selected_resource.image}}" alt="">
+            </figure>
+            <h4 class="media-box__title">{{selected_resource.name}}</h4>
+            <p class="media-box__content">{{selected_resource.description}}</p>
+        </div>
+    </div>
 
 
-
+    <div class="big-panel">
+        <p class="big-panel__content">
+            A cuál de los siguientes proyectos le asignarías el recurso?
+        </p>
+    </div>
 
     <div class="recursos recursos--detalle">
-        <div class="big-panel">
-            <h3 class="big-panel__title">A cuál de los siguientes proyectos le asignarías el recurso?</h1>
+        <div class="big-panel center-block">
         </div>
         <ul class="lista-recursos">
-            <li class="lista-recursos__item" data-ng-repeat="resource in projects">
+            <li class="lista-recursos__item" data-ng-repeat="project in raising_projects">
                 <h2 class="lista-recursos__title">
-                    <a data-ng-href="#!/resource/{{resource._id}}">{{resource.name}}</a>
+                    <a data-ng-href="#!/project/{{project.id}}">{{project.name}}</a>
                 </h2>
                 <figure class="lista-recursos__brand">
-                    <img src="/assets/img/brand.png" alt="brand">
+                    <img ng-src="http://45.55.235.242/unsafe/232x154/smart/{{project.image}}" alt="">
                 </figure>
                 <p class="lista-recursos__content">
-                    <a ui-sref="call by id.project" class="btn btn-success lista-recursos__solicitar">Solicitar</a>
-                    <span>{{resource.created | date:'medium'}}</span> /
-                    <span>{{resource.user.name}}</span><br>
-                    {{resource.description}}
+                    <span class="btn btn-lg btn-success" ng-click="assign(project)">Asignar</span>
+                    <span>{{project.user.name}}</span><br>
+                    {{project.description}}
                 </p>
                 <div class="tags">
                     <span class="tags__link">
                         {{resource.resource_type}}
                     </span>
                 </div>
-                <span data-ng-if="hasAuthorization(resource)">
-                    <a class="btn" href="/#!/resource/{{resource._id}}/edit">
-                        <i class="glyphicon glyphicon-edit"></i>
-                    </a>
-                    <a class="btn" data-ng-click="remove(resource);">
-                        <i class="glyphicon glyphicon-trash"></i>
-                    </a>
-                </span>
             </li>
         </ul>
 
     </div>
+
+
 </div>

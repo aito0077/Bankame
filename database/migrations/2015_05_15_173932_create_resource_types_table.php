@@ -13,6 +13,8 @@ class CreateResourceTypesTable extends Migration {
             $table->mediumtext('description')->nullable();
             $table->boolean('disabled')->default(FALSE);
 
+            $table->integer('parent_id')->unsigned()->nullable();
+            $table->foreign('parent_id')->references('id')->on('resource_types');
 
 			$table->timestamps();
 		});

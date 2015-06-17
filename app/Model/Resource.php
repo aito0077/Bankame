@@ -18,7 +18,7 @@ class Resource extends Model {
     }
 
     public function projects() {
-        return $this->belongsToMany('Bancame\Model\ResourcesProjects', 'resources_projects', 'resource_id', 'project_id');
+        return $this->belongsToMany('Bancame\Model\Project', 'resources_projects');
     }
 
     public function type() {

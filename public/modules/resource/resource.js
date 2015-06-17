@@ -1,7 +1,8 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('mean.resource').controller('ResourceController', ['$scope', '$stateParams', '$location', '$http', 'Global', 'Resource', 'Call', 'CallQuery', 'currentCall', 'ResourceType', 'Upload', 'Country', 'Organization', function($scope, $stateParams, $location, $http, Global, Resource, Call, CallQuery, currentCall, ResourceType, Upload, Country, Organization) {
+angular.module('mean.resource')
+.controller('ResourceController', ['$scope', '$stateParams', '$location', '$http', 'Global', 'Resource', 'Call', 'CallQuery', 'currentCall', 'ResourceType', 'Upload', 'Country', 'Organization', function($scope, $stateParams, $location, $http, Global, Resource, Call, CallQuery, currentCall, ResourceType, Upload, Country, Organization) {
     $scope.global = Global;
     $scope.selectedCall = currentCall.current();
     $scope.has_organization = false;
@@ -151,12 +152,6 @@ angular.module('mean.resource').controller('ResourceController', ['$scope', '$st
         });
     };
 
-    $scope.prepareRisingResource = function() {
-        $http.get('/projects').success(function(data) {
-            $scope.projects = data;
-        });
-    };
-
     $scope.$watch('files', function () {
         $scope.upload($scope.files);
     });
@@ -178,5 +173,54 @@ angular.module('mean.resource').controller('ResourceController', ['$scope', '$st
         }
     };
 
-  }
-]);
+}])
+.controller('EvaluationController', ['$scope', '$stateParams', '$location', '$http', 'Global', 'Resource', 'Call', 'CallQuery', 'currentCall', function($scope, $stateParams, $location, $http, Global, Resource, Call, CallQuery, currentCall) {
+
+    $scope.resources = [];
+
+    $scope.selected_resource = false;
+    $scope.raising_projects = [];
+
+
+    $scope.pop = function() {
+        if(_.size($scope.resources)) {
+            console.log('Has resources');
+            $scope.selected_resource = _.first($scope.resources);
+            $scope.raising_projects = $scope.selected_resource.projects;
+            $scope.resources = _.rest($scope.resources);
+        } else {
+            console.log('Nop');
+        }
+    };
+
+    $scope.assign = function(project) {
+        $http.get('/api/projects/'+project.id+'/vote/'+$scope.selected_resource.id).success(function(data) {
+            console.dir(data); 
+            $scope.pop();
+        });
+    };
+
+    $scope.loadData = function() {
+        if(!currentCall.current()) {
+            CallQuery.getOpenCall(function(call){
+                $scope.call = call;
+                currentCall.setCurrent(call);
+                $scope.selectedCall = call;
+                $scope.raising($scope.selectedCall.id);
+            });
+        } else {
+            $scope.selectedCall = currentCall.current();
+            $scope.raising($scope.selectedCall.id);
+        }
+
+    };
+
+
+    $scope.raising = function(callId) {
+        $http.get('/api/calls/'+callId+'/raising').success(function(data) {
+            $scope.resources = data;
+            $scope.pop();
+        });
+    };
+
+}]);

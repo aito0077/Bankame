@@ -33,13 +33,9 @@ class ProjectController extends Controller {
         $project = Project::find($id);
         $project->organization->resources;
         $project->projectType;
-        //$project->resources;
+        $project->resources;
         $project->call;
 
-        /*
-        $resourceProjects = ResourcesProjects::where('project_id', '=', $id)->get();
-        Log::info($resourceProjects);
-        */
         return $project;
 	}
 
@@ -59,6 +55,13 @@ class ProjectController extends Controller {
             $project->project_type_id = $request->input('project_type');
 
             $project->save();
+
+            $resourceProject = new ResourcesProjects;
+            $resourceProject->project_id = $project->id;
+            $resourceProject->resource_id = $request->input('resource_id');
+
+            $resourceProject->save();
+
                  
         });
 
@@ -83,6 +86,19 @@ class ProjectController extends Controller {
 	}
 
     //Actions
+
+	public function vote(Request $request, $id, $resourceId) {
+        $resourceProject = ResourcesProjects::where('project_id', '=', $id)->where('resource_id', '=', $resourceId)->get(1);
+        DB::transaction(function() use ($request, $resourceProject) {
+            $resourceProject->votes = $resourceProject->votes + 1;
+            $resourceProject->save();
+        });
+        return array(
+            'votes' => $resourceProject->votes
+        );
+	}
+
+
 
 	public function create() {
 		//

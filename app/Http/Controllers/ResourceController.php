@@ -20,7 +20,7 @@ use Illuminate\Http\Request;
 class ResourceController extends Controller {
 
     public function __construct() {
-        $this->middleware('auth', ['except' => ['index', 'show', 'search']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'search', 'allByCall']]);
     }
 
 	public function index() {
