@@ -1,19 +1,17 @@
 'use strict';
 
-angular.module('mean.project').controller('ProjectController', ['$scope', '$stateParams', '$location', '$http', '$q', '$timeout', 'Global', 'Project', 'Resource', 'currentCall',
-  function($scope, $stateParams, $location, $http, $q, $timeout, Global, Project, Resource, currentCall) {
+angular.module('mean.project').controller('ProjectController', ['$scope', '$stateParams', '$location', '$http', '$q', '$timeout', 'Global', 'Project', 'Resource', 'Call', 'CallQuery', 'currentCall', 'Upload', 'ProjectType', 'Organization', function($scope, $stateParams, $location, $http, $q, $timeout, Global, Project, Resource, Call, CallQuery, currentCall, Upload, ProjectType, Organization) {
     $scope.global = Global;
     $scope.selectedCall = currentCall.current();
+    $scope.projectTypes = [];
+    $scope.resource_id = $stateParams.resourceId;
+    $scope.has_organization = false;
+
     $scope.hasAuthorization = function(project) {
       return $scope.global.isAdmin;
     };
 
-
-    $scope.resource_id = $stateParams.resourceId;
-
-
-
-    var checkProjectCondition = function($q, $timeout, $http, $location) {
+    $scope.checkProjectCondition = function($q, $timeout, $http, $location) {
         var deferred = $q.defer();
 
         $http.get('/api/calls/'+$scope.selectedCall.id+'/user/'+$scope.global.user.id).success(function(data) {
@@ -23,8 +21,6 @@ angular.module('mean.project').controller('ProjectController', ['$scope', '$stat
 
         return deferred.promise;
     };
-
-    checkProjectCondition($q, $timeout, $http, $location);
 
     $scope.$watch('files', function () {
         $scope.upload($scope.files);
@@ -51,13 +47,13 @@ angular.module('mean.project').controller('ProjectController', ['$scope', '$stat
     $scope.create = function(isValid) {
       if (isValid) {
         var project = new Project({
-          name: this.name,
-          description: this.description,
-          stakeholders: this.stakeholders,
-          project_type: this.project_type,
-          image: this.image,
-          organization_owner: this.organization_owner,
-          call_id: this.selectedCall.id
+            name: this.name,
+            description: this.description,
+            stakeholders: this.stakeholders,
+            image: this.image,
+            project_type: $scope.project_type_selected.id,
+            organization_id: this.organization_owner.id,
+            call_id: this.selectedCall.id
         });
         project.$save(function(response) {
           $location.path('project/' + response.id);
@@ -107,10 +103,39 @@ angular.module('mean.project').controller('ProjectController', ['$scope', '$stat
         }, function(resource) {
             $scope.resource_selected = resource;
         });
+        if(!currentCall.current()) {
+            CallQuery.getOpenCall(function(call){
+                $scope.call = call;
+                currentCall.setCurrent(call);
+                $scope.selectedCall = call;
+                $scope.checkProjectCondition($q, $timeout, $http, $location);
+            });
+        } else {
+            $scope.selectedCall = currentCall.current();
+            $scope.checkProjectCondition($q, $timeout, $http, $location);
+        }
+        ProjectType.query(function(data) {
+            $scope.projectTypes = data;
+        });
+
+        if(!$scope.has_organization || !$scope.global.user) {  
+            $http.get('/api/me').success(function(data) {
+                $scope.global.user = data.user;
+
+                if(data.organizations && data.organizations.length > 0) {
+                    Organization.get({
+                        organizationId: data.organizations[0].id
+                    }, function(data_organization) {
+                        $scope.organization = data_organization;
+                        $scope.organization_owner = $scope.organization;
+                        $scope.has_organization = true;
+                    });
+                }
+            });
+        }
+
 
     };
-
-
 
     $scope.find = function() {
         $scope.call = currentCall.current();
@@ -120,11 +145,11 @@ angular.module('mean.project').controller('ProjectController', ['$scope', '$stat
     };
 
     $scope.findOne = function() {
-      Project.get({
-        projectId: $stateParams.projectId
-      }, function(project) {
-        $scope.project = project;
-      });
+        Project.get({
+            projectId: $stateParams.projectId
+        }, function(project) {
+            $scope.project = project;
+        });
     };
   }
 ]);

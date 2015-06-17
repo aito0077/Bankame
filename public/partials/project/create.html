@@ -28,7 +28,7 @@
 
                 <div class="form-group" ng-class="{ 'has-error' : submitted && projectForm.project_type.$invalid }">
                     <label mean-token="'create-project_type'" class="control-label">Tipo de Proyecto</label>
-                    <input name="project_type" type="text" class="form-control" data-ng-model="project_type" id="project_type" placeholder="Tipo de Proyecto" required>
+                    <select name="project_type" type="text" class="form-control" data-ng-model="project_type_selected" id="project_type" placeholder="Tipo de Proyecto" required ng-options="ptypes.description for ptypes in projectTypes"> </select>
                     <div ng-show="submitted && projectForm.project_type.$invalid" class="help-block">
                         <p ng-show="projectForm.project_type.$error.required">Tipo de Proyecto es requerido</p>
                     </div>
@@ -45,12 +45,9 @@
 
             <div class="layout__1-2">
 
-                <div class="form-group" ng-class="{ 'has-error' : submitted && projectForm.organization_owner.$invalid }">
+                <div class="form-group">
                     <label mean-token="'create-organization_owner'" class="control-label">Organizacion</label>
-                    <input name="organization_owner" type="text" class="form-control" data-ng-model="organization_owner" id="organization_owner" placeholder="Organizacion" required>
-                    <div ng-show="submitted && projectForm.organization_owner.$invalid" class="help-block">
-                        <p ng-show="projectForm.organization_owner.$error.required">Organizacion es requerido</p>
-                    </div>
+                    <input name="organization_owner" type="text" class="form-control" data-ng-model="organization_owner.name" id="organization_owner" disabled>
                 </div>
 
                 <div class="form-group" ng-class="{ 'has-error' : submitted && projectForm.stakeholders.$invalid }">
@@ -58,22 +55,22 @@
                     <textarea name="stakeholders" data-ng-model="stakeholders" id="stakeholders" cols="30" rows="10" placeholder="Beneficiarios" class="form-control" ></textarea>
                 </div>
 
-                <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.picture_path.$invalid }">
+                <div class="form-group" ng-class="{ 'has-error' : submitted && projectForm.picture_path.$invalid }">
                     <label mean-token="'create-picture_path'" for="picture_path" class="control-label">Imagen Proyecto</label>
 
-                    <div ngf-select ngf-drop ng-model="files" ng-model-rejected="rejFiles"
-                        ngf-multiple="multiple" ngf-accept="accept" accept="{{acceptSelect}}"
-                        ngf-disabled="disabled" ngf-capture="capture"
-                        ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
-                        ngf-min-size="minSize" ngf-max-size="maxSize"
-                        ngf-keep="keep" ngf-keep-distinct="keepDistinct" ngf-reset-on-click="resetOnClick"
-                        ngf-reset-model-on-click="resetModelOnClick"
-                        ngf-allow-dir="allowDir" class="drop-box" ngf-drop-available="dropAvailable">Selecciona una imagen
-                    <span ng-show="dropAvailable">o Arrastra una</span></div>
-                    <figure ng-show="image" class="lista-recursos__brand">
-                        <img ng-src="http://45.55.235.242/unsafe/280x256/smart/{{image}}" alt="">
-                    </figure>
-
+                    <div class="row">
+                        <div ngf-select ngf-drop ng-model="files" ng-model-rejected="rejFiles"
+                            ngf-multiple="multiple" ngf-accept="accept" accept="{{acceptSelect}}"
+                            ngf-disabled="disabled" ngf-capture="capture"
+                            ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                            ngf-min-size="minSize" ngf-max-size="maxSize"
+                            ngf-keep="keep" ngf-keep-distinct="keepDistinct" ngf-reset-on-click="resetOnClick"
+                            ngf-reset-model-on-click="resetModelOnClick"
+                            ngf-allow-dir="allowDir" class="drop-box" ngf-drop-available="dropAvailable">
+                                <img ng-show="image" ng-src="http://45.55.235.242/unsafe/232x154/smart/{{image}}" >
+                                <span ng-show="!image">Click aquí para seleccionar una imagen <span ng-show="dropAvailable">o arrastra una</span></span>
+                        </div>
+                    </div>
 
                 </div>
 
@@ -81,8 +78,9 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <button mean-token="'create-submit'" type="submit" class="btn btn-info">Guardar</button>
+        <div class="row">
+            <button mean-token="'create-submit'" type="submit" class="center-block btn btn-success btn-lg">Postulá tu Proyecto!</button>
         </div>
+
     </form>
 </div>

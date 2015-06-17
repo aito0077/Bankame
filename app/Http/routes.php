@@ -31,6 +31,7 @@ Route::resource('api/users', 'UserController');
 
 Route::resource('api/parametric/languages', 'LanguageController');
 Route::resource('api/parametric/resources', 'ResourceTypeController');
+Route::resource('api/parametric/projects', 'ProjectTypeController');
 Route::resource('api/parametric/countries', 'CountryController');
 
 // Initialize Angular.js Bancame Route.

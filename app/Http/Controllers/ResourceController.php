@@ -35,6 +35,7 @@ class ResourceController extends Controller {
 
 	public function show(Request $request, $id) {
         $resource = Resource::find($id);
+        $resource->type();
         $user = false;
 		$token = $request->input('_token') ?: $request->header('X-XSRF-TOKEN');
 		if ( $token )  {
@@ -77,6 +78,7 @@ class ResourceController extends Controller {
         DB::transaction(function() use ($request, $resource) {
             $resource->description = $request->input('description');
             $resource->name = $request->input('name');
+            $resource->image = $request->input('image');
 
             $resource->save();
         });

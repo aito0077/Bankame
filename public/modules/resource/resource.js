@@ -10,7 +10,6 @@ angular.module('mean.resource').controller('ResourceController', ['$scope', '$st
       return $scope.global.isAdmin;
     };
 
-
     $scope.countries = [];
 
     $scope.create = function(isValid) {

@@ -23,11 +23,14 @@ class DatabaseSeeder extends Seeder {
 		$this->call('CountriesTableSeeder');
         $this->command->info('Countries seeded!');
 
-	$this->call('CallsTableSeeder');
+        $this->call('CallsTableSeeder');
         $this->command->info('Calls seeded!');
 
-	$this->call('ResourceTypesTableSeeder');
+        $this->call('ResourceTypesTableSeeder');
         $this->command->info('Resource Types seeded!');
+
+        $this->call('ProjectTypesTableSeeder');
+        $this->command->info('Project Types seeded!');
 
 
 	}

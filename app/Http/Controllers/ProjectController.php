@@ -13,6 +13,7 @@ use Bancame\Http\Controllers\Controller;
 use Bancame\Model\Call;
 use Bancame\Model\Project;
 use Bancame\Model\Resource;
+use Bancame\Model\ResourcesProjects;
 use Bancame\User;
 
 use Illuminate\Http\Request;
@@ -30,21 +31,33 @@ class ProjectController extends Controller {
 
 	public function show(Request $request, $id) {
         $project = Project::find($id);
+        $project->organization->resources;
+        $project->projectType;
+        //$project->resources;
+        $project->call;
+
+        /*
+        $resourceProjects = ResourcesProjects::where('project_id', '=', $id)->get();
+        Log::info($resourceProjects);
+        */
         return $project;
 	}
 
 	public function store(Request $request) {
-        Log::info($request['user']);
         $user = User::find($request['user']['sub']);
-        Log::info($user);
-
 
         $project = new Project;
         DB::transaction(function() use ($request, $project, $user) {
 
-            $project->description = $request->input('description');
+            $project->call_id = $request->input('call_id');
+            $project->image = $request->input('image');
             $project->name = $request->input('name');
+            $project->description = $request->input('description');
+            $project->stakeholders = $request->input('stakeholders');
+            $project->organization_id = $request->input('organization_id');
             $project->user_id = $user->id;
+            $project->project_type_id = $request->input('project_type');
+
             $project->save();
                  
         });
@@ -58,6 +71,7 @@ class ProjectController extends Controller {
         DB::transaction(function() use ($request, $project) {
             $project->description = $request->input('description');
             $project->name = $request->input('name');
+            $project->image = $request->input('image');
 
             $project->save();
         });

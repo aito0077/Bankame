@@ -9,7 +9,20 @@ class Project extends Model {
     }
 
     public function call() {
-        return $this->belongsTo('Bancame\Call');
+        return $this->belongsTo('Bancame\Model\Call');
     }
+
+    public function organization() {
+        return $this->belongsTo('Bancame\Model\Organization');
+    }
+
+    public function projectType() {
+        return $this->belongsTo('Bancame\Model\ProjectType');
+    }
+
+    public function resources() {
+        return $this->belongsToMany('Bancame\Model\ResourcesProjects', 'resources_projects', 'resource_id', 'project_id');
+    }
+
 
 }
