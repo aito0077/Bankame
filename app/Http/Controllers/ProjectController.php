@@ -88,13 +88,20 @@ class ProjectController extends Controller {
     //Actions
 
 	public function vote(Request $request, $id, $resourceId) {
-        $resourceProject = ResourcesProjects::where('project_id', '=', $id)->where('resource_id', '=', $resourceId)->get(1);
-        DB::transaction(function() use ($request, $resourceProject) {
-            $resourceProject->votes = $resourceProject->votes + 1;
-            $resourceProject->save();
+        $votes = 0;
+        DB::transaction(function() use ($request, $votes, $id, $resourceId) {
+            $resource = Resource::find($resourceId);
+
+            foreach ($resource->projects as $project) {
+                if($project->id == $id) {
+                    $votes = $project->pivot->votes;
+                    Resource::find($resourceId)->projects()->updateExistingPivot($project->id, array('votes' => ++$votes));
+                }
+            }            
+
         });
         return array(
-            'votes' => $resourceProject->votes
+            'votes' => $votes
         );
 	}
 

@@ -48,7 +48,13 @@ class ResourceController extends Controller {
         }
 
         $resource->user;
+
+        $resource->organization;
+        $resource->projects;
+        $resource->call;
+
         return $resource;
+
 	}
 
 	public function store(Request $request) {

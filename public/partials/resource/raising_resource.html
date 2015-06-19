@@ -1,53 +1,68 @@
 <div data-ng-controller="EvaluationController"  data-ng-init="loadData()">
+    <div ng-show="selected_resource">
 
-    <div class="big-panel big-panel--invert user-form--arrow">
-        <p class="big-panel__content">El proceso de asignación es abierto y participativo.<br/>
-            Colabora en la votación para asignar los recursos que tienen varios postulantes
-        </p>
-    </div>
-
-    <div class="big-panel recurso--solicitado">
-        <div class="media-box">
-            <figure class="media-box__image">
-                <img ng-src="http://45.55.235.242/unsafe/232x154/smart/{{selected_resource.image}}" alt="">
-            </figure>
-            <h4 class="media-box__title">{{selected_resource.name}}</h4>
-            <p class="media-box__content">{{selected_resource.description}}</p>
+        <div class="big-panel big-panel--invert user-form--arrow">
+            <p class="big-panel__content">El proceso de asignación es abierto y participativo.<br/>
+                Colabora en la votación para asignar los recursos que tienen varios postulantes
+            </p>
         </div>
-    </div>
 
 
-    <div class="big-panel">
-        <p class="big-panel__content">
-            A cuál de los siguientes proyectos le asignarías el recurso?
-        </p>
-    </div>
 
-    <div class="recursos recursos--detalle">
-        <div class="big-panel center-block">
-        </div>
-        <ul class="lista-recursos">
-            <li class="lista-recursos__item" data-ng-repeat="project in raising_projects">
-                <h2 class="lista-recursos__title">
-                    <a data-ng-href="#!/project/{{project.id}}">{{project.name}}</a>
-                </h2>
-                <figure class="lista-recursos__brand">
-                    <img ng-src="http://45.55.235.242/unsafe/232x154/smart/{{project.image}}" alt="">
+        <div class="big-panel recurso--solicitado">
+            <div class="media-box">
+                <figure class="media-box__image">
+                    <img ng-src="http://45.55.235.242/unsafe/232x154/smart/{{selected_resource.image}}" alt="">
                 </figure>
-                <p class="lista-recursos__content">
-                    <span class="btn btn-lg btn-success" ng-click="assign(project)">Asignar</span>
-                    <span>{{project.user.name}}</span><br>
-                    {{project.description}}
-                </p>
-                <div class="tags">
-                    <span class="tags__link">
-                        {{resource.resource_type}}
-                    </span>
-                </div>
-            </li>
-        </ul>
+                <h4 class="media-box__title">{{selected_resource.name}}</h4>
+                <p class="media-box__content">{{selected_resource.description}}</p>
+            </div>
+        </div>
 
+
+
+        <div class="recursos recursos--detalle">
+            <div class="big-panel center-block">
+            </div>
+            <ul class="lista-recursos">
+                <li class="lista-recursos__item" data-ng-repeat="project in raising_projects">
+                    <h2 class="lista-recursos__title">
+                        <a data-ng-href="#!/project/{{project.id}}">{{project.name}}</a>
+                    </h2>
+                    <figure class="lista-recursos__brand">
+                        <img ng-src="http://45.55.235.242/unsafe/232x154/smart/{{project.image}}" alt="">
+                    </figure>
+                    <p class="lista-recursos__content">
+                        <span class="btn btn-lg btn-success" ng-click="assign(project)">Asignar</span>
+                        <span>{{project.user.name}}</span><br>
+                        {{project.description}}
+                    </p>
+                    <div class="tags">
+                        <span class="tags__link">
+                            {{resource.resource_type}}
+                        </span>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
     </div>
+
+
+    <div ng-show="!selected_resource"> 
+        <div class="big-panel big-panel--invert user-form--arrow">
+            <p class="big-panel__content">El proceso de asignación es abierto y participativo.<br/>
+                Colabora en la votación para asignar los recursos que tienen varios postulantes
+            </p>
+        </div>
+
+        <div class="big-panel">
+            <p class="big-panel__content">
+                Gracias por participar en la selección!
+            </p>
+        </div>
+    </div>
+
 
 
 </div>

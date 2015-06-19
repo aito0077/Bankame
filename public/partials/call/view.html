@@ -1,6 +1,10 @@
-    <section data-ng-controller="CallController" data-ng-init="findOne()">
+    <section data-ng-controller="CallController" data-ng-init="loadData()">
 
-        <div class="convocatoria convocatoria--invert">
+    <div>
+        <ng-include src="'/partials/call/mini-view.html'"/>
+    </div>
+
+        <!--div class="convocatoria convocatoria--invert">
             <div class="convocatoria__wrapper">
                 <article class="convocatoria__body">
                     <h5 class="convocatoria__open">Convocatoria Abierta</h5>
@@ -31,7 +35,7 @@
                     </ul>
 
                 </aside>
-            </div>
+            </div-->
         
             <div class="etapas">
                 <!--h4 class="etapas__title">Etapas</h4-->
@@ -60,7 +64,7 @@
                             Finalizó el {{call.stages.apply_project.end_date | moment: 'DD/MM/YYYY'}}
                         </div>
                         <span class="tabs__number">2</span>
-                        <a class="tabs__title" ui-sref=".apply_project">Postulación de proyectos</a>
+                        <a class="tabs__title" ui-sref=".apply_project">Solicitud de recursos</a>
                     </li>
 
                     <li class="tabs__item tabs__item--evaluar" ng-class="{'tabs__item--active': (evaluation == 'ACTIVE')}"  ng-switch on="evaluation">

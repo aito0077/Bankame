@@ -21,7 +21,7 @@ class Project extends Model {
     }
 
     public function resources() {
-        return $this->belongsToMany('Bancame\Model\Resource', 'resources_projects');
+        return $this->belongsToMany('Bancame\Model\Resource', 'resources_projects')->withPivot('assigned', 'percentage', 'votes');
     }
 
 

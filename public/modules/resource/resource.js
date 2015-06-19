@@ -145,10 +145,15 @@ angular.module('mean.resource')
     };
 
     $scope.findOne = function() {
+
         Resource.get({
             resourceId: $stateParams.resourceId
         }, function(resource) {
             $scope.resource = resource;
+            $scope.organization = resource.organization;
+            if(!$scope.call) {
+                $scope.call = resource.call;
+            }
         });
     };
 
@@ -189,13 +194,20 @@ angular.module('mean.resource')
             $scope.raising_projects = $scope.selected_resource.projects;
             $scope.resources = _.rest($scope.resources);
         } else {
-            console.log('Nop');
+            $scope.selected_resource = false;
         }
     };
 
     $scope.assign = function(project) {
         $http.get('/api/projects/'+project.id+'/vote/'+$scope.selected_resource.id).success(function(data) {
             console.dir(data); 
+            $scope.pop();
+        });
+    };
+
+    $scope.raising = function(callId) {
+        $http.get('/api/calls/'+callId+'/raising').success(function(data) {
+            $scope.resources = data;
             $scope.pop();
         });
     };
@@ -213,14 +225,6 @@ angular.module('mean.resource')
             $scope.raising($scope.selectedCall.id);
         }
 
-    };
-
-
-    $scope.raising = function(callId) {
-        $http.get('/api/calls/'+callId+'/raising').success(function(data) {
-            $scope.resources = data;
-            $scope.pop();
-        });
     };
 
 }]);

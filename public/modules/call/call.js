@@ -1,26 +1,24 @@
 'use strict';
 
 angular.module('mean.call')
-.controller('CallController', ['$scope', '$state', '$stateParams', '$location', 'Global', 'Call', 'CallQuery', 'currentCall', function($scope, $state, $stateParams, $location, Global, Call, CallQuery, currentCall) {
+.controller('CallController', ['$scope', '$state', '$stateParams', '$location', '$timeout', 'Global', 'Call', 'CallQuery', 'currentCall', function($scope, $state, $stateParams, $location, $timeout, Global, Call, CallQuery, currentCall) {
 
     $scope.global = Global;
-    $scope.hasAuthorization = function(call) {
-        return $scope.global.isAdmin || $scope.global.isEditor; 
-    };
-
-    $scope.hasOrganization = function() {
-
-    };
-
+    $scope.stages = ['share_resource', 'apply_project', 'evaluation'];
     $scope.share_resource = 'FUTURE'; 
     $scope.apply_project = 'FUTURE';
     $scope.evaluation = 'FUTURE';
+
+    $scope.hasAuthorization = function(call) {
+        return $scope.global.isAdmin || $scope.global.isEditor; 
+    };
 
     $scope.calculateCurrentPhase = function(stage, stage_id) {
         if(stage) {
             if( !moment().isBefore(stage.start_date, 'day') &&  !moment().isAfter(stage.end_date, 'day') ) {
                 $scope[stage_id] = 'ACTIVE';
                 $state.transitionTo('call by id.'+stage_id);
+                console.log('Transition to '+stage_id);
             }
             if( moment().isBefore(stage.start_date, 'day') ) {
                 $scope[stage_id] = 'FUTURE';
@@ -31,12 +29,9 @@ angular.module('mean.call')
         }
     };
 
-
-
     $scope.currentPhase = function(stage_id) {
         return $scope.stageStatus[stage_id];
     };
-
 
     $('#topics').selectize({
         selectOnTab: true,
@@ -49,7 +44,6 @@ angular.module('mean.call')
         }
     });
 
-    $scope.stages = ['share_resource', 'apply_project', 'evaluation'];
     $scope.related_stages = {
         share_resource: 'apply_project',
         apply_project: 'evaluation',
@@ -191,11 +185,50 @@ angular.module('mean.call')
             });     
         } else {
             $scope.call = currentCall.current();
-            _.each($scope.stages, function(component) {
-                $scope.calculateCurrentPhase($scope.call.stages[component], component);
+            $timeout(function () {
+                _.each($scope.stages, function(component) {
+                    $scope.calculateCurrentPhase($scope.call.stages[component], component);
+                });
             });
         }
 
     };
 
+    $scope.loadData = function() {
+        if(!currentCall.current()) {
+            CallQuery.getOpenCall(function(call){
+                $scope.call = call;
+                currentCall.setCurrent(call);
+                _.each($scope.stages, function(component) {
+                    $scope.calculateCurrentPhase(call.stages[component], component);
+                });
+            });     
+        } else {
+            $timeout(function () {
+                $scope.call = currentCall.current();
+                _.each($scope.stages, function(component) {
+                    $scope.calculateCurrentPhase($scope.call.stages[component], component);
+                });
+            });
+        }
+
+    };
+
+
+
+}])
+.controller('ConvocatoriaProxy', ['$scope', '$state', '$stateParams', '$location', '$timeout', 'Global', 'Call', 'CallQuery', 'currentCall', function($scope, $state, $stateParams, $location, $timeout, Global, Call, CallQuery, currentCall) {
+    $scope.call = currentCall.current();
+
+    $scope.load = function() {
+        if(!$scope.call) {
+            CallQuery.getOpenCall(function(call){
+                $scope.call = call;
+                currentCall.setCurrent(call);
+            });
+        } else {
+            $scope.selectedCall = currentCall.current();
+            $scope.raising($scope.selectedCall.id);
+        }
+    };
 }]);

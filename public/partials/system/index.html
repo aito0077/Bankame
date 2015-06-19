@@ -8,41 +8,42 @@
 			</li>
 		</ul>
 	</div>
-	<div class="convocatoria">
-		<div class="convocatoria__wrapper">
-			<article class="convocatoria__body">
-				<h5 class="convocatoria__open">Convocatoria Abierta</h5>
-				<h1 class="convocatoria__title">
-					<a data-ng-href="#!/call/{{call._id}}">{{call.name}}</a>
-				</h1>
-				<p class="convocatoria__content">{{call.context}}</p>
-				<div class="convocatoria__participantes">
-					Paises participantes: 
-					<span data-ng-repeat="scope in call.scopes">
-						{{scope}}{{$last ? '' : ', '}}
-					</span>
-				</div>
-				<a class="btn btn-success" data-ng-href="#!/call/{{call._id}}">Participar</a>
-			</article>
-			<aside class="convocatoria__aside">
-				<h3 class="convocatoria__subtitle">Participá</h3>
-				<ul class="list">
-					<li class="list__item" data-ng-repeat="reference in call.references">
-						<a href="/calls/{{reference.url}}/{{call._id}}" class="list__link">{{reference.name}}</a>
-					</li>
-				</ul>
-				<h3 class="convocatoria__subtitle">Cronograma</h3>
-				<ul class="list">
-					<li class="list__item list__item--date">
-						Postulaciones Abiertas: {{call.stages.share_resource.start_date | moment: 'DD [de] MMMM [del] YYYY'}}</li>
-					<li class="list__item list__item--date">
-						Anuncio asignaciones: {{call.stages.show_results.start_date | moment: 'DD [de] MMMM [del] YYYY'}}</li>
-				</ul>
 
-			</aside>
-		</div>
+    <div class="convocatoria"  data-ng-controller="ConvocatoriaProxy" data-ng-init="load()">
+        <div class="convocatoria__wrapper">
+            <article class="convocatoria__body">
+                <h5 class="convocatoria__open">Convocatoria Abierta</h5>
+                <h1 class="convocatoria__title">
+                    <a data-ng-href="#!/call/{{call.id}}">{{call.name}}</a>
+                </h1>
+                <p class="convocatoria__content">{{call.context}}</p>
+                <div class="convocatoria__participantes">
+                    Paises participantes: 
+                    <span data-ng-repeat="scope in call.scopes">
+                        {{scope}}{{$last ? '' : ', '}}
+                    </span>
+                </div>
+                <a class="btn btn-success" data-ng-href="#!/call/{{call.id}}">Participar</a>
+            </article>
+            <aside class="convocatoria__aside">
+                <h3 class="convocatoria__subtitle">Participá</h3>
+                <ul class="list">
+                    <li class="list__item" data-ng-repeat="reference in call.references">
+                        <a href="/calls/{{reference.url}}/{{call.id}}" class="list__link">{{reference.name}}</a>
+                    </li>
+                </ul>
+                <h3 class="convocatoria__subtitle">Cronograma</h3>
+                <ul class="list">
+                    <li class="list__item list__item--date">
+                        Postulaciones Abiertas: {{call.stages.share_resource.start_date | moment: 'DD [de] MMMM [del] YYYY'}}</li>
+                    <li class="list__item list__item--date">
+                        Anuncio asignaciones: {{call.stages.show_results.start_date | moment: 'DD [de] MMMM [del] YYYY'}}</li>
+                </ul>
 
-	</div><!--/.convocatoria-->
+            </aside>
+        </div>
+
+    </div>
 
 	<div class="indicadores">
 		<article class="indicadores__body">
@@ -86,7 +87,7 @@
 		<p class="recursos__content">Estamos construyendo un fondo de recursos a nivel continental, compartiendo saberes, hospedaje, habilidades, materiales, viajes y fondos monetarios buscamos impulsar nuestros frentes de acción común.</p>
 		<ul class="lista-recursos">
 			<li ng-repeat="resource in resources" class="lista-recursos__item">
-				<a ng-href="/#!/resource/{{resource._id}}"><h4 class="lista-recursos__title">{{resource.name}}</h4></a>
+				<a ng-href="/#!/resource/{{resource.id}}"><h4 class="lista-recursos__title">{{resource.name}}</h4></a>
 				<figure class="lista-recursos__brand">
                     <img ng-src="http://45.55.235.242/unsafe/280x256/smart/{{resource.image}}" alt="">
 				</figure>

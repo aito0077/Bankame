@@ -8,16 +8,21 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$http', 
         $scope.find = function() {
             $scope.date = new Date().getTime();
           
-            CallQuery.getOpenCall(function(call){
-                $scope.call = call;
-                currentCall.setCurrent(call);
-                if(call) {
-                    $http.get('/api/resources/call/'+call.id).success(function(data) {
-                        $scope.resources = data;
-                        console.dir(data);
-                    });
-                }
-            });
+            if($scope.call) {
+                $http.get('/api/resources/call/'+call.id).success(function(data) {
+                    $scope.resources = data;
+                });
+            } else {
+                CallQuery.getOpenCall(function(call){
+                    $scope.call = call;
+                    currentCall.setCurrent(call);
+                    if(call) {
+                        $http.get('/api/resources/call/'+call.id).success(function(data) {
+                            $scope.resources = data;
+                        });
+                    }
+                });
+            }
 
         };
     }

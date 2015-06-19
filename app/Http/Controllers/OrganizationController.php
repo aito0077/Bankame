@@ -35,9 +35,7 @@ class OrganizationController extends Controller {
 	}
 
 	public function store(Request $request) {
-        Log::info($request['user']);
         $user = User::find($request['user']['sub']);
-        Log::info($user);
 
 
         $organization = new Organization;

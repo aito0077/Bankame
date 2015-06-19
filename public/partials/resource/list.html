@@ -27,7 +27,7 @@
         <ul class="lista-recursos">
             <li class="lista-recursos__item" data-ng-repeat="resource in resources">
                 <h2 class="lista-recursos__title">
-                    <a data-ng-href="#!/resource/{{resource._id}}">{{resource.name}}</a>
+                    <a data-ng-href="#!/resource/{{resource.id}}">{{resource.name}}</a>
                 </h2>
                 <figure class="lista-recursos__brand">
                     <img ng-src="http://45.55.235.242/unsafe/232x154/smart/{{resource.image}}" alt="">
@@ -44,7 +44,7 @@
                     </span>
                 </div>
                 <span data-ng-if="hasAuthorization(resource)">
-                    <a class="btn" href="/#!/resource/{{resource._id}}/edit">
+                    <a class="btn" href="/#!/resource/{{resource.id}}/edit">
                         <i class="glyphicon glyphicon-edit"></i>
                     </a>
                     <a class="btn" data-ng-click="remove(resource);">
