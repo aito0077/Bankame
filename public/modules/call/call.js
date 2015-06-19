@@ -228,7 +228,6 @@ angular.module('mean.call')
             });
         } else {
             $scope.selectedCall = currentCall.current();
-            $scope.raising($scope.selectedCall.id);
         }
     };
 }]);
