@@ -14,8 +14,6 @@ angular.module('mean.resource')
     $scope.countries = [];
 
     $scope.create = function(isValid) {
-        console.log('Is valid? '+isValid);
-        console.dir($scope.tags);
         if (isValid) {
             if($scope.organization_owner) {
                 var resource = new Resource({
@@ -250,12 +248,12 @@ angular.module('mean.resource')
     };
 
 }])
-.controller('ResourceListController', ['$scope', '$stateParams', '$location', '$http', 'Global', 'Resource', 'Call', 'CallQuery', 'currentCall', function($scope, $stateParams, $location, $http, Global, Resource, Call, CallQuery, currentCall) {
+.controller('ResourceListController', ['$scope', '$stateParams', '$location', '$http', '$timeout', 'Global', 'Resource', 'Call', 'CallQuery', 'currentCall', function($scope, $stateParams, $location, $http, $timeout, Global, Resource, Call, CallQuery, currentCall) {
 
     $scope.resources = [];
     $scope.parent_filters = [];
     $scope.sub_filters = [];
-    $scope.selected_main_filter = {};
+    $scope.selected_main_filter = false;
 
     $scope.loadData = function() {
         $scope.getFilters();
@@ -276,7 +274,7 @@ angular.module('mean.resource')
     $scope.getFilters = function() {
         $http.get('/api/parametric/resources/filters').success(function(data) {
             $scope.parent_filters = data;
-            $scope.selected_main_filter = $scope.parent_filters[0];
+            //$scope.selected_main_filter = $scope.parent_filters[0];
             $scope.$emit('selected_main_filter');
         });
     };
@@ -284,29 +282,49 @@ angular.module('mean.resource')
     $scope.getCallResources = function(callId) {
         $http.get('/api/resources/call/'+$scope.selectedCall.id).success(function(data) {
             $scope.resources = data;
+            $timeout(function () {
+                $scope.do_filter();
+            }, 1000);
         });
     };
 
     $scope.selectMainFilter = function(item) {
-        console.log('select '+item);
         $scope.selected_main_filter = item;
         $scope.$emit('selected_main_filter');
+
     };
 
     $scope.$on('selected_main_filter', function() {
-        console.log('selected');
-        $scope.sub_filters = $scope.selected_main_filter ? $scope.selected_main_filter.children : [];
-        console.dir($scope.sub_filters);
+        if($scope.selected_main_filter) {
+            $scope.sub_filters = $scope.selected_main_filter ? $scope.selected_main_filter.children : [];
+           
+            var subfilters_isotope = '';
+            _.each($scope.sub_filters, function(item) {
+                subfilters_isotope = subfilters_isotope + '.' + item.name + ', ';
+            }); 
+
+            $scope.category_selected = subfilters_isotope.replace(/,\s*$/, "");
+            $scope.do_filter();
+        }
     });
 
+    $scope.clearFilter = function() {
+        $scope.category_selected = false;
+        $scope.do_filter();
+    };
+
+    $scope.filter = function(item) {
+        $scope.category_selected = '.'+item.name;
+        $scope.do_filter();
+    };
+
     $scope.do_filter = function() {
-        $('.recursos-isotope').isotope({ filter: $scope.category_selected+$scope.topic_selected});
-        /*
-        var iniciativas_id = _.pluck($('.recursos-isotope').isotope('getFilteredItemElements'), 'id'); 
-        var iniciativas = _.filter($scope.iniciativas, function(model) {
-            return _.contains(iniciativas_id, model._id);
+        var filter = $scope.category_selected ? $scope.category_selected : '*';
+        $('.lista-recursos').isotope({ 
+            itemSelector: '.lista-recursos__item',
+            layoutMode: 'fitRows',
+            filter: filter
         });
-        */
     };
 
     $scope.getTags = function(input) {
@@ -315,7 +333,6 @@ angular.module('mean.resource')
 
     $scope.tagsToClass = function(input) {
         var classes = input ? input.replace(/;/g, ' '): '' ; 
-        console.log(classes);
         return classes;
     };
 
