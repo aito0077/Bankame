@@ -16,13 +16,18 @@ class Project extends Model {
         return $this->belongsTo('Bancame\Model\Organization');
     }
 
-    public function projectType() {
-        return $this->belongsTo('Bancame\Model\ProjectType');
-    }
-
     public function resources() {
         return $this->belongsToMany('Bancame\Model\Resource', 'resources_projects')->withPivot('assigned', 'percentage', 'votes');
     }
 
+    /*
+    public function projectType() {
+        return $this->belongsTo('Bancame\Model\ProjectType');
+    }
+    */
+
+    public function types() {
+        return $this->belongsToMany('Bancame\Model\ProjectType', 'projects_project_types');
+    }
 
 }

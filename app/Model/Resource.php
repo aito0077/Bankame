@@ -21,8 +21,14 @@ class Resource extends Model {
         return $this->belongsToMany('Bancame\Model\Project', 'resources_projects')->withPivot('assigned', 'percentage', 'votes');
     }
 
+    /*
     public function type() {
         return $this->belongsTo('Bancame\Model\ResourceType');
+    }
+    */
+
+    public function types() {
+        return $this->belongsToMany('Bancame\Model\ResourceType', 'resources_resource_types');
     }
 
 }

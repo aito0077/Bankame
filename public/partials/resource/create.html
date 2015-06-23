@@ -13,7 +13,7 @@
 
                     <div class="form-group" ng-class="{ 'has-error' : submitted && organizationForm.name.$invalid }">
                         <label mean-token="'create-nombre'" class="control-label">Nombre </label>
-                        <input name="name" type="text" class="form-control" data-ng-model="organization.name" id="name" placeholder="Nombre de tu organización" required>
+                        <input name="name" type="text" class="form-control" data-ng-model="organization.name" id="name" placeholder="Nombre de tu organización" >
                         <div ng-show="submitted && organizationForm.name.$invalid" class="help-block">
                             <p ng-show="organizationForm.name.$error.required">Nombre es requerido</p>
                         </div>
@@ -21,7 +21,7 @@
 
                     <div class="form-group" ng-class="{ 'has-error' : submitted && organizationForm.description.$invalid }">
                         <label mean-token="'create-mision'" class="control-label">Misión</label>
-                        <textarea name="description" data-ng-model="organization.description" id="description" cols="30" rows="10" placeholder="Descripción breve de tu organización" class="form-control" required></textarea>
+                        <textarea name="description" data-ng-model="organization.description" id="description" cols="30" rows="10" placeholder="Descripción breve de tu organización" class="form-control" ></textarea>
                         <div ng-show="submitted && organizationForm.description.$invalid" class="help-block">
                             <p ng-show="organizationForm.description.$error.required">Descripcion es requerida</p>
                         </div>
@@ -32,7 +32,7 @@
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.country.$invalid }">
                         <label mean-token="'create-country'" class="control-label">Pais</label>
-                        <select name="country" type="text" class="form-control" data-ng-model="organization.country_selected" id="country" placeholder="País" required ng-options="country.description for country in countries">
+                        <select name="country" type="text" class="form-control" data-ng-model="organization.country_selected" id="country" placeholder="País" ng-options="country.description for country in countries">
                         </select>
                         <div ng-show="submitted && resourceForm.country.$invalid" class="help-block">
                             <p ng-show="resourceForm.country.$error.required">El Pais es requerido</p>
@@ -83,10 +83,7 @@
 
                     <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.resource_type.$invalid }">
                         <label mean-token="'create-resource_type'" class="control-label">Tipo de Recurso</label>
-                        <select name="resource_type" type="text" class="form-control" data-ng-model="resource_type_selected" id="resource_type" placeholder="Tipo de Recurso" required ng-options="ress.name for ress in resourceTypes"> </select>
-                        <div ng-show="submitted && resourceForm.resource_type.$invalid" class="help-block">
-                            <p ng-show="resourceForm.resource_type.$error.required">Tipo de Recurso es requerido</p>
-                        </div>
+                        <select id="tags" multiple="multiple" name="tags" type="text" class="form-control" data-ng-model="tags" placeholder="Caracterísiticas del Recurso" ng-options="ress.description for ress in resourceTypes"> </select>
                     </div>
 
                     <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.cost.$invalid }">

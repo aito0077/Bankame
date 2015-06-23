@@ -15,8 +15,10 @@ class CreateResourcesTable extends Migration {
             $table->integer('call_id')->unsigned();
             $table->foreign('call_id')->references('id')->on('calls');
 
+            /*
             $table->integer('resource_type_id')->unsigned();
             $table->foreign('resource_type_id')->references('id')->on('resource_types');
+            */
 
             $table->integer('organization_id')->unsigned()->nullable();
             $table->foreign('organization_id')->references('id')->on('users');
@@ -28,6 +30,8 @@ class CreateResourcesTable extends Migration {
 
             $table->string('name');
             $table->string('description', 1000)->nullable();
+            $table->string('tags', 500)->nullable();
+            $table->string('tags_pretty', 500)->nullable();
 
             $table->string('conditions', 1000)->nullable();
 

@@ -6,6 +6,7 @@ use Log;
 use DB;
 use Config;
 use Storage;
+use Collection;
 use Response;
 use Validator;
 use Bancame\Http\Requests;
@@ -13,6 +14,8 @@ use Bancame\Http\Controllers\Controller;
 use Bancame\Model\Call;
 use Bancame\Model\Project;
 use Bancame\Model\Resource;
+use Bancame\Model\ResourceResourceType;
+
 use Bancame\User;
 
 use Illuminate\Http\Request;
@@ -30,12 +33,17 @@ class ResourceController extends Controller {
 
 	public function allByCall($callId) {
         $resources = Resource::where('call_id', '=', $callId)->get();
+        collect($resources)->each(function($model) {
+            $model->types;
+            $model->organization;
+        });
         return $resources;
 	}
 
 	public function show(Request $request, $id) {
         $resource = Resource::find($id);
-        $resource->type();
+        //$resource->type();
+        $resource->types;
         $user = false;
 		$token = $request->input('_token') ?: $request->header('X-XSRF-TOKEN');
 		if ( $token )  {
@@ -61,17 +69,36 @@ class ResourceController extends Controller {
         $user = User::find($request['user']['sub']);
 
         $resource = new Resource;
+
         DB::transaction(function() use ($request, $resource, $user) {
+            $tags = $request->input('tags');
+            $tag_collection = collect($tags);
+            $tags_flat = $tag_collection->implode('name', '; ');
+            $tags_pretty = $tag_collection->implode('description', '; ');
+
+            $organization = $request->input('organization_owner');
+            
+            Log::info($organization);
 
             $resource->description = $request->input('description');
             $resource->conditions = $request->input('conditions');
             $resource->cost = $request->input('cost');
             $resource->name = $request->input('name');
             $resource->call_id = $request->input('call_id');
+            $resource->organization_id = $organization['id'];
             $resource->image = $request->input('image');
-            $resource->resource_type_id = $request->input('resource_type');
+            $resource->tags = $tags_flat;
+            $resource->tags_pretty = $tags_pretty;
             $resource->user_id = $user->id;
             $resource->save();
+            
+            foreach($tags as $tag) {
+                $rrt = new ResourceResourceType(array(
+                    'resource_id' => $resource->id,
+                    'resource_type_id' => $tag['id']
+                ));
+                $rrt->save();
+            };
                  
         });
 

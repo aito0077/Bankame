@@ -2,7 +2,7 @@
 
 /* jshint -W098 */
 angular.module('mean.resource')
-.controller('ResourceController', ['$scope', '$stateParams', '$location', '$http', 'Global', 'Resource', 'Call', 'CallQuery', 'currentCall', 'ResourceType', 'Upload', 'Country', 'Organization', function($scope, $stateParams, $location, $http, Global, Resource, Call, CallQuery, currentCall, ResourceType, Upload, Country, Organization) {
+.controller('ResourceController', ['$scope', '$stateParams', '$location', '$timeout', '$http', 'Global', 'Resource', 'Call', 'CallQuery', 'currentCall', 'ResourceType', 'Upload', 'Country', 'Organization', function($scope, $stateParams, $location, $timeout,  $http, Global, Resource, Call, CallQuery, currentCall, ResourceType, Upload, Country, Organization) {
     $scope.global = Global;
     $scope.selectedCall = currentCall.current();
     $scope.has_organization = false;
@@ -14,12 +14,15 @@ angular.module('mean.resource')
     $scope.countries = [];
 
     $scope.create = function(isValid) {
+        console.log('Is valid? '+isValid);
+        console.dir($scope.tags);
         if (isValid) {
             if($scope.organization_owner) {
                 var resource = new Resource({
                     name: $scope.name,
                     description: $scope.description,
-                    resource_type: $scope.resource_type_selected.id,
+                    //resource_type: $scope.resource_type_selected.id,
+                    tags: $scope.tags,
                     image: $scope.image,
                     conditions: $scope.conditions,
                     cost: $scope.cost,
@@ -44,7 +47,7 @@ angular.module('mean.resource')
                     var resource = new Resource({
                         name: $scope.name,
                         description: $scope.description,
-                        resource_type: $scope.resource_type_selected.id,
+                        tags: $scope.tags,
                         image: $scope.image,
                         conditions: $scope.conditions,
                         cost: $scope.cost,
@@ -127,7 +130,24 @@ angular.module('mean.resource')
         }
 
         ResourceType.query(function(data) {
-            $scope.resourceTypes = data;
+            $scope.resourceTypes = _.filter(data, function(model) {
+                return model.parent_id;
+            });
+            $timeout(function() {
+                $('#tags').selectize({
+                    create: false,
+                    maxItems: null,
+                    //selectOnTab: true,
+                    valueField: 'id',
+                    items: $scope.tags,
+                    labelField: 'description',
+                    searchField: 'description',
+                    onChange: function(value) {
+
+                    }
+                });
+            });
+
         });
     };
 
@@ -142,6 +162,10 @@ angular.module('mean.resource')
       });
         */
 
+    };
+
+    $scope.getTags = function(input) {
+        return input ? input.split(';') : [];
     };
 
     $scope.findOne = function() {
@@ -189,7 +213,6 @@ angular.module('mean.resource')
 
     $scope.pop = function() {
         if(_.size($scope.resources)) {
-            console.log('Has resources');
             $scope.selected_resource = _.first($scope.resources);
             $scope.raising_projects = $scope.selected_resource.projects;
             $scope.resources = _.rest($scope.resources);
@@ -200,7 +223,6 @@ angular.module('mean.resource')
 
     $scope.assign = function(project) {
         $http.get('/api/projects/'+project.id+'/vote/'+$scope.selected_resource.id).success(function(data) {
-            console.dir(data); 
             $scope.pop();
         });
     };
@@ -227,4 +249,76 @@ angular.module('mean.resource')
 
     };
 
+}])
+.controller('ResourceListController', ['$scope', '$stateParams', '$location', '$http', 'Global', 'Resource', 'Call', 'CallQuery', 'currentCall', function($scope, $stateParams, $location, $http, Global, Resource, Call, CallQuery, currentCall) {
+
+    $scope.resources = [];
+    $scope.parent_filters = [];
+    $scope.sub_filters = [];
+    $scope.selected_main_filter = {};
+
+    $scope.loadData = function() {
+        $scope.getFilters();
+        if(!currentCall.current()) {
+            CallQuery.getOpenCall(function(call){
+                $scope.call = call;
+                currentCall.setCurrent(call);
+                $scope.selectedCall = call;
+                $scope.getCallResources($scope.selectedCall.id);
+            });
+        } else {
+            $scope.selectedCall = currentCall.current();
+            $scope.getCallResources($scope.selectedCall.id);
+        }
+
+    };
+
+    $scope.getFilters = function() {
+        $http.get('/api/parametric/resources/filters').success(function(data) {
+            $scope.parent_filters = data;
+            $scope.selected_main_filter = $scope.parent_filters[0];
+            $scope.$emit('selected_main_filter');
+        });
+    };
+
+    $scope.getCallResources = function(callId) {
+        $http.get('/api/resources/call/'+$scope.selectedCall.id).success(function(data) {
+            $scope.resources = data;
+        });
+    };
+
+    $scope.selectMainFilter = function(item) {
+        console.log('select '+item);
+        $scope.selected_main_filter = item;
+        $scope.$emit('selected_main_filter');
+    };
+
+    $scope.$on('selected_main_filter', function() {
+        console.log('selected');
+        $scope.sub_filters = $scope.selected_main_filter ? $scope.selected_main_filter.children : [];
+        console.dir($scope.sub_filters);
+    });
+
+    $scope.do_filter = function() {
+        $('.recursos-isotope').isotope({ filter: $scope.category_selected+$scope.topic_selected});
+        /*
+        var iniciativas_id = _.pluck($('.recursos-isotope').isotope('getFilteredItemElements'), 'id'); 
+        var iniciativas = _.filter($scope.iniciativas, function(model) {
+            return _.contains(iniciativas_id, model._id);
+        });
+        */
+    };
+
+    $scope.getTags = function(input) {
+        return input ? input.split(';') : [];
+    };
+
+    $scope.tagsToClass = function(input) {
+        var classes = input ? input.replace(/;/g, ' '): '' ; 
+        console.log(classes);
+        return classes;
+    };
+
 }]);
+
+ 

@@ -11,5 +11,8 @@ angular.module('mean.system', ['ui.router', 'mean-factory-interceptor'])
         $rootScope.state = 'firstPage';
       }
     });
+    $rootScope.$on('$stateChangeSuccess',function(){
+        $("html, body").animate({ scrollTop: 0 }, 200);
+    })
   }])
 ;

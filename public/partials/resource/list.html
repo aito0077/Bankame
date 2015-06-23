@@ -1,4 +1,4 @@
-<div data-ng-controller="ResourceController" data-ng-init="find()">
+<div data-ng-controller="ResourceListController" data-ng-init="loadData()">
     <div class="big-panel big-panel--invert  user-form--arrow">
         <p class="big-panel__content">Gracias al aporte de las organizaciones participantes, ya contamos con un fondo común compuesto por valiosos recursos tanto monetarios como no monetarios.</p>
         <h5 class="big-panel__more">¿Cual de los siguientes recursos podría potenciar tu proyecto?</h5>
@@ -8,24 +8,21 @@
         <div class="big-panel">
             <h1 class="big-panel__title">Banco de recursos</h1>
         </div>
+
         <ul class="filters">
-            <li class="filters__item"><a href="#" class="filters__title">Ver todas</a></li>
-            <li class="filters__item"><a href="#" class="filters__title">Monetarios</a></li>
-            <li class="filters__item filters__item--active">
-                <a href="#" class="filters__title">Formación</a>
+            <li class="filters__item"><a class="filters__title" style="cursor:pointer">Ver todas</a></li>
+            <li class="filters__item" ng-class="{'filters__item--active': (main_filter == selected_main_filter)}" ng-repeat="main_filter in parent_filters" >
+
+                <a ng-click="selectMainFilter(main_filter)" class="filters__title"  style="cursor:pointer">{{main_filter.description}}</a>
                 <ul class="filters__sub-categories">
-                    <li class="filters__sub-item"><a href="#" class="filters__sub-title">Taller</a></li>
-                    <li class="filters__sub-item"><a href="#" class="filters__sub-title">Capacitación</a></li>
-                    <li class="filters__sub-item"><a href="#" class="filters__sub-title">Espacios</a></li>
-                    <li class="filters__sub-item"><a href="#" class="filters__sub-title">Mucho más largo que todos</a></li>
-                    <li class="filters__sub-item"><a href="#" class="filters__sub-title">Becas</a></li>
+                    <li class="filters__sub-item" ng-repeat="sfilt in sub_filters"><a ng-click="filter(sfilt)" class="filters__sub-title">{{sfilt.description}}</a></li>
                 </ul>
+
             </li>
-            <li class="filters__item"><a href="#" class="filters__title">Paises</a></li>
-            <li class="filters__item"><a href="#" class="filters__title">Espacios y Materiales</a></li>
         </ul>
-        <ul class="lista-recursos">
-            <li class="lista-recursos__item" data-ng-repeat="resource in resources">
+
+        <ul class="lista-recursos recursos-isotope">
+            <li class="lista-recursos__item {{tagsToClass(resource.tags)}}" data-ng-repeat="resource in resources">
                 <h2 class="lista-recursos__title">
                     <a data-ng-href="#!/resource/{{resource.id}}">{{resource.name}}</a>
                 </h2>
@@ -34,14 +31,12 @@
                 </figure>
                 <p class="lista-recursos__content">
                     <a ui-sref="call by id.project({ resourceId: resource.id })" class="btn btn-success lista-recursos__solicitar">Solicitar</a>
-                    <span>{{resource.created | date:'medium'}}</span> /
-                    <span>{{resource.user.name}}</span><br>
+                    <span>{{resource.created_at | moment:'DD MMMM YYYY'}}</span> /
+                    <span>{{resource.organization.name}}</span><br>
                     {{resource.description}}
                 </p>
                 <div class="tags">
-                    <span class="tags__link">
-                        {{resource.resource_type}}
-                    </span>
+                    <span class="tags__link" ng-repeat="tag in getTags(resource.tags_pretty)">{{tag}}</span>
                 </div>
                 <span data-ng-if="hasAuthorization(resource)">
                     <a class="btn" href="/#!/resource/{{resource.id}}/edit">

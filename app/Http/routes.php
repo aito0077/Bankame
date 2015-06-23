@@ -32,6 +32,7 @@ Route::put('api/me', ['middleware' => 'auth', 'uses' => 'UserController@updateUs
 Route::resource('api/users', 'UserController');
 
 Route::resource('api/parametric/languages', 'LanguageController');
+Route::get('api/parametric/resources/filters', ['uses' => 'ResourceTypeController@filtersMap']);
 Route::resource('api/parametric/resources', 'ResourceTypeController');
 Route::resource('api/parametric/projects', 'ProjectTypeController');
 Route::resource('api/parametric/countries', 'CountryController');

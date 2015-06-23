@@ -93,7 +93,7 @@
 				</figure>
 				<p class="lista-recursos__content">{{resource.description}}</p>
 				<div class="tags">
-					<a href="#" class="tags__link">{{resource.resource_type}}</a>
+                    <span class="tags__link" ng-repeat="tag in getTags(resource.tags_pretty)">{{tag}}</span>
 				</div>
 			</li>
 		</ul>

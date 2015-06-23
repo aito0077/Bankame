@@ -25,5 +25,9 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$http', 
             }
 
         };
+
+        $scope.getTags = function(input) {
+            return input ? input.split(';') : [];
+        };
     }
 ]);

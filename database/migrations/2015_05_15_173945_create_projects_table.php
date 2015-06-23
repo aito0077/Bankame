@@ -15,8 +15,10 @@ class CreateProjectsTable extends Migration {
             $table->integer('call_id')->unsigned();
             $table->foreign('call_id')->references('id')->on('calls');
 
+            /*
             $table->integer('project_type_id')->unsigned();
             $table->foreign('project_type_id')->references('id')->on('project_types');
+            */
 
             $table->integer('organization_id')->unsigned()->nullable();
             $table->foreign('organization_id')->references('id')->on('users');
@@ -26,6 +28,7 @@ class CreateProjectsTable extends Migration {
             $table->string('name');
             $table->string('description', 500)->nullable();
             $table->string('stakeholders', 1000)->nullable();
+            $table->string('tags', 500)->nullable();
 
             $table->mediumtext('image')->nullable();
 
