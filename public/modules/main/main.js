@@ -11,7 +11,6 @@ angular.module('mean.main')
         $scope.countries = [];
 
         $scope.hasOrganization = function() {
-            console.dir($scope.global.user);
             return $scope.global.user && $scope.global.user.has_organization;
         };
 
@@ -43,7 +42,6 @@ angular.module('mean.main')
         $scope.loadData = function() {
             if($scope.hasOrganization()) {  
                 $http.get('/users/me').success(function(data) {
-                    console.dir(data);
                     Organization.get({
                         organizationId: data.organization
                     }, function(organization) {

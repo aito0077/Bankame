@@ -18,7 +18,6 @@ angular.module('mean.call')
             if( !moment().isBefore(stage.start_date, 'day') &&  !moment().isAfter(stage.end_date, 'day') ) {
                 $scope[stage_id] = 'ACTIVE';
                 $state.transitionTo('call by id.'+stage_id);
-                console.log('Transition to '+stage_id);
             }
             if( moment().isBefore(stage.start_date, 'day') ) {
                 $scope[stage_id] = 'FUTURE';

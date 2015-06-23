@@ -31,7 +31,6 @@ angular.module('mean.users')
                 .then(function() {
                     $http.get('/api/me').success(function(response) {
                         $scope.loginError = 0;
-                        console.dir(response);
                         $rootScope.user = response.user;
                         $rootScope.$emit('loggedin');
 

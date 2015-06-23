@@ -6,7 +6,6 @@ angular.module('mean.call').config(['$stateProvider',
             var deferred = $q.defer();
 
             $http.get('/loggedin').success(function(user) {
-                console.log(user);
                 if (user !== '0') {
                     $timeout(deferred.resolve);
                 } else {
