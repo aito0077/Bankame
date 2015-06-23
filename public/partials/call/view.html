@@ -5,9 +5,11 @@
     </div>
 
             <div class="etapas">
-                <!--h4 class="etapas__title">Etapas</h4-->
+                <h4 class="etapas__title">Etapas</h4>
                 <ul class="tabs tabs--etapas tabs--form">
                     <li class="tabs__item tabs__item--compartir" ng-class="{'tabs__item--active': (share_resource == 'ACTIVE')}" ng-switch on="share_resource">
+                        <span class="tabs__number">1</span>
+                        <h1 class="tabs__description">Comparte un recurso con el fondo</h1>
                         <div class="tabs__fecha" ng-switch-when="FUTURE">
                             Comienza el {{call.stages.share_resource.start_date | moment: 'DD/MM/YYYY'}}
                         </div>
@@ -17,10 +19,12 @@
                         <div class="tabs__fecha" ng-switch-when="PAST">
                             Finalizó el {{call.stages.share_resource.end_date | moment: 'DD/MM/YYYY'}}
                         </div>
-                        <span class="tabs__number">1</span>
                         <a class="tabs__title" ui-sref=".share_resource">Banco de recursos</a>
                     </li>
                     <li class="tabs__item tabs__item--active tabs__item--solicitar" ng-class="{'tabs__item--active': ( apply_project == 'ACTIVE')}"  ng-switch on="apply_project">
+                        <span class="tabs__number">2</span>
+                        <h1 class="tabs__description">Aplica a un recurso del fondo</h1>
+
                         <div class="tabs__fecha" ng-switch-when="FUTURE">
                             Comienza el {{call.stages.apply_project.start_date | moment: 'DD/MM/YYYY'}}
                         </div>
@@ -30,11 +34,13 @@
                         <div class="tabs__fecha" ng-switch-when="PAST">
                             Finalizó el {{call.stages.apply_project.end_date | moment: 'DD/MM/YYYY'}}
                         </div>
-                        <span class="tabs__number">2</span>
+
                         <a class="tabs__title" ui-sref=".apply_project">Solicitud de recursos</a>
                     </li>
 
                     <li class="tabs__item tabs__item--evaluar" ng-class="{'tabs__item--active': (evaluation == 'ACTIVE')}"  ng-switch on="evaluation">
+                        <span class="tabs__number">3</span>
+                        <h1 class="tabs__description">Colabora evaluando y mejorando otros proyectos</h1>
                         <div class="tabs__fecha" ng-switch-when="FUTURE">
                             Comienza el {{call.stages.evaluation.start_date | moment: 'DD/MM/YYYY'}}
                         </div>
@@ -45,7 +51,6 @@
                             Finalizó el {{call.stages.evaluation.end_date | moment: 'DD/MM/YYYY'}}
                         </div>
 
-                        <span class="tabs__number">3</span>
                         <a class="tabs__title" ui-sref=".evaluation">Evaluación y asignación</a>
                     </li>
 
