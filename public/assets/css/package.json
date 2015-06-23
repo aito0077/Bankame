@@ -1,0 +1,13 @@
+{
+  "name": "naranju-mini",
+  "version": "0.3.3",
+  "devDependencies": {
+    "grunt": "*",
+    "stylus": "*",
+    "nib": "*",
+    "jeet": "*",
+    "grunt-contrib-stylus": "*",
+    "grunt-contrib-watch": "*",
+    "rupture": "*"
+  }
+}

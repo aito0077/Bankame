@@ -863,13 +863,13 @@
   max-width: 100%;
 }
 .preguntas-frecuentes {
-  margin: 0 20px;
+  margin: 40px;
 }
 .preguntas-frecuentes__video {
   float: right;
 }
 .preguntas-frecuentes__panel {
-  max-width: 665px;
+  max-width: 600px;
 }
 .preguntas-frecuentes__label {
   font-size: 22px;
@@ -912,11 +912,21 @@
   clear: left;
   padding: 40px;
 }
+.big-panel--faq {
+  font-family: 'Roboto Condensed', Helvetica, Arial, sans-serif;
+  background: #ff9528;
+  padding: 20px;
+  margin: 20px 0;
+}
 .big-panel__title {
   font-size: 38px;
   margin: 20px;
   text-align: center;
   text-transform: uppercase;
+}
+.big-panel__title--lower {
+  font-weight: 400;
+  text-transform: none;
 }
 .big-panel__content {
   text-align: center;
@@ -1348,23 +1358,17 @@ h6 {
   width: 80px;
   clear: left;
 }
-/*Leo*/
 .drop-box {
-    background: #F8F8F8;
-    border: 5px dashed #DDD;
-    height: 154px;
-    text-align: center;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    float: left;
-    margin-left: 10px;
-    overflow: hidden;
+  background: #f8f8f8;
+  border: 5px dashed #ddd;
+  height: 154px;
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  float: left;
+  margin-left: 10px;
+  overflow: hidden;
 }
-.drop-box img{
-    width: 100%;
-}
-.big-panel.preguntas__frecuentes {
-  font-family: 'Roboto Condensed', Helvetica, Arial, sans-serif;
-  background: #ff9528;
-  padding: 20px;
+img {
+  width: 100%;
 }
