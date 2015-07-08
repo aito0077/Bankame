@@ -8,17 +8,18 @@ class CallsTableSeeder extends Seeder {
         DB::table('calls')->delete();
 
         $call = new Call();
-        $call->name = 'Convocatoria Ejemplo';
-        $call->context = 'Esta convocatoria se realiza en el contexto de un llamado a presentar proyectos que tengan que ver con el test del sitio.';
+        $call->name = 'Semana de la Economía Colaborativa 2016';
+        $call->context = 'La Semana de la economía colaborativa se propone difundir la idea de un cambio transversal que horizontaliza las relaciones de poder y los medios de producción. Es una iniciativa para visibilizar estos nuevos modelos y apoyar y difundir el trabajo de quienes los impulsan, en conjunto con otras redes y organizaciones locales, nacionales y regionales.
+Para llevarla adelante invitamos a las organizaciones y colectivos que trabajan bajo estos nuevos modelos, a visibilizar y compartir sus recursos para que esta se convierta en un verdadero festival descentralizado, con entusiasmo y abundancia.';
         $call->status= 'OPEN';
         $call->user_id = 2;
 
-        $call->share_resources_start = '2015-06-10';
-        $call->share_resources_end = '2015-06-16';
-        $call->apply_project_start = '2015-06-17';
-        $call->apply_project_end = '2015-06-20';
-        $call->evaluation_start = '2015-06-25';
-        $call->evaluation_end = '2015-06-29';
+        $call->share_resources_start = '2015-07-07';
+        $call->share_resources_end = '2015-07-15';
+        $call->apply_project_start = '2015-07-16';
+        $call->apply_project_end = '2015-07-22';
+        $call->evaluation_start = '2015-07-23';
+        $call->evaluation_end = '2015-07-29';
 
         $call->save();
 

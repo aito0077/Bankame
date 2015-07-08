@@ -3,6 +3,7 @@
 use Log;
 use File;
 use JWT;
+use ExpiredException;
 use Auth;
 use Config;
 use Bancame\User;
@@ -21,8 +22,13 @@ class HomeController extends Controller {
             $token = $request->header('Authorization');
             if(isset($token[1])) {
                 $token = explode(' ', $request->header('Authorization'))[1];
-                $payload = (array) JWT::decode($token, Config::get('app.token_secret'), array('HS256'));
-                $user = User::find($payload['sub']);
+                try {
+                    $payload = (array) JWT::decode($token, Config::get('app.token_secret'), array('HS256'));
+                    $user = User::find($payload['sub']);
+                } catch(ExpiredException $e) {
+                    Log::info('Expired Exception');
+                    return 0;
+                }
             }
         }
         return $user;
