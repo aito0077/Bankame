@@ -313,6 +313,13 @@ angular.module('mean.resource')
         $scope.do_filter();
     };
 
+
+    $scope.select = function(resource) {
+        $scope.selected = resource;
+        console.log('Selected');
+        $('#resource-modal').show();
+    };
+
     $scope.filter = function(item) {
         $scope.category_selected = '.'+item.name;
         $scope.do_filter();

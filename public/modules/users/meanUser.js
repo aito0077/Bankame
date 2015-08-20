@@ -43,31 +43,16 @@ angular.module('mean.users')
 
                 })
                 .catch(function(response) {
-                    $alert({
-                        content: response.data.message,
-                        animation: 'fadeZoomFadeDown',
-                        type: 'material',
-                        duration: 3
-                    });
+                    swal( "info", "error_login", "warning");
                 });
             };
             $scope.authenticate = function(provider) {
                 $auth.authenticate(provider)
                 .then(function() {
-                    $alert({
-                        content: 'You have successfully logged in',
-                        animation: 'fadeZoomFadeDown',
-                        type: 'material',
-                        duration: 3
-                    });
+                    swal( "info", "logged_in", "info");
                 })
                 .catch(function(response) {
-                    $alert({
-                        content: response.data ? response.data.message : response,
-                        animation: 'fadeZoomFadeDown',
-                        type: 'material',
-                        duration: 3
-                    });
+                    swal( "info", "error_login", "warning");
                 });
             };
 
@@ -108,6 +93,18 @@ angular.module('mean.users')
                 password: $scope.password,
                 name: $scope.name,
                 language_code: 'ES' //ToDo: Obtener del sitio
+            }).then(function() {
+                $http.get('/api/me').success(function(response) {
+                    $scope.loginError = 0;
+                    $rootScope.user = response.user;
+                    $rootScope.$emit('loggedin');
+
+                    if (response.redirect) {
+                        window.location = response.redirect;
+                    } else {
+                        $location.url('/');
+                    }
+                });
             }).catch(function(response) {
                 if (typeof response.data.message === 'object') {
                     angular.forEach(response.data.message, function(message) {

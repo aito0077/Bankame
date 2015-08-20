@@ -27,7 +27,12 @@ class ResourceTypesTableSeeder extends Seeder {
         $resourceType->description ='Saberes';
         $resourceType->save();
 
-
+        $resourceType = new ResourceType();
+        $resourceType->name = ResourceTypesTableSeeder::slugify('Moneda Oficial');
+        $resourceType->description ='Moneda Oficial';
+        $resourceType->parent_id = 2;
+        $resourceType->save();
+ 
         $resourceType = new ResourceType();
         $resourceType->name = ResourceTypesTableSeeder::slugify('Fabricación analógica y digital');
         $resourceType->description ='Fabricación analógica y digital';
