@@ -1,11 +1,20 @@
 'use strict';
 
-angular.module('mean.system').controller('HeaderController', ['$scope', '$rootScope', '$auth', 'Global', 'Menus', 'currentCall', function($scope, $rootScope, $auth, Global, Menus, currentCall) {
+angular.module('mean.system').controller('HeaderController', ['$scope', '$rootScope', '$auth', '$http', 'Global', 'Menus', 'currentCall', function($scope, $rootScope, $auth, $http, Global, Menus, currentCall) {
+    $scope.global = Global;
     $scope.isAuthenticated = function() {
-        return $auth.isAuthenticated();
+        var authenticated = $auth.isAuthenticated();
+        if(authenticated && !$scope.global.user && !$rootScope.retrieve_user) {
+            $rootScope.retrieve_user = true;
+            $http.get('/api/me').success(function(response) {
+                $rootScope.user = response.user;
+                $rootScope.$emit('loggedin');
+            });
+        }
+        return authenticated;
+
     };
 
-    $scope.global = Global;
     $scope.menus = {};
     $scope.selectedCall = currentCall.current();
 
@@ -13,6 +22,7 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
     $scope.isCollapsed = false;
 
     $rootScope.$on('loggedin', function() {
+        $rootScope.retrieve_user = true;
         $scope.global = {
             authenticated: !! $rootScope.user,
             user: $rootScope.user

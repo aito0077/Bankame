@@ -14,12 +14,12 @@ Para llevarla adelante invitamos a las organizaciones y colectivos que trabajan 
         $call->status= 'OPEN';
         $call->user_id = 2;
 
-        $call->share_resources_start = '2015-07-07';
-        $call->share_resources_end = '2015-07-15';
-        $call->apply_project_start = '2015-07-16';
-        $call->apply_project_end = '2015-07-22';
-        $call->evaluation_start = '2015-07-23';
-        $call->evaluation_end = '2015-07-29';
+        $call->share_resources_start = '2015-08-19';
+        $call->share_resources_end = '2015-08-24';
+        $call->apply_project_start = '2015-08-25';
+        $call->apply_project_end = '2015-09-02';
+        $call->evaluation_start = '2015-09-03';
+        $call->evaluation_end = '2015-09-20';
 
         $call->save();
 

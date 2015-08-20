@@ -15,7 +15,7 @@ class CreateCallsTable extends Migration {
 			$table->timestamps();
 
             $table->string('name');
-            $table->string('context', 500)->nullable();
+            $table->string('context', 5000)->nullable();
 
             $table->enum('status', ['DISABLED', 'OPEN', 'CLOSE'])->default('DISABLED');
 

@@ -19,7 +19,7 @@
                 <div class="layout__1-2">
 
                     <div class="form-group" ng-class="{ 'has-error' : submitted && projectForm.name.$invalid }">
-                        <label mean-token="'create-name'" class="control-label">Nombre</label>
+                        <label mean-token="'create-name'" class="control-label">Nombre del Proyecto</label>
                         <input name="name" type="text" class="form-control" data-ng-model="name" id="name" placeholder="Nombre" required>
                         <div ng-show="submitted && projectForm.name.$invalid" class="help-block">
                         <p ng-show="projectForm.name.$error.required">Nombre es requerido</p>
@@ -68,7 +68,9 @@
                             ngf-reset-model-on-click="resetModelOnClick"
                             ngf-allow-dir="allowDir" class="drop-box" ngf-drop-available="dropAvailable">
                                 <img ng-show="image" ng-src="http://45.55.235.242/232x154/smart/{{image}}" >
-                                <span ng-show="!image">Click aquí para seleccionar una imagen <span ng-show="dropAvailable">o arrastra una</span></span>
+                                <img ng-show="!image && uploading" src="/assets/img/loader.gif" width="75" height="75" />
+                                <span ng-show="!image && !uploading">Click aquí para seleccionar una imagen <span ng-show="dropAvailable">o arrastra una</span></span>
+
                         </div>
                     </div>
 

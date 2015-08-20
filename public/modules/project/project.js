@@ -26,6 +26,7 @@ angular.module('mean.project').controller('ProjectController', ['$scope', '$stat
         $scope.upload($scope.files);
     });
 
+    $scope.uploading = false;
     $scope.upload = function (files) {
         if (files && files.length) {
             for (var i = 0; i < files.length; i++) {
@@ -36,8 +37,12 @@ angular.module('mean.project').controller('ProjectController', ['$scope', '$stat
                     file: file
                 }).progress(function (evt) {
                     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                    $scope.uploading = true;
                 }).success(function (data, status, headers, config) {
                     $scope.image = data.filename;
+                    $scope.uploading = false;
+                }).error(function (data, status, headers, config) {
+                    $scope.uploading = false;
                 });
             }
         }
