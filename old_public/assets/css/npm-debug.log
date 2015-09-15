@@ -1,0 +1,89 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'coffe-script',
+1 verbose cli   '--save' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.32
+4 warn package.json naranju-mini@0.3.3 No description
+5 warn package.json naranju-mini@0.3.3 No repository field.
+6 warn package.json naranju-mini@0.3.3 No README data
+7 verbose readDependencies using package.json deps
+8 verbose cache add [ 'coffe-script', null ]
+9 verbose cache add name=undefined spec="coffe-script" args=["coffe-script",null]
+10 verbose parsed url { protocol: null,
+10 verbose parsed url   slashes: null,
+10 verbose parsed url   auth: null,
+10 verbose parsed url   host: null,
+10 verbose parsed url   port: null,
+10 verbose parsed url   hostname: null,
+10 verbose parsed url   hash: null,
+10 verbose parsed url   search: null,
+10 verbose parsed url   query: null,
+10 verbose parsed url   pathname: 'coffe-script',
+10 verbose parsed url   path: 'coffe-script',
+10 verbose parsed url   href: 'coffe-script' }
+11 silly lockFile 7034c740-coffe-script coffe-script
+12 verbose lock coffe-script /root/.npm/7034c740-coffe-script.lock
+13 silly lockFile 7034c740-coffe-script coffe-script
+14 silly lockFile 7034c740-coffe-script coffe-script
+15 verbose addNamed [ 'coffe-script', '' ]
+16 verbose addNamed [ null, '*' ]
+17 silly lockFile 02cb5a0e-coffe-script coffe-script@
+18 verbose lock coffe-script@ /root/.npm/02cb5a0e-coffe-script.lock
+19 silly addNameRange { name: 'coffe-script', range: '*', hasData: false }
+20 verbose request where is /coffe-script
+21 verbose request registry https://registry.npmjs.org/
+22 verbose request id 694e20255fbb9bee
+23 verbose url raw /coffe-script
+24 verbose url resolving [ 'https://registry.npmjs.org/', './coffe-script' ]
+25 verbose url resolved https://registry.npmjs.org/coffe-script
+26 verbose request where is https://registry.npmjs.org/coffe-script
+27 info trying registry request attempt 1 at 21:41:26
+28 http GET https://registry.npmjs.org/coffe-script
+29 http 404 https://registry.npmjs.org/coffe-script
+30 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+30 verbose headers   'content-type': 'application/json',
+30 verbose headers   'cache-control': 'max-age=0',
+30 verbose headers   'content-length': '51',
+30 verbose headers   'accept-ranges': 'bytes',
+30 verbose headers   date: 'Wed, 08 Jul 2015 00:46:26 GMT',
+30 verbose headers   via: '1.1 varnish',
+30 verbose headers   age: '0',
+30 verbose headers   connection: 'keep-alive',
+30 verbose headers   'x-served-by': 'cache-jfk1033-JFK',
+30 verbose headers   'x-cache': 'MISS',
+30 verbose headers   'x-cache-hits': '0',
+30 verbose headers   'x-timer': 'S1436316386.325322,VS0,VE26' }
+31 silly registry.get cb [ 404,
+31 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+31 silly registry.get     'content-type': 'application/json',
+31 silly registry.get     'cache-control': 'max-age=0',
+31 silly registry.get     'content-length': '51',
+31 silly registry.get     'accept-ranges': 'bytes',
+31 silly registry.get     date: 'Wed, 08 Jul 2015 00:46:26 GMT',
+31 silly registry.get     via: '1.1 varnish',
+31 silly registry.get     age: '0',
+31 silly registry.get     connection: 'keep-alive',
+31 silly registry.get     'x-served-by': 'cache-jfk1033-JFK',
+31 silly registry.get     'x-cache': 'MISS',
+31 silly registry.get     'x-cache-hits': '0',
+31 silly registry.get     'x-timer': 'S1436316386.325322,VS0,VE26' } ]
+32 silly lockFile 02cb5a0e-coffe-script coffe-script@
+33 silly lockFile 02cb5a0e-coffe-script coffe-script@
+34 error 404 404 Not Found: coffe-script
+34 error 404
+34 error 404 'coffe-script' is not in the npm registry.
+34 error 404 You should bug the author to publish it
+34 error 404 It was specified as a dependency of 'naranju-mini'
+34 error 404
+34 error 404 Note that you can also install from a
+34 error 404 tarball, folder, or http url, or git url.
+35 error System Linux 2.6.32-431.23.3.el6.x86_64
+36 error command "/usr/local/bin/node" "/usr/local/bin/npm" "install" "coffe-script" "--save"
+37 error cwd /root/Local/PROJECTS/WINWINS/bancame/public/assets/css
+38 error node -v v0.10.32
+39 error npm -v 1.4.28
+40 error code E404
+41 verbose exit [ 1, true ]

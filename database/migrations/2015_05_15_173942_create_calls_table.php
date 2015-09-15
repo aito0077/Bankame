@@ -21,16 +21,13 @@ class CreateCallsTable extends Migration {
 
             $table->mediumtext('image')->nullable();
 
-            $table->date('share_resources_start')->nullable();
-            $table->date('share_resources_end')->nullable();
-            $table->date('apply_project_start')->nullable();
-            $table->date('apply_project_end')->nullable();
-            $table->date('evaluation_start')->nullable();
-            $table->date('evaluation_end')->nullable();
-            $table->date('show_results_start')->nullable();
-            $table->date('show_results_end')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('middle_date')->nullable();
+            $table->date('end_date')->nullable();
 
-
+            $table->boolean('publish')->default(false);
+            $table->boolean('share_phase')->default(false);
+            $table->boolean('apply_phase')->default(false);
 		});
 	}
 
