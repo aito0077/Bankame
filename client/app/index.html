@@ -21,7 +21,7 @@
         <link rel="stylesheet" href="styles/bootstrap.css"/><!-- Responsive Css -->
         <link rel="stylesheet" href="styles/responsive.css"/><!-- Responsive Css -->
         <link rel="stylesheet" href="styles/default.css" type="text/css" media="all">
-        <link rel="stylesheet" href="styles/skins/red.css" type="text/css" media="all">
+        <link rel="stylesheet" href="styles/skins/purple.css" type="text/css" media="all">
 
     <!-- endbuild -->
   </head>
@@ -98,12 +98,13 @@
                                                         <li><a href="#"> Crear </a></li>
                                                     </ul>
                                                 </li>
+                                                <li><a href="#/about"> Acerca de</a></li>
+                                                <li> <a href="#/contact"> Contacto</a> </li>
 
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="nav_search pull-right"> <form method="post" action="#"> <input type="text" value="Search Here..." name="s" id="s" /> <button><i class="icon-search"></i> </button></form></div>
                             </section>
                         </section>
                     </nav>
@@ -123,73 +124,66 @@
 					<section id="banner" class="span12 first"> 
                             <div class="inner"> 
                                 <div class="span9">
-                                <h2> Bancame es un proyecto colaborativo </h2>
-                                <h3> Texto de colaboración</h3>
+                                <h2> Bancame es una iniciativa de Minka </h2>
+                                <h3> Participa y colabora con el Banco de las redes</h3>
                                 </div>
                                 <div class="pull-left span3">
-                                    <div id="banner_rounded" class="img-circle" style="cursor:pointer">
-                                        <h3>SUMA TU APORTE AL PROYECTO <span>BANCAME</span></h3> 
+                                    <div id="banner_rounded" class="img-circle" style="cursor:pointer; vertical-align: middle">
+                                        <h3 style="padding: 10px;">SUMA TU APORTE</h3> 
                                     </div>
                                 </div>
                             </div>
                     </section>
 				
+
 				<section class="span12 first" id="footer_main">
+					<section class="span4 first widget">
+						<h4>Ponte en Contacto</span> <span class="h-line"></span> </h4>
+						
+						<form id="contact_form" method="post" action="contact.php" class="span10">
+								
+                                <input type="text" placeholder="Nombre"  name="name" required/>
+                                <input type="email" placeholder="Email" name="email" required />
+                                <textarea rows="5" cols="15" placeholder="comments" required>Comments</textarea>
+                                <input type="submit" name="submit" value="Enviar" />
+						 
+						</form>
+						
+                    </section>
 					
-					<section class="span8 first widget">
-						<h4>APOYAN Y COLABORAN <span class="h-line"></span> </h4>
+					<section class="span4 first widget">
+						<h4>BANCAME ES UNA INICIATIVA<span class="h-line"></span> </h4>
+                        <ul class="gallery-list gallery_widget">
+                            <li class="">
+                                <a href="http://minka.me"><h5>Minka Banco de las redes</h5> </a>
+                            </li>
+                        </ul>
+
+						<h4>APOYAN<span class="h-line"></span> </h4>
 						
 								<ul class="gallery-list gallery_widget">
-										<li class="view_new view-tenth">
-                                            <img class="galler-img" src="images/bancame/apoyan-circulacultura.png" alt="">
-                                            <div class="mask">
-                                                <a class="image-gal info" data-rel="prettyPhoto[gallery1]" href="images/t_slider_3.jpg" title="">&nbsp;</a>
-                                            </div>
+										<li class="">
+                                            Cultura de Red
 										</li>
-										<li class="view_new view-tenth">
-                                            <img class="galler-img" src="images/bancame/apoyan-hivos.png" alt="">
-                                            <div class="mask">
-                                                <a class="image-gal info" data-rel="prettyPhoto[gallery1]" href="images/t_slider_5.jpg" title="">&nbsp;</a>
-                                            </div>
+										<li class="">
+                                            <a href="http://www.culturasenda.com"><h5>Cultura Senda</h5> </a>
 										</li>
-										<li class="view_new view-tenth">
-                                            <img class="galler-img" src="images/bancame/apoyan-juntxs.png" alt="">
-                                            <div class="mask">
-                                                <a class="image-gal info" data-rel="prettyPhoto[gallery1]" href="images/t_slider_2.jpg" title="">&nbsp;</a>
-                                            </div>
+										<li class="">
+                                            <a href="http://foradoeixo.org.br"><h5>Red Fora do eixo</h5> </a>
 										</li>
 				
-										<li class="view_new view-tenth">
-                                            <img class="galler-img" src="images/bancame/minka.png" alt="">
-                                            <div class="mask">
-                                                <a class="image-gal info" data-rel="prettyPhoto[gallery1]" href="images/t_slider_2.jpg" title="">&nbsp;</a>
-                                            </div>
+										<li class="">
+                                            <a href="https://www.facebook.com/BancoDasCulturas"><h5>Banco de las culturas</h5> </a>
 										</li>
-										<li class="view_new view-tenth">
-                                            <img class="galler-img" src="images/bancame/cultura-senda.png" alt="">
-                                            <div class="mask">
-                                                <a class="image-gal info" data-rel="prettyPhoto[gallery1]" href="images/t_slider_4.jpg" title="">&nbsp;</a>
-                                            </div>
+										<li class="">
+                                            <a href="http://circulacultura.org"><h5>Circula Cultura</h5> </a>
 										</li>
-										<li class="view_new view-tenth">
-                                            <img class="galler-img" src="images/bancame/fora-de-eixo.png" alt="">
-                                            <div class="mask">
-                                                <a class="image-gal info" data-rel="prettyPhoto[gallery1]" href="images/t_slider_5.jpg" title="">&nbsp;</a>
-                                            </div>
+										<li class="">
+                                            <a href="https://www.hivos.org"><h5>Hivos</h5> </a>
 										</li>
-										<li class="view_new view-tenth">
-                                            <img class="galler-img" src="images/bancame/coperable.png" alt="">
-                                            <div class="mask">
-                                                <a class="image-gal info" data-rel="prettyPhoto[gallery1]" href="images/t_slider_3.jpg" title="">&nbsp;</a>
-                                            </div>
+										<li class="">
+                                            <a href="https://www.coperable.org"><h5>Coperable</h5> </a>
                                         </li>
-										<li class="view_new view-tenth">
-                                            <img class="galler-img" src="images/bancame/apoyan-unicult.png" alt="">
-                                            <div class="mask">
-                                                <a class="image-gal info" data-rel="prettyPhoto[gallery1]" href="images/t_slider_4.jpg" title="">&nbsp;</a>
-                                            </div>
-										</li>
-																	
 								</ul>
 
 
@@ -197,11 +191,10 @@
 					<section class="widget span3"> 
 						
 						<h4>Twitter <span> #bancame </span> <span class="h-line"></span> </h4>
-						<ul id="tweets_crunchpress">
-							<li> New Theme Called Fine Food ready to rocks! Check this out! <span> <a href="#"> http://fb.me/90DF91 </a> </span> <span> - 2 hour ago </span> </li>
-							<li> The Church Issues Fixed. I hope update will be ready  soon. Then you guys download it. Before upload new  <span> <a href="#">http://fb.me/4rtIOlp9  </a> </span> <span> -1 Day ago </span> </li>
-						</ul>
-						<a class="v-a" href="http://themeforest/user/crunchpress/">+ View All <span class="h-line"></span></a>
+                        <div class="twitter-feed">
+                            <div class="tweets-feed" style="height: 415px !important; overflow-y: scroll;" data-widget-id="616638488482594817">
+                            </div>
+                        </div>
                     </section>
 			</section>
 		</section>
@@ -213,12 +206,14 @@
 		<section class="container-fluid container">
 			<section class="row-fluid">
                 <figure class="span6 footer_left">  
-                    <i class="icon-envelope-alt"></i> <span> mail@debancame.cop</span>  
+                    <i class="icon-envelope-alt"></i> <span> informacionminka@gmail.com </span>  
                 </figure>
                 <figure class="span6 footer_right">
+
+
                     <div id="socialicons"> 
-                        <a data-placement="top" data-rel="tooltip" title="Join us on Facebook" id="social_facebook" class="social_active" href="#" >		<span>	</span></a> 
-                        <a data-placement="top" data-rel="tooltip" title="Follow us on Twitter" id="social_twitter" class="social_active" href="#"  >	<span>	</span></a> 
+                        <a data-placement="top" data-rel="tooltip" title="Unite en Facebook" id="social_facebook" class="social_active" href="https://www.facebook.com/bancodelasredes">		<span>	</span></a> 
+                        <a data-placement="top" data-rel="tooltip" title="Seguinos @minka_me" id="social_twitter" class="social_active" href="https://twitter.com/minka_me"  >	<span></span></a> 
                     </div>
                 </figure>
  
@@ -289,11 +284,14 @@
         <script src="scripts/js/countdown.js"></script><!-- Event Counter -->
         <script src="scripts/js/bootstrap.js"></script>
         <script src="scripts/js/bxslider.js"></script><!-- BX Slider -->
+        <script src="scripts/js/twitterfetcher.min.js"></script>
 
         <script src="scripts/config.js"></script>
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
+
+        <script src="scripts/site.js"></script>
 
 
         <!-- endbuild -->

@@ -1,0 +1,250 @@
+<div class="container">
+    <section>
+        <section class="row-fluid">
+            <!-- BreadCrumbs -->
+                <figure id="breadcrumbs" class="span12">
+                    <ul class="breadcrumb">
+                    <li><a href="#/">Inicio</a> <span class="divider">/</span></li>
+                    <li class="active">Campaña</li>
+                    </ul>
+                </figure>
+            <!-- End of breadcrumbs -->
+        </section>
+
+
+        <section class="container-fluid container">
+            <section class="row-fluid">
+                <section id="donation_box">
+                    <section class="container container-fluid">
+                    <section class="row-fluid">
+                        <div class="span8 first"> <h2> {{campaign.title}} TITULO</h2> </div>
+                    </section>
+                </section>
+            </section>		<!-- end of Page Title -->
+        </section>
+    </section>
+
+
+
+<section id="content" class="mbtm fund_rasising_listing">
+    <section class="container-fluid container">
+	
+        <section class="row-fluid">
+			
+            <section class="span9 fund_project_detail" id="fund_project_detail">  
+					
+                <figure class="span12 first outer_lyr" id="category_image"> 
+						
+                    <img src="images/bancame/slider/799x265_campaign.jpg" alt="Crowd Funding" />
+
+                    <figure class="span12 first fund_project" id="charity_progress">
+ 							
+                        <div class="span12 first">
+                            <span class="current_collection">   </span>
+						
+                            <h4>  </h4>
+						
+						 
+                             <div class="info"> 
+									<div class="span3 first">
+									</div>
+									
+									<div class="span4 first">
+									</div>
+									
+									<div class="span2 first">
+									</div>
+									
+									<div class="span3" id="dayz">
+										<i class="icon-calendar-empty"></i> <span> 74 </span> Days Left
+									</div>
+									
+							  </div>
+						
+						</div>							
+						
+					</figure>
+				
+					</figure>
+			
+					<figure class="span12 first outer_lyr" id="project_contet">
+					
+							<div class="inner_lyr">
+							<h3> Help us to build charity hospital </h3>
+							<p> At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. </p>
+							<p> At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. </p>
+							<p> At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. </p>
+							</div>
+					</figure>
+					
+					<figure class="span12 first">
+							<a href="#" class="btns tier_button"> Ofrecer Recurso</a>
+							
+					</figure>
+
+
+
+
+            <section id="create_resource" class="mbtm">
+                <div class="row-fluid crowd_fund">
+                    <div class="span6">
+                        <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.resource_type.$invalid }">
+                            <label class="control-label">Tipo de Recurso</label>
+                            <select id="tags" multiple="multiple" name="tags" type="text" class="form-control" data-ng-model="tags" placeholder="Caracterísiticas del Recurso" ng-options="ress.description for ress in resourceTypes"> </select>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.name.$invalid }">
+                            <label class="control-label">Nombre</label>
+                            <input name="name" type="text" class="form-control input-xlarge span12" data-ng-model="name" id="name" placeholder="Nombre" required>
+                            <div ng-show="submitted && resourceForm.name.$invalid" class="help-block">
+                                <p ng-show="resourceForm.name.$error.required">Nombre es requerido</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span6">
+                        <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.cost.$invalid }">
+                            <label class="control-label">Costo</label>
+                            <input name="cost" type="text" class="form-control input-xlarge span12" data-ng-model="cost" id="cost" placeholder="Si tuvieras que ponerle precio al recurso, costaría">
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.conditions.$invalid }">
+                            <label for="conditions" class="control-label">Condiciones</label>
+                            <textarea name="conditions" data-ng-model="conditions" id="conditions" cols="30" rows="5" placeholder="Condiciones al postulante" class="form-control input-xlarge span12"></textarea>
+                        </div>
+
+
+                    </div>
+
+                    <div class="span12">
+                            <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.description.$invalid }">
+                            <label for="description" class="control-label">Descripcion</label>
+                            <textarea name="description" data-ng-model="description" id="description" rows="10" placeholder="Descripcion" class="form-control span12 input-xlarge" required></textarea>
+                            <div ng-show="submitted && resourceForm.description.$invalid" class="help-block">
+                                <p ng-show="resourceForm.description.$error.required">Descripcion es requerido</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="row-fluid">
+                    <button type="submit" class="tier_button btns pull-right">Ofrecer!</button>
+                </div>
+
+
+
+            </section>
+
+
+
+
+
+
+
+
+                <section id="ngo_features" class="mbtm">
+
+                        <section class="row-fluid">
+                        
+                            <!-- Start of Features Box 2 -->
+                            <figure class="span3 feature">
+                                <div class="ftr_img f-img-2"> 
+                                    <span class="img"> Volcanic Eruptions </span>
+                                </div>
+                                <div class="ftr_txt">
+                                    <a ui-sref="resource">
+                                        <strong> Volcanic Eruptions </strong>
+                                    </a>
+                                </div>
+                            </figure>
+                            
+                        <!-- Start of Features Box 3 --> 
+                            <figure class="span3 feature">
+                                <div class="ftr_img f-img-3"> 
+                                    <span class="img"> Thunder Storms  </span>
+                                </div>
+                                <div class="ftr_txt">
+                                    <strong> Thunder Storms </strong>
+                                </div>
+                            </figure>
+                            <!-- End of Features Boxes 3 -->
+                        
+                            <!-- Start of Features Box 4 -->		
+                            <figure class="span3 feature">
+                                <div class="ftr_img f-img-4"> 
+                                    <span class="img"> Tsunami </span>
+                                </div>
+                                <div class="ftr_txt">
+                                    <strong> Tsunami </strong>
+                                </div>
+                            </figure>
+                            <!-- End of Features Boxes 4 -->
+                        </section>
+                </section>
+            <!-- End of Features Boxes -->
+
+
+
+
+
+
+
+			</section>
+				
+				
+			<section id="sidebar" class="span3">
+							
+                <figure class="widget social_follow">
+                    
+                    <div id="social_follow">
+                        <span class="social_fb"> <i class="icon-facebook"></i> <em> 5678 Folowers </em> </span>
+                        <span class="social_twitter"> <i class="icon-twitter"></i> <em> 5678 Folowers</em> </span>
+                    </div>
+                        
+                </figure>
+                
+            
+                <figure class="widget latest_tweets">
+                
+                    <h3> <i class="icon-twitter"></i> Tweets a #tituloconvocatoriahashtag</h3>
+                    
+                    <ul id="latest_tweets">
+                        <li>
+                        Check out tht #themeforest item 'Outshined - Responsive HTML5 Template' <a href="#"> http://t.co/eG4MjTOdUJ </a>
+                        <span> About 10 hours ago </span>
+                        </li>
+                        <li>
+                        New Design by @trendyWebStar on @dribbble  <a href="#">http://t.co/zVLLkLabus </a>
+                        <span> About 23 hours ago </span>
+                        </li>
+                        <li>
+                        Check out tht #themeforest item 'Outshined - Responsive HTML5  <a href="#"> http://t.co/eG4MjTOdUJ </a>
+                        <span> About 10 hours ago </span>
+                        </li>
+                        <li>
+                        Check out tht #themeforest item 'Outshined - Responsive HTML5 Template' <a href="#"> http://t.co/eG4MjTOdUJ </a>
+                        <span> About 10 hours ago </span>
+                        </li>
+                    </ul>
+                
+                </figure>
+            
+                <figure class="widget tags">
+                    <h3> <i class="icon-tags"></i> Tags </h3>
+                    <ul id="tags">
+                        <li> <a href="#"> charity </a> </li>
+                        <li> <a href="#"> donate </a> </li>
+                        <li> <a href="#"> donations </a> </li>
+                        <li> <a href="#" class="active"> give </a> </li>
+                        <li> <a href="#"> giving </a> </li>
+                        <li> <a href="#"> non-profit </a> </li>
+                        <li> <a href="#"> volunteer </a> </li>
+                    </ul>
+                
+                </figure>
+    
+			</section>
+ 
+		</section>
+	</section>
+</div>

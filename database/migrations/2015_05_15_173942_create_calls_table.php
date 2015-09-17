@@ -15,7 +15,15 @@ class CreateCallsTable extends Migration {
 			$table->timestamps();
 
             $table->string('name');
-            $table->string('context', 5000)->nullable();
+            $table->mediumText('summary')->nullable();
+            $table->longText('context')->nullable();
+
+            $table->string('twitter_hashtag');
+            $table->string('twitter_site');
+            $table->string('facebook_site');
+            $table->string('instagram_site');
+            $table->string('website');
+            $table->string('contact_email');
 
             $table->enum('status', ['DISABLED', 'OPEN', 'CLOSE'])->default('DISABLED');
 
@@ -25,6 +33,8 @@ class CreateCallsTable extends Migration {
             $table->date('middle_date')->nullable();
             $table->date('end_date')->nullable();
 
+            $table->boolean('permanent')->default(false);
+            $table->boolean('remark')->default(false);
             $table->boolean('publish')->default(false);
             $table->boolean('share_phase')->default(false);
             $table->boolean('apply_phase')->default(false);

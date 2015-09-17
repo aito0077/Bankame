@@ -54,6 +54,14 @@ angular
             url: '/faq',
             templateUrl: 'views/faq.html'
         })
+        .state('about', {
+            url: '/about',
+            templateUrl: 'views/about.html'
+        })
+        .state('contact', {
+            url: '/contact',
+            templateUrl: 'views/contact.html'
+        })
         .state('profile', {
             url: '/profile',
             templateUrl: 'views/profile_view.html'
