@@ -10,6 +10,7 @@ Route::post('auth/signup', 'AuthController@signup');
 Route::get('auth/unlink/{provider}', ['middleware' => 'auth', 'uses' => 'AuthController@unlink']);
 
 // API Routes.
+Route::get('api/calls/summary', ['uses' => 'CallController@summary_listing']);
 Route::resource('api/calls', 'CallController');
 Route::post('api/calls/{id}', ['middleware' => 'auth', 'uses' => 'CallController@update']);
 

@@ -9,6 +9,7 @@ use Storage;
 use Response;
 use Validator;
 use Collection;
+use Carbon;
 use Bancame\Http\Requests;
 use Bancame\Http\Controllers\Controller;
 use Bancame\Model\Call;
@@ -21,7 +22,7 @@ use Illuminate\Http\Request;
 class CallController extends Controller {
 
     public function __construct() {
-        $this->middleware('auth', ['except' => ['index', 'show', 'search', 'callByUser', 'raisingResources']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'search', 'callByUser', 'summary_listing', 'raisingResources']]);
     }
 
 	public function index() {
@@ -42,6 +43,38 @@ class CallController extends Controller {
         );
        
         return array($call);
+	}
+
+
+	public function summary_listing() {
+        $next_call = Call::where('status', '=', 'OPEN')
+                        ->where('end_date', '>=', Carbon::now())    
+                        ->where('publish', '=', true)    
+                        ->orderBy('end_date', 'asc')->first();
+        $promoted_calls =  Call::where('status', '=', 'OPEN')
+                        ->where('publish', '=', true)    
+                        ->where('remark', '=', true)    
+                        ->orderBy('end_date', 'asc')->get();
+        $active_calls =  Call::where('status', '=', 'OPEN')
+                        ->where('publish', '=', true)    
+                        ->orderBy('end_date', 'asc')->get();
+
+        foreach($active_calls as $a_call) {
+            $a_call->resources;
+        }
+
+        foreach($promoted_calls as $p_call) {
+            $p_call->resources;
+        }
+
+        $summary = array(
+            'next_call' => $next_call,
+            'promoted_calls' => $promoted_calls,
+            'active_calls' => $active_calls
+        );
+
+       
+        return $summary;
 	}
 
 	public function show(Request $request, $id) {

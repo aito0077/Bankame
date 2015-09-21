@@ -9,6 +9,7 @@
 		"laravel/framework": "5.0.*",
 	  	"firebase/php-jwt": "~2.0",
 	  	"guzzlehttp/guzzle": "5.2.0",
+		"nesbot/carbon": "^1.20",
 	  	"guzzlehttp/oauth-subscriber": "0.2.0",
         "league/flysystem-aws-s3-v2": "~1.0",
         "elasticsearch/elasticsearch": "~1.0"

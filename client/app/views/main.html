@@ -53,27 +53,24 @@
         <section class="container-fluid container">
             <section class="row-fluid">
             
-                <figure class="span6 first" id="charity_progress">
-                    <h3> Campaña Destacada! </h3>
-                    <div id="charity_process_inner">
-                        <div class="span5 img first">
-                            <img src="images/progress_image.jpg" alt="Charity Hospital" />
-                        </div>
-                        <div class="span7 progress_report">
-                        <h2> {titulo campaña} </h2>
-                        <h4> Descripcion de la campañan con un texto abreviado</h4>
-                              <br />
-                              <div class="info"> 
-                                    <div class="span6 first">
-                                        <span> 47 </span> Recursos
-                                    </div>
-                                    
-                                    <div class="span6 ntr">
-                                        en <span> 204 </span> días
-                                    </div>
-                                    
-                              </div>
-                              
+                <figure class="span6 first" id="_charity_progress">
+                    <div ng-if="remark_campaign">
+                        <h3> Campaña Destacada! </h3>
+                        <div id="charity_process_inner">
+                            <div class="span5 img first">
+                                <img ng-src="http://images.dev-winwins.net/215x142/filters:grayscale()/{{remark_campaign.image}}" alt="{{remark_campaign.name}}" />
+                            </div>
+                            <div class="span7 progress_report">
+                            <h2> {{remark_campaign.name}} </h2>
+                            <h4> {{remark_campaign.context |limitTo: 300}}</h4>
+                                  <br />
+                                  <div class="info"> 
+                                        <div class="span12 first">
+                                            <span> {{remark_campaign.resources.length}} </span> recursos en <span> {{remark_campaign.start_date | leftdays}}</span> 
+                                        </div>
+                                  </div>
+                                  
+                            </div>
                         </div>
                     </div>
                 </figure>
@@ -82,43 +79,21 @@
                         
                         <ul id="news_slider">
                         
-                        <li> 
-                            <div class="span5 first img_holder"> 
-                                <div class="img">
-                                <img src="images/slider_2_img.jpg" alt="" /> 
+                            <li ng-repeat="promoted_campaign in promoted_calls"> 
+                                <div class="span5 first img_holder"> 
+                                    <div class="img">
+                                        <img ng-src="http://images.dev-winwins.net/220x155/filters:grayscale()/{{promoted_campaign.image}}" alt="{{promoted_campaign.name}}" />
+                                    </div>
+                                    <div class="img_title"> 
+                                        <a ng-href="campaign/{{promoted_campaign.id}}"> <i class="icon-plus"></i> </a>
+                                        <a ng-href="campaign/{{promoted_campaign.id}}"> {{promoted_campaign.name}}</a> 
+                                    </div>
                                 </div>
-                                <div class="img_title"> 
-                                <a ui-sref="campaign"> <i class="icon-plus"></i> </a>
-                                <a ui-sref="campaign"> Katrina  disasters </a> 
-                                <p> News about Katrina victams </p>
-                                </div>
-                            </div>
-                            <div class="span7 ns_desc" > 
-                            <a ui-sref="campaign" class="title"> Campaña Semi Destacada <span class="h-line"></span> </a> 
-                            <p> News of charity campaigns lorum prompta, mel ea sumo semper nusquam. Soluta intellegebat vim id, vix timeam latine electram at. mel ea sumo semper nusquam. Soluta intellegebat vim id, vix timeam latine electram at... </p>
-                            <a  ui-sref="campaign" class="rm"> Ver más <i class="icon-plus"></i></a>
-                            </div> 
-                        </li>
-
-                        
-                        <li> 
-                            <div class="span5 first img_holder"> 
-                                <div class="img">
-                                <img src="images/slider_2_img.jpg" alt="" /> 
-                                </div>
-                                <div class="img_title"> 
-                                <a href="#"> <i class="icon-plus"></i> </a>
-                                <a href="#"> Katrina  disasters </a> 
-                                <p> News about Katrina victams </p>
-                                </div>
-                            </div>
-                            <div class="span7 ns_desc" > 
-                            <a href="#" class="title"> City destroyed after devastating Katrina Floods  <span class="h-line"></span> </a> 
-                            <p> News of charity campaigns lorum prompta, mel ea sumo semper nusquam. Soluta intellegebat vim id, vix timeam latine electram at. mel ea sumo semper nusquam. Soluta intellegebat vim id, vix timeam latine electram at... </p>
-                            <a href="#" class="rm"> View All News &nbsp;   <i class="icon-plus"></i></a>
-                            </div> 
-                        </li>
-
+                                <div class="span7 ns_desc" > 
+                                    <p>{{promoted_campaign.context | limitTo: 300}} </p>
+                                    <a ng-href="campaign/{{promoted_campaign.id}}" class="rm"> Ver más <i class="icon-plus"></i></a>
+                                </div> 
+                            </li>
 
                         </ul>
                 
@@ -147,16 +122,12 @@
                         
                 <section class="span12 first projects_holder">
                             
-                    <section class="span6 first fund_project" id="charity_progress">
-                        <img src="images/crowd_funding_1.jpg" alt="Fund Featured Image" />
-                        <span class="current_collection">{campaign title}  </span>
+                    <section ng-repeat="share_campaign in active_calls | filter: {share_phase: 1}" class="span6 first fund_project" id="charity_progress">
+                        <img ng-src="http://images.dev-winwins.net/201x151/filters:grayscale()/{{share_campaign.image}}" alt="{{share_campaign.name}}" />
+                        <span class="current_collection">{{share_campaign.name}}  </span>
                         <div class="info"> 
-                            <div class="span6 first">
-                                <span> 147 </span> Recursos
-                            </div>
-
-                            <div class="span6">
-                                en <span> 204 </span> días
+                            <div class="span12 first">
+                                <span> {{share_campaign.resources.length}} </span> recursos en <span> {{share_campaign.start_date | leftdays}}</span> 
                             </div>
 
                         </div>
@@ -174,84 +145,28 @@
                 </figure>
                 <figure class="span12" id="news_accordion">
                     <div class="accordion" id="accordion_news">
-                        <div class="accordion-group">
+
+                        <div class="accordion-group" ng-repeat="apply_campaign in active_calls | filter: {apply_phase: 1}">
                             <div class="accordion-heading">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_news" href="#co">
-                                    <span class="datem span3 first"> 05/22 </span>
-                                    <span class="title span8"> {campaign title}
-                                        <span class="location_date"> 
-                                                <span class="date"> 	<i class="icon-time"></i>		May22, 2013	 </span>
-                                        </span>
-                                    </span>
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_news" href="#call_{{apply_campaign.id}}">
+                                    <span class="datem span3 first"> {{apply_campaign.end_date | moment: 'DD/MM'}}</span>
+                                    <span class="title span8"> {{apply_campaign.name}}</span>
                                     <span class="span1 icon_toggle"> <i class="icon-minus"> </i></span>	
                                 </a>
-                                </div>
+                            </div>
                                 
-                                <div id="co" class="accordion-body collapse in">
+                            <div id="call_{{apply_campaign.id}}" class="accordion-body collapse" ng-class="{in: $first}">
                                 <div class="accordion-inner">
                                     <figure class="span3 img first">
-                                        <img src="images/accordion_img.jpg" alt="" />
+                                        <img ng-src="http://images.dev-winwins.net/115x123/filters:grayscale()/{{apply_campaign.image}}" alt="{{apply_campaign.name}}" />
                                     </figure>
                                     <figure class="span9">
-                                    <p> City Marathon 2013 alorum prompta, mel ea sumo semper nusquam. Soluta intellegebat vim id, vix timeam latine electram at. </p>
-                                    <a href="#"> Read More</a>
+                                        <p> {{apply_campaign.context | limitTo: 300 }} </p>
+                                        <a ng-href="campaign/{{apply_campaign.id}}"> Ver Más</a>
                                     </figure>
-                                </div>
                                 </div>
                             </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                <a class="accordion-toggle inactive" data-toggle="collapse" data-parent="#accordion_news" href="#c2">
-                                    <span class="datem span3 first"> 05/27 </span>
-                                    <span class="title span8"> Kids Fun Gala 
-                                        <span class="location_date"> 
-                                                <span class="location">	<i class="icon-map-marker"></i> London </span>
-                                                <span class="date"> 	<i class="icon-time"></i>		May 27, 2013	 </span>
-                                        </span>
-                                    </span>
-                                    <span class="span1 icon_toggle"> <i class="icon-plus"> </i></span>	
-                                </a>
-                                </div>
-                                
-                                <div id="c2" class="accordion-body collapse">
-                                <div class="accordion-inner">
-                                    <figure class="span3 img first">
-                                        <img src="images/accordion_img.jpg" alt="" />
-                                    </figure>
-                                    <figure class="span9">
-                                    <p> City Marathon 2013 alorum prompta, mel ea sumo semper nusquam. Soluta intellegebat vim id, vix timeam latine electram at. </p>
-                                    <a href="#"> Read More</a>
-                                    </figure>
-                                </div>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                <a class="accordion-toggle inactive" data-toggle="collapse" data-parent="#accordion_news" href="#c3">
-                                    <span class="datem span3 first"> 05/29 </span>
-                                    <span class="title span8"> Family Festival 
-                                        <span class="location_date"> 
-                                                <span class="location">	<i class="icon-map-marker"></i> London </span>
-                                                <span class="date"> 	<i class="icon-time"></i>		May 29, 2013	 </span>
-                                        </span>
-                                    </span>
-                                    <span class="span1 icon_toggle"> <i class="icon-plus"> </i></span>	
-                                </a>
-                                </div>
-                                
-                                <div id="c3" class="accordion-body collapse">
-                                <div class="accordion-inner">
-                                    <figure class="span3 img first">
-                                        <img src="images/accordion_img.jpg" alt="" />
-                                    </figure>
-                                    <figure class="span9">
-                                    <p> City Marathon 2013 alorum prompta, mel ea sumo semper nusquam. Soluta intellegebat vim id, vix timeam latine electram at. </p>
-                                    <a href="#"> Read More</a>
-                                    </figure>
-                                </div>
-                                </div>
-                            </div>
-     
+                        </div>
                             
                     </div>
                 </figure>

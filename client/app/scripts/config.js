@@ -2,7 +2,7 @@
 
 angular.module('config', [])
 
-.constant('api_host', 'http://bancame.app')
+.constant('api_host', 'http://bancame.collab-dev.com')
 
 .value('debug', true)
 

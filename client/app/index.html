@@ -54,20 +54,20 @@
                             <section class="row-fluid">
                                 <section class="span4">
                                     <h1 id="logo">
-                                        <a href="index.html">
+                                        <a href="/">
                                             <img src="images/bancame/bankame-brand_2.png" alt="Bancame" />
                                         </a>
                                     </h1>
                                 </section>
 
-                                <section class="span5 pull-right">
+                                <section class="span6 pull-right">
                                     <figure class="charity_counter_wrapper">
                                         <section class="span5">
                                             <div class="charity_title">
                                                 Próxima Campaña
                                             </div>
                                         </section>
-                                        <section class="span1 event_more pull-right"> <a ui-sref="campaign"  data-placement="bottom" data-rel="tooltip" title="View Event Detail" > <i class="icon">+</i>  </a> </section>
+                                        <section class="span1 event_more pull-right" data-placement="bottom" data-rel="tooltip" title="{{next_call.name}}" > <a ng-href="#/campaign/{{next_call.id}}" > <i class="icon">+</i>  </a> </section>
                                         <section class="span6 counter_bg pull-right">
                                             <div id="countdown162" class="tCountdOwn">
                                             </div>
@@ -289,6 +289,7 @@
         <script src="scripts/config.js"></script>
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/call.js"></script>
         <script src="scripts/controllers/about.js"></script>
 
         <script src="scripts/site.js"></script>

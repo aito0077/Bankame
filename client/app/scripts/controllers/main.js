@@ -8,7 +8,7 @@
  * Controller of the bancameApp
  */
 angular.module('bancameApp')
-.controller('MainCtrl', function ($scope, $timeout) {
+.controller('MainCtrl', function ($scope, $timeout, $http, $rootScope) {
 
     $scope.setup_components = function() {
 
@@ -87,7 +87,7 @@ angular.module('bancameApp')
 
             /* Start of Counter */
             var austDay = new Date();
-            austDay = new Date(2015, 2 - 1, 21, 11, 0);
+            austDay = new Date($scope.next_call.end_date);
 
             $('#countdown162').countdown({
                 until: austDay
@@ -106,6 +106,21 @@ angular.module('bancameApp')
 
     };
 
-    $scope.setup_components();
+
+    $scope.active_calls = [];
+    $scope.next_call = {};
+    $scope.star_call = {};
+    $scope.remark_campaign = {};
+    $scope.promoted_calls = [];
+
+    $http.get('/api/calls/summary').success(function(data) {
+        $scope.active_calls = data.active_calls;
+        $scope.next_call = data.next_call;
+        $rootScope.next_call = $scope.next_call;
+        $scope.remark_campaign = data.promoted_calls.slice(0,1);
+        $scope.promoted_calls = data.promoted_calls.slice(1);
+        $scope.setup_components();
+    });
+    
 
 });

@@ -32,7 +32,6 @@ class DatabaseSeeder extends Seeder {
         $this->call('ProjectTypesTableSeeder');
         $this->command->info('Project Types seeded!');
 
-
 	}
 
 }
