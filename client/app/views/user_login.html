@@ -1,0 +1,65 @@
+<div class="container">
+    <section>
+        <section class="row-fluid">
+            <figure id="breadcrumbs" class="span12">
+                <ul class="breadcrumb">
+                <li><a href="#/">Inicio</a> <span class="divider">/</span></li>
+                <li class="active">Login</li>
+                </ul>
+            </figure>
+        </section>
+
+
+        <section class="container-fluid container">
+            <section class="row-fluid">
+                <section id="donation_box">
+                    <section class="container container-fluid">
+                    <section class="row-fluid">
+                        <div class="span8 first"> <h2> LOGIN </h2> </div>
+                    </section>
+                </section>
+            </section>		
+        </section>
+    </section>
+
+
+
+<!-- Page Content Container -->
+<section id="content" class="mbtm contact_us">
+	<section class="container-fluid container">
+			<section class="row-fluid">
+			
+	
+                <section id="contact_info" class="span6 contact_info">
+                    <h3 class="offset1"> Con tus redes sociales</h3>
+
+
+                    <figure id="n_social" class="offset4 span4" style="min-height: 300px; vertical-align: middle"> 
+                    
+                        <a href="#"> <i class="icon-facebook"></i> </a> 
+                        <a href="#"> <i class="icon-twitter"></i> </a> 
+                    
+                    </figure>
+                    
+            
+                </section>
+            
+
+                <section id="contact_form" class="span6 form" ng-controller="user-signin">
+                    <h3 class="offset1"> Con tu usuario <b>Bancame</b></h3>
+                    
+                    <form id="contact_form" method="post" ng-submit="login()" class="span10">
+                        <input type="email" placeholder="Email" name="email" ng-model="user.email" required />
+                        <input type="password" placeholder="Clave" name="password" ng-model="user.password" required/>
+                        <input type="submit" class="btns" value="Enviar" name="submit" />
+                    </form>
+
+                </section>
+	
+
+			</section>
+		</section>
+	
+	</section>
+
+</div>

@@ -637,7 +637,7 @@ span.countdown_section:first-child { display:inline-block; color:#fff; font-size
 /** Contact Us **/
 #map_holder{ border:2px solid #fff; border-radius:5px; -webkit-border-radius:5px; position:relative;}
 #map_holder iframe{ border:3px solid #f3f3f3;}
-.form input[type="text"], .form input[type="email"]{ background:#fff; border-radius:0; -webkit-border-radius:0; height:33px; margin-bottom:20px; color:#aaaaaa; text-indent:10px; border:1px solid #dbdbdb; width:70%; clear:both;}
+.form input[type="text"], .form input[type="password"], .form input[type="email"]{ background:#fff; border-radius:0; -webkit-border-radius:0; height:33px; margin-bottom:20px; color:#aaaaaa; text-indent:10px; border:1px solid #dbdbdb; width:70%; clear:both;}
 .form textarea{ background:#fff; border-radius:0; -webkit-border-radius:0; margin-bottom:20px; color:#aaaaaa; text-indent:10px; border:1px solid #dbdbdb; width:100%; clear:both; resize:none;}
 .contact_info i{ font-size:20px;  margin-right:10px; margin-bottom:10px; color:#1cc3c9;}
 #contact_info h3{ margin-top:0;}

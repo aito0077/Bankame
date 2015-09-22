@@ -14,7 +14,7 @@ angular
     'config',
     'ngTouch'
 ])
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
 
         $urlRouterProvider.otherwise('/');
 
@@ -24,6 +24,21 @@ angular
             templateUrl: 'views/main.html',
             controller: 'MainCtrl',
             controllerAs: 'main'
+        })
+        .state('user-view', {
+            url: '/user/:callId',
+            controller: 'user-view',
+            templateUrl: 'views/user_view.html'
+        })
+        .state('user-signin', {
+            url: '/login',
+            controller: 'user-signin',
+            templateUrl: 'views/user_login.html'
+        })
+        .state('user-signup', {
+            url: '/signup',
+            controller: 'user-signup',
+            templateUrl: 'views/user_signup.html'
         })
         .state('campaign', {
             url: '/campaign/:callId',
@@ -71,6 +86,17 @@ angular
             url: '/profile/edit',
             templateUrl: 'views/profile_edit.html'
         });
+
+        function loginRequired($q, $location, $auth, $state) {
+            var deferred = $q.defer();
+            if ($auth.isAuthenticated()) {
+                deferred.resolve();
+            } else {
+                console.dir($state);
+                $location.path('/signin');
+            }
+            return deferred.promise;
+        }
 
 })
 .config(function ($authProvider, api_host) {

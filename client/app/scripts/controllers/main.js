@@ -117,11 +117,69 @@ angular.module('bancameApp')
         $scope.active_calls = data.active_calls;
         $scope.next_call = data.next_call;
         $rootScope.next_call = $scope.next_call;
-        $scope.remark_campaign = data.promoted_calls.slice(0,1);
-        $scope.promoted_calls = data.promoted_calls.slice(1);
+        if(data.promoted_calls && data.promoted_calls.length > 0) {
+            $scope.remark_campaign = data.promoted_calls.slice(0,1)[0];
+        }
+        if(data.promoted_calls && data.promoted_calls.length > 1) {
+            $scope.promoted_calls = data.promoted_calls.slice(1);
+        }
         $scope.setup_components();
     });
     
+
+})
+.controller('NavController', function ($scope, $rootScope, $state, $location, $auth, $window, Account) {
+
+    $scope.profile = false;
+    $scope.is_logged = false;
+
+    $rootScope.$on('is_logged',function(event, logged){
+        $scope.is_logged = logged;
+        if(logged) {
+            if(!$scope.fetching_profile && !$scope.profile) {
+                $scope.fetching_profile = true;
+                Account.getProfile().then(function(response) {
+                    $scope.fetching_profile = false;
+                    $scope.profile = response.data.profile;
+                    $rootScope.account = $scope.profile;
+                });
+            }
+        } else {
+            $rootScope.account = {};
+        }
+
+    });
+
+
+    
+    $scope.isAuthenticated = function() {
+        var is_authenticated = $auth.isAuthenticated();
+
+        if(!$scope.fetching_profile && !$scope.profile && is_authenticated) {
+            $scope.fetching_profile = true;
+            Account.getProfile().then(function(response) {
+                $scope.fetching_profile = false;
+                $scope.profile = response.data.user;
+                $rootScope.$broadcast('is_logged', true);
+            });
+        }
+
+        return is_authenticated;
+    };
+
+
+    $scope.fetching_profile = false;
+
+    $scope.getProfile = function() {
+        var is_authenticated = $auth.isAuthenticated();
+        return $scope.profile;
+    };
+
+    $scope.goProfile = function() {
+        $state.go('profile');
+    };
+
+    $scope.isAuthenticated();
 
 })
 .controller('ContactController', function ($scope, $timeout, $http, Contact) {
