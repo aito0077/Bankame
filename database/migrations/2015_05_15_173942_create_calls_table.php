@@ -33,6 +33,12 @@ class CreateCallsTable extends Migration {
             $table->date('middle_date')->nullable();
             $table->date('end_date')->nullable();
 
+            $table->string('tags', 500)->nullable();
+            $table->string('tags_pretty', 500)->nullable();
+
+            $table->string('countries', 500)->nullable();
+            $table->string('countries_pretty', 500)->nullable();
+
             $table->boolean('permanent')->default(false);
             $table->boolean('remark')->default(false);
             $table->boolean('publish')->default(false);

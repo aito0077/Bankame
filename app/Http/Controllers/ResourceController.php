@@ -77,6 +77,13 @@ class ResourceController extends Controller {
             $tags_flat = $tag_collection->implode('name', '; ');
             $tags_pretty = $tag_collection->implode('description', '; ');
 
+            $tag_first = $tag_collection->first();
+
+            $countries = $request->input('countries');
+            $country_collection = collect($countries);
+            $countries_flat = $country_collection->implode('name', '; ');
+            $countries_pretty = $country_collection->implode('description', '; ');
+
             $organization = $request->input('organization_owner');
             
             Log::info($organization);
@@ -89,9 +96,12 @@ class ResourceController extends Controller {
             if(isset($organization)) {
                 $resource->organization_id = $organization['id'];
             }
+            $resource->main_type = $tag_first->parent_id;
             $resource->image = $request->input('image');
             $resource->tags = $tags_flat;
             $resource->tags_pretty = $tags_pretty;
+            $resource->countries = $tags_flat;
+            $resource->countries_pretty = $tags_pretty;
             $resource->user_id = $user->id;
             $resource->save();
             

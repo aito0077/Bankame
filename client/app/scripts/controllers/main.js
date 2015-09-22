@@ -8,7 +8,7 @@
  * Controller of the bancameApp
  */
 angular.module('bancameApp')
-.controller('MainCtrl', function ($scope, $timeout, $http, $rootScope) {
+.controller('MainCtrl', function ($scope, $timeout, $http, $rootScope, $state) {
 
     $scope.setup_components = function() {
 
@@ -125,6 +125,12 @@ angular.module('bancameApp')
         }
         $scope.setup_components();
     });
+
+    $scope.view = function(call_item) {
+        $state.go('campaign', {
+            callId: call_item.id
+        });
+    };
     
 
 })

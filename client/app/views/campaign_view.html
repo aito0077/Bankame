@@ -83,16 +83,24 @@
                                 <div class="span6">
                                     <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.resource_type.$invalid }">
                                         <label class="control-label">Tipo de Recurso</label>
-                                        <select id="tags" multiple="multiple" name="tags" type="text" class="form-control" data-ng-model="resource.tags" placeholder="Caracterísiticas del Recurso" ng-options="ress.description for ress in resourceTypes"> </select>
+                                        <select id="tags" multiple="false" name="tags" type="text" class="form-control" data-ng-model="resource.tags" placeholder="Caracterísiticas del Recurso" ng-options="ress.description for ress in resourceTypes"> </select>
                                     </div>
 
                                     <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.name.$invalid }">
                                         <label class="control-label">Nombre</label>
-                                        <input name="name" type="text" class="form-control input-xlarge span12" data-ng-model="resource.name" id="name" placeholder="Nombre" required>
+                                        <input name="name" type="text" class="form-control span12" data-ng-model="resource.name" id="name" placeholder="Nombre" required>
                                         <div ng-show="submitted && resourceForm.name.$invalid" class="help-block">
                                             <p ng-show="resourceForm.name.$error.required">Nombre es requerido</p>
                                         </div>
                                     </div>
+
+                                    <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.resource_type.$invalid }">
+                                        <label class="control-label">Países</label>
+                                        <select id="countries" multiple="multiple" name="countries" type="text" class="form-control" data-ng-model="resource.countries" placeholder="Países" ng-options="country.description for country in countries"> </select>
+                                    </div>
+
+ 
+
                                 </div>
                                 <div class="span6">
                                     <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.cost.$invalid }">
@@ -178,13 +186,7 @@
                 <figure class="widget tags">
                     <h3> <i class="icon-tags"></i> Tags </h3>
                     <ul id="tags">
-                        <li> <a href="#"> charity </a> </li>
-                        <li> <a href="#"> donate </a> </li>
-                        <li> <a href="#"> donations </a> </li>
-                        <li> <a href="#" class="active"> give </a> </li>
-                        <li> <a href="#"> giving </a> </li>
-                        <li> <a href="#"> non-profit </a> </li>
-                        <li> <a href="#"> volunteer </a> </li>
+                        <li ng-repeat="call_country in call_countries"> <span class="btn-filter">{{call_country}} </span> </li>
                     </ul>
                 
                 </figure>

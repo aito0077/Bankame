@@ -21,6 +21,8 @@ Desde el sur impulsamos este movimiento global en busca de mayor participación,
         $call->middle_date = '2016-05-01';
         $call->end_date = '2016-05-09';
         $call->image = 'call_1.png';
+        $call->countries = 'argentina, bolivia, venezuela, brasil';
+        $call->tags = 'mapeos-colaborativos, comunidades';
         $call->publish = true;
         $call->twitter_hashtag = "semanacolaborativa";
         $call->remark = true;
@@ -47,6 +49,7 @@ Construyamos Facción entre todxs! En los últimos años Uruguay ha protagonizad
         $call->image = 'call_2.jpg';
         $call->publish = true;
         $call->share_phase = false;
+        $call->countries = 'bolivia';
         $call->apply_phase = true;
         $call->website = "http://faccionlatina.org";
         $call->save();
@@ -64,6 +67,7 @@ La vivencia comprende, la participación durante los cuatro días de evento desd
         $call->end_date = '2016-06-15';
         $call->image = 'call_3.jpg';
         $call->publish = true;
+        $call->countries = 'brasil';
         $call->share_phase = true;
         $call->apply_phase = false;
         $call->website = "http://www.ellas.cc";
@@ -80,6 +84,7 @@ El 4to. encuentro de la red latina de comunicación alternativa tendrá lugar en
         $call->end_date = '2016-09-15';
         $call->image = 'call_4.jpg';
         $call->publish = true;
+        $call->countries = 'ecuador';
         $call->share_phase = true;
         $call->apply_phase = false;
         $call->website = "http://faccionlatina.org";
@@ -93,6 +98,7 @@ A cada nova edição, o evento cresceu. Parte das oficinas e dos workshops se tr
         $call->status= 'OPEN';
         $call->user_id = 2;
         $call->start_date = '2016-09-01';
+        $call->countries = 'brasil';
         $call->middle_date = '2016-10-10';
         $call->end_date = '2016-10-25';
         $call->image = 'call_5.png';
@@ -113,6 +119,7 @@ Este encuentro funcionará como territorio físico donde temporalmente convivir�
         $call->middle_date = '2015-11-10';
         $call->end_date = '2015-12-05';
         $call->image = 'call_6.png';
+        $call->countries = 'argentina,venezuela';
         $call->publish = true;
         $call->share_phase = false;
         $call->apply_phase = true;
@@ -132,6 +139,7 @@ Este encuentro es convocado y organizado por Códigos Libres; en coproducción c
         $call->image = 'call_7.jpg';
         $call->publish = true;
         $call->remark = true;
+        $call->countries = 'venezuela';
         $call->share_phase = false;
         $call->apply_phase = true;
         $call->save();
@@ -147,6 +155,7 @@ Este encuentro es convocado y organizado por Códigos Libres; en coproducción c
         $call->image = 'call_8.png';
         $call->remark = true;
         $call->publish = true;
+        $call->countries = 'bolivia';
         $call->share_phase = false;
         $call->apply_phase = true;
         $call->website = "https://www.facebook.com/telArtes.Bolivia/timeline ";

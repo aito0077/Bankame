@@ -56,13 +56,13 @@
                 <figure class="span6 first" id="_charity_progress">
                     <div ng-if="remark_campaign">
                         <h3> Campaña Destacada! </h3>
-                        <div id="charity_process_inner">
+                        <div id="charity_process_inner" ng-click="view(remark_campaign)" style="cursor: pointer;">
                             <div class="span5 img first">
                                 <img ng-src="http://images.dev-winwins.net/215x142/filters:grayscale()/{{remark_campaign.image}}" alt="{{remark_campaign.name}}" />
                             </div>
                             <div class="span7 progress_report">
                             <h2> {{remark_campaign.name}} </h2>
-                            <h4> {{remark_campaign.context |limitTo: 300}}</h4>
+                            <h4> {{remark_campaign.context |words: 20}}</h4>
                                   <br />
                                   <div class="info"> 
                                         <div class="span12 first">
@@ -90,7 +90,7 @@
                                     </div>
                                 </div>
                                 <div class="span7 ns_desc" > 
-                                    <p>{{promoted_campaign.context | limitTo: 300}} </p>
+                                    <p>{{promoted_campaign.context | words: 40}} </p>
                                     <a ui-sref="campaign({callId: promoted_campaign.id})" class="rm"> Ver más <i class="icon-plus"></i></a>
                                 </div> 
                             </li>
@@ -161,7 +161,7 @@
                                         <img ng-src="http://images.dev-winwins.net/115x123/filters:grayscale()/{{apply_campaign.image}}" alt="{{apply_campaign.name}}" />
                                     </figure>
                                     <figure class="span9">
-                                        <p> {{apply_campaign.context | limitTo: 300 }} </p>
+                                        <p> {{apply_campaign.context | words: 30 }} </p>
                                         <a ui-sref="campaign({callId: apply_campaign.id})"> Ver Más</a>
                                     </figure>
                                 </div>

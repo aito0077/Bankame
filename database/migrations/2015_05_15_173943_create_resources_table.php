@@ -28,10 +28,16 @@ class CreateResourcesTable extends Migration {
             $table->integer('cost')->default(0);
 
 
+            $table->integer('main_type')->nullable()->default(1);
+
             $table->string('name');
             $table->string('description', 1000)->nullable();
+
             $table->string('tags', 500)->nullable();
             $table->string('tags_pretty', 500)->nullable();
+
+            $table->string('countries', 500)->nullable();
+            $table->string('countries_pretty', 500)->nullable();
 
             $table->string('conditions', 1000)->nullable();
 

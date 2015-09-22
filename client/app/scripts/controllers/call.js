@@ -95,6 +95,8 @@ angular.module('bancameApp')
     console.log('view param id: '+$stateParams.callId);
 
     $scope.call = {};
+    $scope.call_tags = [];
+    $scope.call_countries = [];
     $scope.tweets = [];
 
     $scope.getCall = function() {
@@ -102,6 +104,10 @@ angular.module('bancameApp')
             id: $stateParams.callId
         }, function(data) {
             $scope.call = data; 
+            if(data.countries) {
+                $scope.call_countries = data.countries.split(",");
+            }
+        
             $scope.setup_components($scope.call);
         });
     };
@@ -122,6 +128,20 @@ angular.module('bancameApp')
 
     $scope.editing_resource = false;
     $scope.tags = [];
+    $scope.countries = [
+        {name: 'argentina', description: 'Argentina'},
+        {name: 'brasil', description: 'Brasil'},
+        {name: 'bolivia', description: 'Bolivia'},
+        {name: 'ecuador', description: 'Ecuador'},
+        {name: 'chile', description: 'Chile'},
+        {name: 'uruguay', description: 'Uruguay'},
+        {name: 'colombia', description: 'Colombia'},
+        {name: 'paraguay', description: 'Paraguay'},
+        {name: 'venezuela', description: 'Venezuela'},
+        {name: 'mexico', description: 'Mexico'},
+        {name: 'costa rica', description: 'Costa Rica'},
+        {name: 'nicaragua', description: 'Nicaragua'}
+    ];
     $scope.resourceTypes = [];
 
     $scope.show_resource_form = function() {
@@ -132,18 +152,32 @@ angular.module('bancameApp')
                 return model.parent_id;
             });
             $timeout(function() {
-                $('#tags').selectize({
+                angular.element('#tags').selectize({
                     create: false,
-                    maxItems: null,
-                    //selectOnTab: true,
-                    valueField: 'id',
+                    maxitems: 1,
+                    //selectontab: true,
+                    valuefield: 'id',
                     items: $scope.tags,
-                    labelField: 'description',
-                    searchField: 'description',
-                    onChange: function(value) {
+                    labelfield: 'description',
+                    searchfield: 'description',
+                    onchange: function(value) {
 
                     }
                 });
+
+                angular.element('#countries').selectize({
+                    create: false,
+                    maxitems: null,
+                    //selectontab: true,
+                    valuefield: 'id',
+                    items: $scope.countries,
+                    labelfield: 'description',
+                    searchfield: 'description',
+                    onchange: function(value) {
+
+                    }
+                });
+
             });
 
         });
@@ -160,6 +194,7 @@ angular.module('bancameApp')
                     description: $scope.resource.description,
                     //resource_type: $scope.resource.resource_type_selected.id,
                     tags: $scope.resource.tags,
+                    countries: $scope.resource.countries,
                     image: $scope.resource.image,
                     conditions: $scope.resource.conditions,
                     cost: $scope.resource.cost,
