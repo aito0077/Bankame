@@ -58,6 +58,7 @@ angular.module('bancameApp')
     $scope.current_filter = false;
 
     $scope.filter = function(filter) {
+        console.log('list');
         if($scope.isot) {
             $scope.current_filter = filter;
             $scope.isot.isotope({
