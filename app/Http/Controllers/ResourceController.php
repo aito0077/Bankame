@@ -59,6 +59,7 @@ class ResourceController extends Controller {
 
         $resource->organization;
         $resource->projects;
+        $resource->type;
         $resource->call;
 
         return $resource;
@@ -85,7 +86,9 @@ class ResourceController extends Controller {
             $resource->cost = $request->input('cost');
             $resource->name = $request->input('name');
             $resource->call_id = $request->input('call_id');
-            $resource->organization_id = $organization['id'];
+            if(isset($organization)) {
+                $resource->organization_id = $organization['id'];
+            }
             $resource->image = $request->input('image');
             $resource->tags = $tags_flat;
             $resource->tags_pretty = $tags_pretty;

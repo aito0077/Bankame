@@ -4,8 +4,8 @@
             <!-- BreadCrumbs -->
                 <figure id="breadcrumbs" class="span12">
                     <ul class="breadcrumb">
-                    <li><a href="#/">Inicio</a> <span class="divider">/</span></li>
-                    <li>{nombre convocatoria}</li>
+                    <li><a href="/#/">Inicio</a> <span class="divider">/</span></li>
+                    <li><a href="/#/campaign/{{call.id}}">{{call.name}}</a> <span class="divider">/</span></li>
                     <li class="active">Detalle Recurso</li>
                     </ul>
                 </figure>
@@ -17,7 +17,7 @@
                 <section id="donation_box">
                     <section class="container container-fluid">
                         <section class="row-fluid">
-                            <div class="span8 first"> <h2> Detalle Recurso </h2> </div>
+                            <div class="span8 first"> <h2> {{selected_resource.name}}</h2> </div>
                             <div class="span4 title_right">
                             <div class="dropdown" id="cart_dropdown">
                                 <a class="btn" role="button" id="cart_down" href="#">
@@ -54,28 +54,25 @@
                         </figure>
                         
                         <figure class="span7" id="product_info">
-                            <h3> Habitacion Cordoba </h3>
+                            <h3> {{selected_resource.name}}</h3>
                             
                             <div class="price_holder"> 
                                 <span class="current_price"> Tipo de Recurso: Alojamiento</span>
                             </div>
                             
                             <div class="description_holder"> 
-                                    Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. 
+                                {{selected_resource.description}}
                             </div>
 
 
                                 <ul class="product_properties">
-                                    <li> <i class="icon-chevron-right"></i> Velit pariatur </li>
-                                    <li> <i class="icon-chevron-right"></i>  Fixie keytar deserunt  </li>
-                                    <li> <i class="icon-chevron-right"></i>  Tempor id itchfork  </li> 
-                                    <li> <i class="icon-chevron-right"></i>  Consectetur synth nulla etsy letterpress </li>
+                                    <li> <i class="icon-chevron-right"></i>  {{selected_resource.conditions}}</li>
                                 </ul>
                                 
                                 <ul class="stock_status">
                                         
                                         <li> <i class="icon-ok"></i> Aplicaste </li>
-                                        <li> Detalle 2 </li>
+                                        <li ng-if="selected_resource.cost"> Costo {{selected_resource.cost}} </li>
                                 
                                 </ul>
                                 
@@ -96,9 +93,9 @@
                                     
                                         <li> 
                                             <div class="product_img"> 
-                                                <img src="images/bancame/slider/422x256.jpg" alt="Product Image" /> 
+                                                <img ng-src="http://images.dev-winwins.net/422x256/{{call.image}}" alt="{{call.name}}" />
                                             </div>
-                                            <div class="bottom_sec"> <span> <a ui-sref="campaign"> {convocatoria title}</a>  </span> </div>
+                                            <div class="bottom_sec"> <span> <a href="/#/campaign/{{call.id}}"> {{call.name}}</a>  </span> </div>
                                         </li>
                                     
                                     </ul>

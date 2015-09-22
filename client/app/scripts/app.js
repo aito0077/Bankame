@@ -18,7 +18,6 @@ angular
 
         $urlRouterProvider.otherwise('/');
 
-
         $stateProvider
         .state('home', {
             url: '/',
@@ -40,7 +39,8 @@ angular
             templateUrl: 'views/campaign_list.html'
         })
         .state('resource', {
-            url: '/resource',
+            url: '/resource/:resourceId',
+            controller: 'resource-view',
             templateUrl: 'views/resource_view.html'
         })
         .state('resource-edit', {
@@ -106,7 +106,7 @@ angular
 })
 .filter('leftdays', function() {
     return function(date) {
-        return moment(date).locale('es').fromNow(true);
+        return moment(date).locale('es').fromNow();
     };
 })
 .filter('moment', function() {

@@ -91,6 +91,7 @@ class CallController extends Controller {
         }
 
         $call->user;
+        $call->resources;
         $call->stages = array(
             "share_resource" => array(
                 "start_date" => $call->share_resources_start,

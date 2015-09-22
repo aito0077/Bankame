@@ -606,7 +606,7 @@ span.countdown_section:first-child { display:inline-block; color:#fff; font-size
 .cart_btn_wrapper a{  padding:10px 40px; display:inline-block; color:#fff; border-radius:5px; -webkit-border-radius:5px; font-size:14px; }
 .cart_btn_wrapper a:hover{ color:#fff; }
 .continue_shopping{ border:1px solid #6c6c6c; background:#363636 !important;}
-.btns{ border:1px solid #a5e7ea; background:#1cc3c9 !important;  padding:10px 40px !important; display:inline-block; color:#fff; border-radius:5px; -webkit-border-radius:5px; font-size:14px; }
+.btns{ border:1px solid #a5e7ea; background:#1cc3c9 !important;  padding:10px 40px !important; display:inline-block; color:#fff; border-radius:5px; -webkit-border-radius:5px; font-size:14px; cursor:pointer;}
 .title_right .btns{ border:1px solid #a5e7ea; background:#1cc3c9 !important;  padding:7px 20px !important; display:inline-block; color:#fff; border-radius:5px; -webkit-border-radius:5px; font-size:14px; margin-bottom:10px; }
 .checkout_btn{ border:1px solid #a5e7ea; background:#1cc3c9;}
 .cart_btn_wrapper{ margin:20px 0; }

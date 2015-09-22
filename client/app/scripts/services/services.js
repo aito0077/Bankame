@@ -28,8 +28,15 @@ angular.module('bancameApp')
         }
     });
 }])
+.factory('Contact',['$resource', 'api_host', function($resource, api_host){
+    return $resource(api_host+'/api/contacts/:id', { id:'@id' }, {
+        update: {
+            method: 'POST'
+        }
+    });
+}])
 .factory('ResourceType',['$resource', 'api_host', function($resource, api_host){
-    return $resource(api_host+'/api/projects/:id', { id:'@id' }, {
+    return $resource(api_host+'/api/parametric/resources/:id', { id:'@id' }, {
         update: {
             method: 'POST'
         }

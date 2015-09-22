@@ -24,6 +24,7 @@
         <link rel="stylesheet" href="styles/skins/purple.css" type="text/css" media="all">
 
     <!-- endbuild -->
+        <base href="/">
   </head>
     <body ng-app="bancameApp">
         <!--[if lte IE 8]>
@@ -54,7 +55,7 @@
                             <section class="row-fluid">
                                 <section class="span4">
                                     <h1 id="logo">
-                                        <a href="/">
+                                        <a ng-href="/">
                                             <img src="images/bancame/bankame-brand_2.png" alt="Bancame" />
                                         </a>
                                     </h1>
@@ -67,7 +68,7 @@
                                                 Próxima Campaña
                                             </div>
                                         </section>
-                                        <section class="span1 event_more pull-right" data-placement="bottom" data-rel="tooltip" title="{{next_call.name}}" > <a ng-href="#/campaign/{{next_call.id}}" > <i class="icon">+</i>  </a> </section>
+                                        <section class="span1 event_more pull-right" data-placement="bottom" data-rel="tooltip" title="{{next_call.name}}" > <a href="/#/campaign/{{next_call.id}}" > <i class="icon">+</i>  </a> </section>
                                         <section class="span6 counter_bg pull-right">
                                             <div id="countdown162" class="tCountdOwn">
                                             </div>
@@ -124,7 +125,7 @@
 					<section id="banner" class="span12 first"> 
                             <div class="inner"> 
                                 <div class="span9">
-                                <h2> Bancame es una iniciativa de Minka </h2>
+                                <h2> Bancame es una iniciativa Minka </h2>
                                 <h3> Participa y colabora con el Banco de las redes</h3>
                                 </div>
                                 <div class="pull-left span3">
@@ -137,17 +138,22 @@
 				
 
 				<section class="span12 first" id="footer_main">
-					<section class="span4 first widget">
-						<h4>Ponte en Contacto</span> <span class="h-line"></span> </h4>
-						
-						<form id="contact_form" method="post" action="contact.php" class="span10">
-								
-                                <input type="text" placeholder="Nombre"  name="name" required/>
-                                <input type="email" placeholder="Email" name="email" required />
-                                <textarea rows="5" cols="15" placeholder="comments" required>Comments</textarea>
-                                <input type="submit" name="submit" value="Enviar" />
-						 
-						</form>
+					<section class="span4 first widget" ng-controller="ContactController">
+                        <div ng-show="!is_sent">
+                            <h4>Contacto</span> <span class="h-line"></span> </h4>
+                            
+                            <form id="contact_form" method="post" ng-submit="send_contact()" class="span10">
+                                    
+                                    <input type="text" placeholder="Nombre"  name="name" required ng-model="contact.name"/>
+                                    <input type="email" placeholder="Email" name="email" required  ng-model="contact.email"/>
+                                    <textarea rows="5" cols="15" placeholder="Comentario" required ng-model="contact.comment"></textarea>
+                                    <input type="submit" name="submit" value="Enviar" />
+                             
+                            </form>
+                        </div>
+                        <div ng-show="is_sent">
+                            <h4>Te pusiste en Contacto</span> <span class="h-line"></span> </h4>
+                        </div>
 						
                     </section>
 					
@@ -190,11 +196,14 @@
 					</section>
 					<section class="widget span3"> 
 						
-						<h4>Twitter <span> #bancame </span> <span class="h-line"></span> </h4>
-                        <div class="twitter-feed">
+						<h4>Twitter <span> @minka_me </span> <span class="h-line"></span> </h4>
+<a class="twitter-timeline" href="https://twitter.com/minka_me" data-widget-id="644484202331799552">Tweets por el @minka_me.</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+                        <!--div class="twitter-feed">
                             <div class="tweets-feed" style="height: 415px !important; overflow-y: scroll;" data-widget-id="644484202331799552">
+
                             </div>
-                        </div>
+                        </div-->
                     </section>
 			</section>
 		</section>
@@ -288,8 +297,10 @@
 
         <script src="scripts/config.js"></script>
         <script src="scripts/app.js"></script>
+        <script src="scripts/services/services.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/call.js"></script>
+        <script src="scripts/controllers/resource.js"></script>
         <script src="scripts/controllers/about.js"></script>
 
         <script src="scripts/site.js"></script>

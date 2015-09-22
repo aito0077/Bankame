@@ -17,7 +17,7 @@
                 <section id="donation_box">
                     <section class="container container-fluid">
                     <section class="row-fluid">
-                        <div class="span8 first"> <h2> {{campaign.title}} TITULO</h2> </div>
+                        <div class="span8 first"> <h2> {{call.name}} </h2> </div>
                     </section>
                 </section>
             </section>		<!-- end of Page Title -->
@@ -35,8 +35,7 @@
 					
                 <figure class="span12 first outer_lyr" id="category_image"> 
 						
-                    <img src="images/bancame/slider/799x265_campaign.jpg" alt="Crowd Funding" />
-
+                    <img ng-src="http://images.dev-winwins.net/799x265/{{call.image}}" alt="{{call.name}}" />
                     <figure class="span12 first fund_project" id="charity_progress">
  							
                         <div class="span12 first">
@@ -56,7 +55,7 @@
 									</div>
 									
 									<div class="span3" id="dayz">
-										<i class="icon-calendar-empty"></i> <span> 74 </span> Days Left
+										<i class="icon-calendar-empty"></i> {{call.end_date | leftdays}}
 									</div>
 									
 							  </div>
@@ -65,128 +64,91 @@
 						
 					</figure>
 				
-					</figure>
-			
-					<figure class="span12 first outer_lyr" id="project_contet">
-					
-							<div class="inner_lyr">
-							<h3> Help us to build charity hospital </h3>
-							<p> At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. </p>
-							<p> At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. </p>
-							<p> At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. </p>
-							</div>
-					</figure>
-					
-					<figure class="span12 first">
-							<a href="#" class="btns tier_button"> Ofrecer Recurso</a>
-							
-					</figure>
-
-
-
-
-            <section id="create_resource" class="mbtm">
-                <div class="row-fluid crowd_fund">
-                    <div class="span6">
-                        <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.resource_type.$invalid }">
-                            <label class="control-label">Tipo de Recurso</label>
-                            <select id="tags" multiple="multiple" name="tags" type="text" class="form-control" data-ng-model="tags" placeholder="Caracterísiticas del Recurso" ng-options="ress.description for ress in resourceTypes"> </select>
+                </figure>
+                <figure class="span12 first outer_lyr" id="project_contet">
+                        <div class="inner_lyr">
+                            <p> {{call.context}}</p>
                         </div>
+                </figure>
+                
+                <figure class="span12 first">
+                        <span class="btns tier_button" ng-click="show_resource_form()"> Ofrecer Recurso</span>
+                </figure>
 
-                        <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.name.$invalid }">
-                            <label class="control-label">Nombre</label>
-                            <input name="name" type="text" class="form-control input-xlarge span12" data-ng-model="name" id="name" placeholder="Nombre" required>
-                            <div ng-show="submitted && resourceForm.name.$invalid" class="help-block">
-                                <p ng-show="resourceForm.name.$error.required">Nombre es requerido</p>
+
+
+                    <form name="resourceForm" class="" role="form" data-ng-submit="create_resource(resourceForm.$valid)" novalidate>
+                        <section id="create_resource" class="mbtm" ng-show="editing_resource">
+                            <div class="row-fluid crowd_fund">
+                                <div class="span6">
+                                    <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.resource_type.$invalid }">
+                                        <label class="control-label">Tipo de Recurso</label>
+                                        <select id="tags" multiple="multiple" name="tags" type="text" class="form-control" data-ng-model="resource.tags" placeholder="Caracterísiticas del Recurso" ng-options="ress.description for ress in resourceTypes"> </select>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.name.$invalid }">
+                                        <label class="control-label">Nombre</label>
+                                        <input name="name" type="text" class="form-control input-xlarge span12" data-ng-model="resource.name" id="name" placeholder="Nombre" required>
+                                        <div ng-show="submitted && resourceForm.name.$invalid" class="help-block">
+                                            <p ng-show="resourceForm.name.$error.required">Nombre es requerido</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span6">
+                                    <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.cost.$invalid }">
+                                        <label class="control-label">Costo</label>
+                                        <input name="cost" type="text" class="form-control input-xlarge span12" data-ng-model="resource.cost" id="cost" placeholder="Si tuvieras que ponerle precio al recurso, costaría">
+                                    </div>
+
+                                    <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.conditions.$invalid }">
+                                        <label for="conditions" class="control-label">Condiciones</label>
+                                        <textarea name="conditions" data-ng-model="resource.conditions" id="conditions" cols="30" rows="5" placeholder="Condiciones al postulante" class="form-control input-xlarge span12"></textarea>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="span12">
+                                        <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.description.$invalid }">
+                                        <label for="description" class="control-label">Descripcion</label>
+                                        <textarea name="description" data-ng-model="resource.description" id="description" rows="10" placeholder="Descripcion" class="form-control span12 input-xlarge" required></textarea>
+                                        <div ng-show="submitted && resourceForm.description.$invalid" class="help-block">
+                                            <p ng-show="resourceForm.description.$error.required">Descripcion es requerido</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
-                        </div>
-                    </div>
-                    <div class="span6">
-                        <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.cost.$invalid }">
-                            <label class="control-label">Costo</label>
-                            <input name="cost" type="text" class="form-control input-xlarge span12" data-ng-model="cost" id="cost" placeholder="Si tuvieras que ponerle precio al recurso, costaría">
-                        </div>
-
-                        <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.conditions.$invalid }">
-                            <label for="conditions" class="control-label">Condiciones</label>
-                            <textarea name="conditions" data-ng-model="conditions" id="conditions" cols="30" rows="5" placeholder="Condiciones al postulante" class="form-control input-xlarge span12"></textarea>
-                        </div>
-
-
-                    </div>
-
-                    <div class="span12">
-                            <div class="form-group" ng-class="{ 'has-error' : submitted && resourceForm.description.$invalid }">
-                            <label for="description" class="control-label">Descripcion</label>
-                            <textarea name="description" data-ng-model="description" id="description" rows="10" placeholder="Descripcion" class="form-control span12 input-xlarge" required></textarea>
-                            <div ng-show="submitted && resourceForm.description.$invalid" class="help-block">
-                                <p ng-show="resourceForm.description.$error.required">Descripcion es requerido</p>
+                            <div class="row-fluid">
+                                <button type="submit" class="tier_button btns pull-right" >Ofrecer!</button>
                             </div>
-                        </div>
-                    </div>
 
-
-                </div>
-                <div class="row-fluid">
-                    <button type="submit" class="tier_button btns pull-right">Ofrecer!</button>
-                </div>
-
-
-
-            </section>
-
-
-
-
-
-
-
-
-                <section id="ngo_features" class="mbtm">
-
-                        <section class="row-fluid">
-                        
-                            <!-- Start of Features Box 2 -->
-                            <figure class="span3 feature">
-                                <div class="ftr_img f-img-2"> 
-                                    <span class="img"> Volcanic Eruptions </span>
-                                </div>
-                                <div class="ftr_txt">
-                                    <a ui-sref="resource">
-                                        <strong> Volcanic Eruptions </strong>
-                                    </a>
-                                </div>
-                            </figure>
-                            
-                        <!-- Start of Features Box 3 --> 
-                            <figure class="span3 feature">
-                                <div class="ftr_img f-img-3"> 
-                                    <span class="img"> Thunder Storms  </span>
-                                </div>
-                                <div class="ftr_txt">
-                                    <strong> Thunder Storms </strong>
-                                </div>
-                            </figure>
-                            <!-- End of Features Boxes 3 -->
-                        
-                            <!-- Start of Features Box 4 -->		
-                            <figure class="span3 feature">
-                                <div class="ftr_img f-img-4"> 
-                                    <span class="img"> Tsunami </span>
-                                </div>
-                                <div class="ftr_txt">
-                                    <strong> Tsunami </strong>
-                                </div>
-                            </figure>
-                            <!-- End of Features Boxes 4 -->
                         </section>
-                </section>
-            <!-- End of Features Boxes -->
+                    </form>
 
 
 
 
 
+
+
+
+                    <section id="ngo_features" class="mbtm">
+
+                            <section class="row-fluid">
+                            
+                                <figure ng-repeat="resource in call.resources" class="span3 feature" ng-click="view_resource(resource)" style="cursor: pointer;">
+                                    <div class="ftr_img f-img-2"> 
+                                        <span class="img"> {{resource.name}}</span>
+                                    </div>
+                                    <div class="ftr_txt">
+                                        <strong> {{resource.name}}</strong>
+                                    </div>
+                                </figure>
+                                
+                            </section>
+                    </section>
 
 
 			</section>
@@ -204,30 +166,14 @@
                 </figure>
                 
             
-                <figure class="widget latest_tweets">
+                <!--figure class="widget latest_tweets">
                 
-                    <h3> <i class="icon-twitter"></i> Tweets a #tituloconvocatoriahashtag</h3>
+                    <h3> <i class="icon-twitter"></i> Tweets a #{{call.twitter_hashtag}}</h3>
                     
-                    <ul id="latest_tweets">
-                        <li>
-                        Check out tht #themeforest item 'Outshined - Responsive HTML5 Template' <a href="#"> http://t.co/eG4MjTOdUJ </a>
-                        <span> About 10 hours ago </span>
-                        </li>
-                        <li>
-                        New Design by @trendyWebStar on @dribbble  <a href="#">http://t.co/zVLLkLabus </a>
-                        <span> About 23 hours ago </span>
-                        </li>
-                        <li>
-                        Check out tht #themeforest item 'Outshined - Responsive HTML5  <a href="#"> http://t.co/eG4MjTOdUJ </a>
-                        <span> About 10 hours ago </span>
-                        </li>
-                        <li>
-                        Check out tht #themeforest item 'Outshined - Responsive HTML5 Template' <a href="#"> http://t.co/eG4MjTOdUJ </a>
-                        <span> About 10 hours ago </span>
-                        </li>
-                    </ul>
+                    <a class="twitter-timeline" href="https://twitter.com/hashtag/{{call.twitter_hashtag}}" data-widget-id="646229543154487296">Tweets sobre #{{call.twitter_hashtag}}</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
                 
-                </figure>
+                </figure-->
             
                 <figure class="widget tags">
                     <h3> <i class="icon-tags"></i> Tags </h3>

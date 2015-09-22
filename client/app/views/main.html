@@ -85,13 +85,13 @@
                                         <img ng-src="http://images.dev-winwins.net/220x155/filters:grayscale()/{{promoted_campaign.image}}" alt="{{promoted_campaign.name}}" />
                                     </div>
                                     <div class="img_title"> 
-                                        <a ng-href="campaign/{{promoted_campaign.id}}"> <i class="icon-plus"></i> </a>
-                                        <a ng-href="campaign/{{promoted_campaign.id}}"> {{promoted_campaign.name}}</a> 
+                                        href="/#/campaign/{{promoted_campaign.id}}"> <i class="icon-plus"></i> </a>
+                                        <a href="/#/campaign/{{promoted_campaign.id}}"> {{promoted_campaign.name}}</a> 
                                     </div>
                                 </div>
                                 <div class="span7 ns_desc" > 
                                     <p>{{promoted_campaign.context | limitTo: 300}} </p>
-                                    <a ng-href="campaign/{{promoted_campaign.id}}" class="rm"> Ver más <i class="icon-plus"></i></a>
+                                    <a href="/#/campaign/{{promoted_campaign.id}}" class="rm"> Ver más <i class="icon-plus"></i></a>
                                 </div> 
                             </li>
 
@@ -162,7 +162,7 @@
                                     </figure>
                                     <figure class="span9">
                                         <p> {{apply_campaign.context | limitTo: 300 }} </p>
-                                        <a ng-href="campaign/{{apply_campaign.id}}"> Ver Más</a>
+                                        <a href="/#/campaign/{{apply_campaign.id}}"> Ver Más</a>
                                     </figure>
                                 </div>
                             </div>

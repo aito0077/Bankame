@@ -22,6 +22,7 @@ Route::get('api/calls/{callId}/user/{userId}', ['uses' => 'CallController@callBy
 Route::resource('api/resources', 'ResourceController');
 Route::resource('api/projects', 'ProjectController');
 Route::resource('api/organizations', 'OrganizationController');
+Route::resource('api/contacts', 'ContactController');
 
 
 Route::get('_getModules', ['uses' => 'HomeController@modules']);

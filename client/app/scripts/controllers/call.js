@@ -46,21 +46,95 @@ angular.module('bancameApp')
    
  
 }])
-.controller('call-view', ['$scope','$http', '$state', '$stateParams', '$timeout', 'Call', function($scope, $http, $state, $stateParams, $timeout, Call) {
+.controller('call-view', ['$scope','$http', '$state', '$stateParams', '$timeout', '$location', 'Call', 'ResourceType', 'Resource', function($scope, $http, $state, $stateParams, $timeout, $location, Call, ResourceType, Resource) {
 
     console.log('call-view');
 
     $scope.call = {};
+    $scope.tweets = [];
+
     $scope.getCall = function() {
         Call.get({
             id: $stateParams.callId
         }, function(data) {
             $scope.call = data; 
+            $scope.setup_components($scope.call);
         });
     }
 
+    $scope.setup_components = function(call) {
+        if(call.twitter_hashtag) {
+            twitterFetcher.fetch(call.twitter_hashtag, '', 5, true, true, true, '', false, function(tweets) {
+                $scope.tweets = tweets;
+            });
+        }
+
+
+
+    };
+
+
     $scope.getCall();
 
+    $scope.editing_resource = false;
+    $scope.tags = [];
+    $scope.resourceTypes = [];
+
+    $scope.show_resource_form = function() {
+        $scope.editing_resource = true;
+
+        ResourceType.query(function(data) {
+            $scope.resourceTypes = _.filter(data, function(model) {
+                return model.parent_id;
+            });
+            $timeout(function() {
+                $('#tags').selectize({
+                    create: false,
+                    maxItems: null,
+                    //selectOnTab: true,
+                    valueField: 'id',
+                    items: $scope.tags,
+                    labelField: 'description',
+                    searchField: 'description',
+                    onChange: function(value) {
+
+                    }
+                });
+            });
+
+        });
+
+
+
+
+    };
+
+    $scope.create_resource = function(isValid) {
+        if (isValid) {
+                var resource = new Resource({
+                    name: $scope.resource.name,
+                    description: $scope.resource.description,
+                    //resource_type: $scope.resource.resource_type_selected.id,
+                    tags: $scope.resource.tags,
+                    image: $scope.resource.image,
+                    conditions: $scope.resource.conditions,
+                    cost: $scope.resource.cost,
+                    call_id: $scope.call.id
+                });
+                resource.$save(function(response) {
+                   $scope.getCall(); 
+                });
+
+        } else {
+            $scope.submitted = true;
+        }
+    };
+
+    $scope.view_resource = function(resource) {
+        $location.path('resource/' + resource.id);
+    };
+
+        
 
 }]);
 

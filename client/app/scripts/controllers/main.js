@@ -123,4 +123,15 @@ angular.module('bancameApp')
     });
     
 
+})
+.controller('ContactController', function ($scope, $timeout, $http, Contact) {
+    $scope.contact = new Contact(); 
+    $scope.is_sent = false;
+
+    $scope.send_contact = function() {
+        $scope.contact.$save(function(response) {
+            $scope.is_sent = true; 
+            $scope.contact = new Contact();
+        });
+    };
 });

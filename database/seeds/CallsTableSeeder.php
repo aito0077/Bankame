@@ -22,6 +22,7 @@ Desde el sur impulsamos este movimiento global en busca de mayor participación,
         $call->end_date = '2016-05-09';
         $call->image = 'call_1.png';
         $call->publish = true;
+        $call->twitter_hashtag = "semanacolaborativa";
         $call->remark = true;
         $call->share_phase = true;
         $call->apply_phase = false;

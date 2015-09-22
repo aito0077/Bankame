@@ -9,7 +9,7 @@ $(document).ready(function() {
             var x = tweets.length;
             var n = 0;
             var element = document.getElementById('tweets-' + index);
-            var html = '<ul class="slides">';
+            var html = '<ul id="tweets_crunchpress">';
             while (n < x) {
                 html += '<li>' + tweets[n] + '</li>';
                 n++;

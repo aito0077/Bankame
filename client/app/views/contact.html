@@ -29,16 +29,24 @@
 	<section class="container-fluid container">
 			<section class="row-fluid">
 			
-			<section id="contact_form" class="span6 form">
-                <h3> Formulario de Contacto </h3>
-                <p>Gracias por visitarnos. Completa el formulario para solicitar información acerca de Bancame. Cuando haya terminado, haga clic en el botón "Enviar" para enviar el mensaje.</p> 
-                
-                <form method="post" action="contact.php" class="span10">
-                    <input type="text" placeholder="Nombre" name="name" required/>
-                    <input type="email" placeholder="Email" name="email" required />
-                    <textarea name="comments" cols="10" rows="10" required placeholder="Ingrese su mensaje aquí"> </textarea>
-                    <input type="submit" class="btns" value="Enviar" name="submit" />
-                </form>
+			<section id="contact_form" class="span6 form" ng-controller="ContactController">
+                <div  ng-show="!is_sent">
+                    <h3> Formulario de Contacto </h3>
+                    <p>Gracias por visitarnos. Completa el formulario para solicitar información acerca de Bancame. Cuando haya terminado, haga clic en el botón "Enviar" para enviar el mensaje.</p> 
+                    
+                    <form id="contact_form" method="post" ng-submit="send_contact()" class="span10">
+                        <input type="text" placeholder="Nombre" name="name" ng-model="contact.name" required/>
+                        <input type="email" placeholder="Email" name="email" ng-model="contact.email" required />
+                        <textarea name="comments" cols="10" rows="10" ng-model="contact.comment" required placeholder="Ingrese su mensaje aquí"> </textarea>
+                        <input type="submit" class="btns" value="Enviar" name="submit" />
+                    </form>
+                </div>
+
+                <div ng-show="is_sent">
+                    <h3> Confirmación de Envío</h3>
+                    <p>El mensaje ha sido enviado. A la brevedad nos comunicaremos.</p> 
+                </div>
+
 			</section>
 		
 			<section id="contact_info" class="span6 contact_info">
@@ -63,9 +71,6 @@
 				
 					<a href="#"> <i class="icon-facebook"></i> </a> 
 					<a href="#"> <i class="icon-twitter"></i> </a> 
-					<a href="#"> <i class="icon-google-plus"></i> </a> 
-					<a href="#"> <i class="icon-linkedin"></i> </a> 
-					<a href="#"> <i class="icon-pinterest"></i> </a> 
 					
 				
 				</figure>
