@@ -49,6 +49,7 @@ angular.module('bancameApp')
 .controller('call-view', ['$scope','$http', '$state', '$stateParams', '$timeout', '$location', 'Call', 'ResourceType', 'Resource', function($scope, $http, $state, $stateParams, $timeout, $location, Call, ResourceType, Resource) {
 
     console.log('call-view');
+    console.log('view param id: '+$stateParams.callId);
 
     $scope.call = {};
     $scope.tweets = [];
@@ -60,7 +61,7 @@ angular.module('bancameApp')
             $scope.call = data; 
             $scope.setup_components($scope.call);
         });
-    }
+    };
 
     $scope.setup_components = function(call) {
         if(call.twitter_hashtag) {

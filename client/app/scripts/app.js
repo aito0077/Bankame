@@ -2,7 +2,7 @@
 
 angular
 .module('bancameApp', [
-    'ngAnimate',
+//    'ngAnimate',
     'ngAria',
     'ngCookies',
     'ngMessages',

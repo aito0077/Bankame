@@ -4,8 +4,8 @@
             <!-- BreadCrumbs -->
                 <figure id="breadcrumbs" class="span12">
                     <ul class="breadcrumb">
-                    <li><a href="/#/">Inicio</a> <span class="divider">/</span></li>
-                    <li><a href="/#/campaign/{{call.id}}">{{call.name}}</a> <span class="divider">/</span></li>
+                    <li><a ui-sref="home">Inicio</a> <span class="divider">/</span></li>
+                    <li><a ui-sref="campaign({callId: call.id})">{{call.name}}</a> <span class="divider">/</span></li>
                     <li class="active">Detalle Recurso</li>
                     </ul>
                 </figure>
