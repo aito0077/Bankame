@@ -5,7 +5,7 @@
             <!-- BreadCrumbs -->
                 <figure id="breadcrumbs" class="span12">
                     <ul class="breadcrumb">
-                    <li><a href="#/">Inicio</a> <span class="divider">/</span></li>
+                    <li><a ui-sref="home">Inicio</a> <span class="divider">/</span></li>
                     <li class="active">Campañas</li>
                     </ul>
                 </figure>
@@ -36,19 +36,20 @@
                             <section class="row-fluid">
                                 <section id="donation_box">
                                     <section class="container container-fluid">
-                                    <section class="row-fluid">
+                                    <!--section class="row-fluid">
                                         <div class="offset2 span8"> 
                                             <input type="text" class="input-xxlarge" placeholder="Búsqueda..."/> 
                                         </div>
-                                    </section>
+                                    </section-->
                                     <section class="row-fluid">
                                         <ul class="span10 offset1" id="tags">
-                                            <li> <a href="#" class="active"> compartiendo </a> </li>
-                                            <li> <a href="#"> aplicando </a> </li>
-                                            <li> <a href="#"> brasil </a> </li>
-                                            <li> <a href="#"> argentina</a> </li>
-                                            <li> <a href="#"> bolivia</a> </li>
-                                            <li> <a href="#"> venezuela</a> </li>
+                                            <li> <span class="btn-filter {{current_filter ? '' : 'active'}}" ng-click="filter()"> todas </a> </li>
+                                            <li> <span class="btn-filter {{current_filter == 'share' ? 'active' : ''}}" ng-click="filter('share')"> compartiendo </a> </li>
+                                            <li> <span class="btn-filter {{current_filter == 'apply' ? 'active' : ''}}" ng-click="filter('apply')"> aplicando</a> </li>
+                                            <li> <span class="btn-filter {{current_filter == 'brasil' ? 'active' : ''}}" ng-click="filter('brasil')"> brasil </a> </li>
+                                            <li> <span class="btn-filter {{current_filter == 'argentina' ? 'active' : ''}}" ng-click="filter('argentina')"> argentina</a> </li>
+                                            <li> <span class="btn-filter {{current_filter == 'bolivia' ? 'active' : ''}}" ng-click="filter('bolivia')"> bolivia</a> </li>
+                                            <li> <span class="btn-filter {{current_filter == 'venezuela' ? 'active' : ''}}" ng-click="filter('venezuela')"> venezuela</a> </li>
                                         </ul>
                                     </section>
  
@@ -63,85 +64,31 @@
                                 <div class="span10 first"> <h3> Campañas Activas </h3>	</div>
                         </figure>
                         
-                        <section class="span12 first projects_holder">
+                        <section class="first projects_holder">
+                            <div id="call-grid" class="grid">
                             
-                            <section class="span4 first fund_project text-center" id="charity_progress">
-                                <img src="images/crowd_funding_1.jpg" alt="Fund Featured Image" />
-                                <a ui-sref="campaign"> <span class="current_collection">  {campaña title} </span></a>
-                                <h4> {campaña description} </h4>
-                            
-                                <div class="info"> 
-                                    <div class="span6 first">
-                                        <span> 147 </span> Recursos 
+                                <div class="grid-sizer"></div>
+                                <section ng-repeat="call in calls"  class="grid-item first fund_project text-center {{isBig(call) ? 'grid-item-width2' : ''}} {{call.apply_phase ? 'apply' : 'share'}}">
+                                    <img ng-src="http://images.dev-winwins.net/201x151/{{call.image}}" alt="{{call.name}}" />
+                                    <a ui-sref="campaign({callId: call.id})"> <span class="current_collection">  {{call.name}} </span></a>
+                                    <h4> {{call.description}} </h4>
+                                
+                                    <div class="info"> 
+                                        <div class="span6 first">
+                                            <span> {{call.resources.length}} </span> Recursos 
+                                        </div>
+
+                                        <div class="span6">
+                                            <span>{{call.end_date | leftdays}} </span>
+                                        </div>
+
                                     </div>
+                                      
+                                </section>
 
-                                    <div class="span6">
-                                        <span> 204 </span> Días restantes
-                                    </div>
-
-                                </div>
-                                  
-                            </section>
-
-                            <section class="span4 first fund_project text-center" id="charity_progress">
-                                <img src="images/crowd_funding_1.jpg" alt="Fund Featured Image" />
-                                <a ui-sref="campaign"> <span class="current_collection">  {campaña title} </span></a>
-                                <h4> {campaña description} </h4>
-                            
-                                <div class="info"> 
-                                    <div class="span6 first">
-                                        <span> 147 </span> Recursos 
-                                    </div>
-
-                                    <div class="span6">
-                                        <span> 204 </span> Días restantes
-                                    </div>
-
-                                </div>
-                                  
-                            </section>
-
-                            <section class="span4 first fund_project text-center" id="charity_progress">
-                                <img src="images/crowd_funding_1.jpg" alt="Fund Featured Image" />
-                                <a ui-sref="campaign"> <span class="current_collection">  {campaña title} </span></a>
-                                <h4> {campaña description} </h4>
-                            
-                                <div class="info"> 
-                                    <div class="span6 first">
-                                        <span> 147 </span> Recursos 
-                                    </div>
-
-                                    <div class="span6">
-                                        <span> 204 </span> Días restantes
-                                    </div>
-
-                                </div>
-                                  
-                            </section>
-
-                            <section class="span4 first fund_project text-center" id="charity_progress">
-                                <img src="images/crowd_funding_1.jpg" alt="Fund Featured Image" />
-                                <a ui-sref="campaign"> <span class="current_collection">  {campaña title} </span></a>
-                                <h4> {campaña description} </h4>
-                            
-                                <div class="info"> 
-                                    <div class="span6 first">
-                                        <span> 147 </span> Recursos 
-                                    </div>
-
-                                    <div class="span6">
-                                        <span> 204 </span> Días restantes
-                                    </div>
-
-                                </div>
-                                  
-                            </section>
-
-
-
+                            </div>
                             <hr />			
                         </section>
-                    
             
             </section>
         </section>

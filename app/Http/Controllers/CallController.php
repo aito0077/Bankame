@@ -26,23 +26,15 @@ class CallController extends Controller {
     }
 
 	public function index() {
-        $call = Call::where('status', '=', 'OPEN')->first();
-         $call->stages = array(
-            "share_resource" => array(
-                "start_date" => $call->share_resources_start,
-                "end_date" => $call->share_resources_end
-            ),
-            "apply_project" => array(
-                "start_date" => $call->apply_project_start,
-                "end_date" => $call->apply_project_end
-            ),
-            "evaluation" => array(
-                "start_date" => $call->evaluation_start,
-                "end_date" => $call->evaluation_end
-            )
-        );
-       
-        return array($call);
+        $active_calls =  Call::where('status', '=', 'OPEN')
+                        ->where('end_date', '>=', Carbon::now())    
+                        ->where('publish', '=', true)    
+                        ->orderBy('end_date', 'asc')->get();
+
+        foreach($active_calls as $a_call) {
+            $a_call->resources;
+        }
+        return $active_calls;
 	}
 
 
@@ -52,10 +44,12 @@ class CallController extends Controller {
                         ->where('publish', '=', true)    
                         ->orderBy('end_date', 'asc')->first();
         $promoted_calls =  Call::where('status', '=', 'OPEN')
+                        ->where('end_date', '>=', Carbon::now())    
                         ->where('publish', '=', true)    
                         ->where('remark', '=', true)    
                         ->orderBy('end_date', 'asc')->get();
         $active_calls =  Call::where('status', '=', 'OPEN')
+                        ->where('end_date', '>=', Carbon::now())    
                         ->where('publish', '=', true)    
                         ->orderBy('end_date', 'asc')->get();
 

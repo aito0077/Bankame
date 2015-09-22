@@ -941,3 +941,15 @@ ul.the-icons{ margin:0;}
 .img_comment{ width:auto; height:auto;}
 #charity_progress .progress.active .bar.p80{ width:80% !important;}
 .m9p{ margin-bottom:9px !important;}
+
+/*Custom*/
+/* fluid 5 columns */
+.grid-sizer,
+.grid-item { width: 20%;}
+.grid-item { border-style: solid; border-width: 1px; border-color: gray;}
+/* 2 columns */
+.grid-item-width2 { width: 40%;}
+#tags li{ display:inline-block; margin-right:3px; margin-bottom:10px; cursor:pointer }
+#tags li .btn-filter{display:inline-block; padding:10px 20px; color:#fff; background:#c7c7c7; }
+#tags li .active, #tags li a:hover{ background:#ab29e1; color:#000; }
+

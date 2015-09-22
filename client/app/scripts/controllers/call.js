@@ -42,8 +42,50 @@ angular.module('bancameApp')
     };
 
 })
-.controller('call-list', ['$scope', 'CallPaginate', function($scope, CallPaginate) {
+.controller('call-list', ['$scope', '$timeout', 'Call', function($scope, $timeout, Call) {
    
+    $scope.calls = [];
+
+    $scope.list = function() {
+        Call.query(function(calls) {
+            $scope.calls = calls;
+        });
+    };
+
+    $scope.list();
+
+    $scope.isot = false;
+    $scope.current_filter = false;
+
+    $scope.filter = function(filter) {
+        if($scope.isot) {
+            $scope.current_filter = filter;
+            $scope.isot.isotope({
+                filter: filter ? '.'+filter : '*'
+            });
+        }        
+    };
+
+    $scope.$watch('calls', function() {
+        console.log('calls watch '+$scope.calls.length);
+        if($scope.calls.length > 0) {
+            $timeout(function() {
+                $scope.isot = angular.element('#call-grid');
+                $scope.isot.isotope({
+                    itemSelector: '.grid-item',
+                    masonry: {
+                        columnWidth: '.grid-sizer'
+                    }
+                });
+            });
+        }
+    });
+    $scope.setup_components = function() {
+    };
+
+    $scope.isBig = function(call) {
+      return call.remark == 1;  
+    };
  
 }])
 .controller('call-view', ['$scope','$http', '$state', '$stateParams', '$timeout', '$location', 'Call', 'ResourceType', 'Resource', function($scope, $http, $state, $stateParams, $timeout, $location, Call, ResourceType, Resource) {

@@ -51,6 +51,7 @@ angular
         })
         .state('campaign-list', {
             url: '/campaigns',
+            controller: 'call-list',
             templateUrl: 'views/campaign_list.html'
         })
         .state('resource', {
@@ -124,6 +125,20 @@ angular
     moment.locale('es');
     moment.tz.add('America/Argentina/Buenos_Aires|CMT ART ARST ART ARST|4g.M 40 30 30 20|0121212121212121212121212121212121212121213434343434343234343|-20UHH.c pKnH.c Mn0 1iN0 Tb0 1C10 LX0 1C10 LX0 1C10 LX0 1C10 Mn0 1C10 LX0 1C10 LX0 1C10 LX0 1C10 Mn0 MN0 2jz0 MN0 4lX0 u10 5Lb0 1pB0 Fnz0 u10 uL0 1vd0 SL0 1vd0 SL0 1vd0 17z0 1cN0 1fz0 1cN0 1cL0 1cN0 asn0 Db0 zvd0 Bz0 1tB0 TX0 1wp0 Rb0 1wp0 Rb0 1wp0 TX0 g0p0 10M0 j3c0 uL0 1qN0 WL0');
 
+})
+.directive('isoGrid', function () {
+    return function (scope, element, attrs) {
+        scope.$watch(attrs.ngModel, function() {
+            element.isotope({
+                itemSelector: '.grid-item',
+                percentPosition: true,
+                masonry: {
+                    columnWidth: '.grid-sizer'
+                }
+            });
+            console.log('isotop');
+        });
+    };
 })
 .filter('isPast', function() {
     return function(dateString) {
