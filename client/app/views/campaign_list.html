@@ -37,12 +37,12 @@
                                 <section id="donation_box">
                                     <section class="container container-fluid">
                                     <!--section class="row-fluid">
-                                        <div class="offset2 span8"> 
+                                        <div class="span12"> 
                                             <input type="text" class="input-xxlarge" placeholder="Búsqueda..."/> 
                                         </div>
                                     </section-->
                                     <section class="row-fluid">
-                                        <ul class="span10 offset1" id="tags">
+                                        <ul class="span12" id="tags">
                                             <li> <span class="btn-filter {{current_filter ? '' : 'active'}}" ng-click="filter()"> todas </a> </li>
                                             <li> <span class="btn-filter {{current_filter == 'share' ? 'active' : ''}}" ng-click="filter('share')"> compartiendo </a> </li>
                                             <li> <span class="btn-filter {{current_filter == 'apply' ? 'active' : ''}}" ng-click="filter('apply')"> aplicando</a> </li>
@@ -50,6 +50,8 @@
                                             <li> <span class="btn-filter {{current_filter == 'argentina' ? 'active' : ''}}" ng-click="filter('argentina')"> argentina</a> </li>
                                             <li> <span class="btn-filter {{current_filter == 'bolivia' ? 'active' : ''}}" ng-click="filter('bolivia')"> bolivia</a> </li>
                                             <li> <span class="btn-filter {{current_filter == 'venezuela' ? 'active' : ''}}" ng-click="filter('venezuela')"> venezuela</a> </li>
+                                            <li> <span class="btn-filter {{current_filter == 'uruguay' ? 'active' : ''}}" ng-click="filter('uruguay')"> uruguay</a> </li>
+                                            <li> <span class="btn-filter {{current_filter == 'ecuador' ? 'active' : ''}}" ng-click="filter('ecuador')"> ecuador</a> </li>
                                         </ul>
                                     </section>
  
@@ -57,18 +59,19 @@
 
                                 </section>
                             </section>	
+                            <figure class="span12 first" id="category_title">
+                                    <div class="span10 first"> <h3> Campañas Activas </h3>	</div>
+                            </figure>
+
                         </section>
 
                         
-                        <figure class="span12 first" id="category_title">
-                                <div class="span10 first"> <h3> Campañas Activas </h3>	</div>
-                        </figure>
                         
                         <section class="first projects_holder">
                             <div id="call-grid" class="grid">
                             
                                 <div class="grid-sizer"></div>
-                                <section ng-repeat="call in calls"  class="grid-item first fund_project text-center {{isBig(call) ? 'grid-item-width2' : ''}} {{call.apply_phase ? 'apply' : 'share'}}">
+                                <section ng-repeat="call in calls"  class="grid-item first fund_project text-center {{isBig(call) ? 'grid-item-width2' : ''}} {{call.apply_phase ? 'apply' : 'share'}} {{explode_countries(call)}}">
                                     <img ng-src="http://images.dev-winwins.net/201x151/{{call.image}}" alt="{{call.name}}" />
                                     <a ui-sref="campaign({callId: call.id})"> <span class="current_collection">  {{call.name}} </span></a>
                                     <h4> {{call.description}} </h4>

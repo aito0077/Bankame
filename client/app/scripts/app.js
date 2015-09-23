@@ -12,6 +12,7 @@ angular
     'ui.router',
     'satellizer',
     'config',
+    'ngFileUpload',
     'ngTouch'
 ])
 .config(function ($locationProvider, $stateProvider, $urlRouterProvider) {

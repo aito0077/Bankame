@@ -122,7 +122,7 @@
                         
                 <section class="span12 first projects_holder">
                             
-                    <section ng-repeat="share_campaign in active_calls | filter: {share_phase: 1}" class="span6 first fund_project" id="charity_progress">
+                    <section ng-repeat="share_campaign in active_calls | filter: {share_phase: 1}" class="span6 first fund_project" id="charity_progress"  ng-click="view(share_campaign)" style="cursor: pointer;">
                         <img ng-src="http://images.dev-winwins.net/201x151/filters:grayscale()/{{share_campaign.image}}" alt="{{share_campaign.name}}" />
                         <span class="current_collection">{{share_campaign.name}}  </span>
                         <div class="info"> 

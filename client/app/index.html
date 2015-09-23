@@ -70,7 +70,7 @@
                                     </h1>
                                 </section>
 
-                                <section class="span6 pull-right">
+                                <section ng-show="next_call" class="span6 pull-right">
                                     <figure class="charity_counter_wrapper">
                                         <section class="span5">
                                             <div class="charity_title">
@@ -105,7 +105,7 @@
                                                     <a class="dropdown-toggle" href="#" >  Campañas <b class="caret"></b> </a>
                                                     <ul class="dropdown-menu">
                                                         <li><a ui-sref="campaign-list"> Listados </a></li>
-                                                        <li><a ui-sref="campaign-edit"> Crear </a></li>
+                                                        <li ng-if="is_logged"><a ui-sref="campaign-edit"> Crear </a></li>
                                                     </ul>
                                                 </li>
                                                 <li><a href="#/about"> Acerca de</a></li>
@@ -297,6 +297,8 @@
     <script src="bower_components/masonry/masonry.js"></script>
     <script src="bower_components/jquery-bridget/jquery.bridget.js"></script>
     <script src="bower_components/isotope/dist/isotope.pkgd.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="bower_components/ng-file-upload-shim/ng-file-upload-shim.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
         <!--script src="bower_components/bootstrap/dist/js/bootstrap.js"></script-->

@@ -17,7 +17,7 @@
                 <section id="donation_box">
                     <section class="container container-fluid">
                     <section class="row-fluid">
-                        <div class="span8 first"> <h2> {{call.name}} </h2> </div>
+                        <div class="span8 first"> <h2> Crear Campaña</h2> </div>
                     </section>
                 </section>
             </section>		<!-- end of Page Title -->
@@ -29,97 +29,74 @@
     <section id="content" class="mbtm fund_rasising_listing">
         <section class="container-fluid container">
         
-            <section class="row-fluid">
+            <section class="row-fluid" style="margin-top: 20px;">
                 
-                <section class="offset2 span8 fund_project_detail" id="fund_project_detail">  
                         
-                    <form name="callForm" class="form-horizontal" role="form" data-ng-submit="create(callForm.$valid)" novalidate>
+                <form name="callForm" class="" role="form" data-ng-submit="create(callForm.$valid)" novalidate>
+                    <section class="span12 fund_project_detail" id="fund_project_detail">  
                         <div class="row">
-                            <div class="col-offset-1 col-md-10">
+                            <div class="offset1 span10">
 
-                                <div class="form-group" ng-class="{ 'has-error' : submitted && callForm.name.$invalid }">
-                                    <label mean-token="'create-name'" class="col-md-3 control-label">Nombre</label>
-                                    <div class="col-md-9">
-                                        <input name="name" type="text" class="form-control" data-ng-model="name" id="name" placeholder="Nombre" required>
-                                        <div ng-show="submitted && callForm.name.$invalid" class="help-block">
-                                            <p ng-show="callForm.name.$error.required">Nombre es requerido</p>
-                                        </div>
+                                <div class="form-group span12" ng-class="{ 'has-error' : submitted && callForm.name.$invalid }">
+                                    <label class="span3 control-label">Nombre</label>
+                                    <div class="span9">
+                                        <input name="name" type="text" class="form-control span12" data-ng-model="call.name" id="name" placeholder="Nombre" required>
                                     </div>
                                 </div>
-                                <div class="form-group" ng-class="{ 'has-error' : submitted && callForm.context.$invalid }">
-                                  <label mean-token="'create-context'" for="context" class="col-md-3 control-label">Contexto</label>
-                                  <div class="col-md-9">
-                                    <textarea name="context" data-ng-model="context" id="context" cols="30" rows="10" placeholder="Contexto" class="form-control" required></textarea>
-                                    <div ng-show="submitted && callForm.context.$invalid" class="help-block">
-                                      <p ng-show="callForm.context.$error.required">Contexto es requerido</p>
-                                    </div>
+                                <div class="form-group span12" ng-class="{ 'has-error' : submitted && callForm.context.$invalid }">
+                                  <label class="span3 control-label">Contexto</label>
+                                  <div class="span9">
+                                    <textarea name="context" data-ng-model="call.context" id="context" cols="60" rows="10" placeholder="Contexto" class="form-control span12" required></textarea>
                                   </div>
                                 </div>
 
                                 <div class="form-group" ng-class="{ 'has-error' : submitted && callForm.scopes.$invalid }">
-                                    <label mean-token="'create-scopes'" class="col-md-3 control-label">Regiones</label>
-                                    <div class="col-md-9">
-                                        <input id="topics" name="scopes" type="text" class="form-control" data-ng-model="scopes" id="scopes" placeholder="Regiones" required>
+                                    <label class="span3 control-label">Paises</label>
+                                    <div class="span9">
+                                        <select id="countries" multiple="multiple" name="countries" type="text" class="form-control" data-ng-model="call.countries" placeholder="Países" ng-options="country.description for country in countries"> </select>
 
-                                        <div ng-show="submitted && callForm.scopes.$invalid" class="help-block">
-                                            <p ng-show="callForm.name.$error.required">Regiones es requerido</p>
-                                        </div>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
                         <div class="row" style="border-top: 1px solid #ccc;">
-                            <div class="col-md-6">
+                            <div class="span6">
                                 <div class="page-header">
                                     <h3>Etapas</h3>
                                 </div>
                                 
-                                <div class="form-group" ng-class="{ 'has-error' : submitted && callForm.share_resource.$invalid }">
-                                    <label mean-token="'create-share_resource'" class="col-md-3 control-label">Compartir Recursos</label>
-                                    <div class="col-md-6 input-group ">
+                                <div class="form-group span12" ng-class="{ 'has-error' : submitted && callForm.share_resources.$invalid }">
+                                    <label class="span3 control-label">Compartir Recursos</label>
+                                    <div class="span6 input-group ">
                                         <span class="input-group-addon glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                                        <input name="share_resource" date-range-picker class="form-control date-picker" type="text" />
+                                        <input name="share_resources" date-range-picker class="form-control date-picker" type="text" />
                                     </div>
                                 </div>
-                                <div class="form-group" ng-class="{ 'has-error' : submitted && callForm.apply_project.$invalid }">
-                                    <label mean-token="'create-apply_project'" class="col-md-3 control-label">Aplicar Proyectos</label>
-                                    <div class="col-md-6 input-group ">
+                                <div class="form-group span12" ng-class="{ 'has-error' : submitted && callForm.apply_resources.$invalid }">
+                                    <label class="span3 control-label">Aplicar Proyectos</label>
+                                    <div class="span6 input-group ">
                                         <span class="input-group-addon glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                                        <input name="apply_project" date-range-picker class="form-control date-picker" type="text"/>
-                                    </div>
-                                </div>
-                                <div class="form-group" ng-class="{ 'has-error' : submitted && callForm.evaluation.$invalid }">
-                                    <label mean-token="'create-evaluation'" class="col-md-3 control-label">Evaluar</label>
-                                    <div class="col-md-6 input-group ">
-                                        <span class="input-group-addon glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                                        <input name="evaluation" date-range-picker class="form-control date-picker" type="text"/>
-                                    </div>
-                                </div>
-                                <div class="form-group" ng-class="{ 'has-error' : submitted && callForm.show_results.$invalid }">
-                                    <label mean-token="'create-show_results'" class="col-md-3 control-label">Desplegar Resultados</label>
-                                    <div class="col-md-6 input-group ">
-                                        <span class="input-group-addon glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                                        <input name="show_results" date-range-picker class="form-control date-picker" type="text" />
+                                        <input name="apply_resources" date-range-picker class="form-control date-picker" type="text"/>
                                     </div>
                                 </div>
 
                             </div>
-                            <div class="col-md-6">
+                            <div class="span6">
                                 <div class="page-header">
                                     <h3>Referencias</h3>
                                 </div>
                                 <div class="form-group" ng-class="{ 'has-error' : submitted && callForm.context.$invalid }">
-                                    <label mean-token="'create-bases'" for="bases" class="col-md-3 control-label">Bases y Condiciones</label>
-                                    <div class="col-md-9">
-                                        <textarea name="context" data-ng-model="bases" id="bases" cols="30" rows="4" placeholder="Sumario" class="form-control"></textarea>
+                                    <label for="bases" class="span3 control-label">Bases y Condiciones</label>
+                                    <div class="span9">
+                                        <textarea name="context" data-ng-model="call.bases" id="bases" cols="30" rows="4" placeholder="Sumario" class="form-control"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="form-group" ng-class="{ 'has-error' : submitted && callForm.context.$invalid }">
-                                    <label mean-token="'create-criterio'" for="criterios" class="col-md-3 control-label">Criterios Evaluación</label>
-                                    <div class="col-md-9">
-                                        <textarea name="context" data-ng-model="criterios" id="criterios" cols="30" rows="4" placeholder="Criterios" class="form-control"></textarea>
+                                    <label for="criterios" class="span3 control-label">Criterios Evaluación</label>
+                                    <div class="span9">
+                                        <textarea name="context" data-ng-model="call.criterios" id="criterios" cols="30" rows="4" placeholder="Criterios" class="form-control"></textarea>
                                     </div>
                                 </div>
 
@@ -129,18 +106,19 @@
 
                         <div class="row" style="border-top: 1px solid #ccc; padding-top: 20px;">
                             <div class="form-group">
-                              <div class="col-md-offset-4 col-md-2">
-                                <span mean-token="'create-cancel'" class="btn btn-default" ng-click="cancel()">Cancelar</span>
+                              <div class="offset4 span2">
+                                <span class="btn btn-default" ng-click="cancel()">Cancelar</span>
                               </div>
-                              <div class="col-md-offset-1 col-md-2">
-                                <button mean-token="'create-submit'" type="submit" class="btn btn-info">Guardar</button>
+                              <div class="offset1 span2">
+                                <button type="submit" class="btn btn-info">Guardar</button>
                               </div>
                             </div>
                         </div>
 
-                  </form>
 
-            </section>
+                </section>
+
+            </form>
                     
         </section>
     </section>

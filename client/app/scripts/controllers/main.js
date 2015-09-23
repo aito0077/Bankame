@@ -167,6 +167,10 @@ angular.module('bancameApp')
                 $scope.fetching_profile = false;
                 $scope.profile = response.data.user;
                 $rootScope.$broadcast('is_logged', true);
+            }).catch(function(response) {
+                $auth.logout().then(function() {
+                    $rootScope.$broadcast('is_logged', false);
+                });
             });
         }
 
