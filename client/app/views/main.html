@@ -54,7 +54,7 @@
             <section class="row-fluid">
             
                 <figure class="span6 first" id="_charity_progress">
-                    <div ng-if="remark_campaign">
+                    <div ng-if="remark_campaign" class="remark_campaign">
                         <h3> Campaña Destacada! </h3>
                         <div id="charity_process_inner" ng-click="view(remark_campaign)" style="cursor: pointer;">
                             <div class="span5 img first">
@@ -66,7 +66,7 @@
                                   <br />
                                   <div class="info"> 
                                         <div class="span12 first">
-                                            <span> {{remark_campaign.resources.length}} </span> recursos en <span> {{remark_campaign.start_date | leftdays}}</span> 
+                                            <span> {{remark_campaign.resources.length}} </span> recursos <span> {{remark_campaign.start_date | leftdays}}</span> 
                                         </div>
                                   </div>
                                   
@@ -122,12 +122,12 @@
                         
                 <section class="span12 first projects_holder">
                             
-                    <section ng-repeat="share_campaign in active_calls | filter: {share_phase: 1}" class="span6 first fund_project" id="charity_progress"  ng-click="view(share_campaign)" style="cursor: pointer;">
+                    <section ng-repeat="share_campaign in active_calls | filter: {share_phase: 1}" class="span6 first fund_project" ng-click="view(share_campaign)" style="cursor: pointer;">
                         <img ng-src="http://images.dev-winwins.net/201x151/filters:grayscale()/{{share_campaign.image}}" alt="{{share_campaign.name}}" />
-                        <span class="current_collection">{{share_campaign.name}}  </span>
+                        <span class="current_collection" style="text-align: center;">{{share_campaign.name}}  </span>
                         <div class="info"> 
                             <div class="span12 first">
-                                <span> {{share_campaign.resources.length}} </span> recursos en <span> {{share_campaign.start_date | leftdays}}</span> 
+                                <span> {{share_campaign.resources.length}} </span> recursos <span> {{share_campaign.start_date | leftdays}}</span> 
                             </div>
 
                         </div>
