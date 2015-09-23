@@ -6,6 +6,7 @@ angular.module('bancameApp')
     $scope.call = false;
     $scope.selected_resource = {};
     $scope.selected_resource_id = $stateParams.resourceId;
+    $scope.countries = [];
 
     $scope.getResource = function(resource_id) {
         console.log(resource_id);
@@ -13,6 +14,9 @@ angular.module('bancameApp')
             id: resource_id
         }, function(data) {
             $scope.selected_resource = data; 
+            if(data.countries) {
+                $scope.countries = data.countries.split(';');
+            }
             if(!$scope.call) {
                 $scope.getCall($scope.selected_resource.call_id);
             }
@@ -27,6 +31,10 @@ angular.module('bancameApp')
         });
     };
 
+
+    $scope.select_resource = function(resource) {
+        $scope.getResource(resource.id);
+    };
 
     $scope.getResource($scope.selected_resource_id);
 

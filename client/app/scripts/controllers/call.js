@@ -387,6 +387,8 @@ angular.module('bancameApp')
                     call_id: $scope.call.id
                 });
                 resource.$save(function(response) {
+                    $scope.editing_resource = false;
+                    $scope.resource = {};
                    $scope.getCall(); 
                 });
 

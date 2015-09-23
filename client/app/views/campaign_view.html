@@ -147,7 +147,7 @@
                             <section class="row-fluid">
                             
                                 <figure ng-repeat="resource in call.resources" class="span3 feature" ng-click="view_resource(resource)" style="cursor: pointer;">
-                                    <div class="ftr_img f-img-2"> 
+                                    <div class="ftr_img f-img-{{resource.main_type}}"> 
                                         <span class="img"> {{resource.name}}</span>
                                     </div>
                                     <div class="ftr_txt">

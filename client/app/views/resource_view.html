@@ -45,28 +45,28 @@
                         
                         <figure class="span5 first" id="product_image">
                             <div class="pro_img" id="pro_img">
-                                <img src="images/product_image.jpg" alt="Default image" /> 
+                                <img style="margin-left:auto; margin-right:auto; display:block; width:100px !important;" ng-src="http://images.dev-winwins.net/bancame_resource_{{selected_resource.main_type}}.jpg" alt="{{selected_resource.name}}" />
                             </div>
-                            <div class="span3 first"> <img src="images/cart_product_1.jpg" alt="" /> </div>
-                            <div class="span3"> <img src="images/cart_product_2.jpg" alt="" /> </div>
-                            <div class="span3"> <img src="images/cart_product_1.jpg" alt="" /> </div>
-                            <div class="span3"> <img src="images/cart_product_2.jpg" alt="" /> </div>
+                            <div class="span3" ng-click="select_resource(res)" style="cursor:pointer; {{res.id == selected_resource.id ? 'border-style: solid; border-color: gray; border_width: 1px;' : '' }}" ng-repeat="res in call.resources"> <img ng-src="http://images.dev-winwins.net/bancame_resource_{{res.main_type}}.jpg" alt="" /> </div>
                         </figure>
                         
                         <figure class="span7" id="product_info">
                             <h3> {{selected_resource.name}}</h3>
                             
                             <div class="price_holder"> 
-                                <span class="current_price"> Tipo de Recurso: Alojamiento</span>
+                                <span class="current_price"> {{selected_resource.tags_pretty}}</span>
                             </div>
                             
                             <div class="description_holder"> 
                                 {{selected_resource.description}}
                             </div>
-
+                            <hr/>
+                            <div class="description_holder"> 
+                                {{selected_resource.conditions}}
+                            </div>
 
                                 <ul class="product_properties">
-                                    <li> <i class="icon-chevron-right"></i>  {{selected_resource.conditions}}</li>
+                                    <li ng-repeat="country in countries"> <i class="icon-chevron-right"></i>  {{country}}</li>
                                 </ul>
                                 
                                 <ul class="stock_status">
